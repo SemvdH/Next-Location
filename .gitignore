@@ -2,7 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,android,androidstudio,gradle
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,android,androidstudio,gradle
 
+.idea/
 ### Android ###
+
 # Built application files
 *.apk
 *.aar
