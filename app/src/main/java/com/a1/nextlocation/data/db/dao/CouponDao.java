@@ -1,4 +1,4 @@
-package com.a1.nextlocation.data.db;
+package com.a1.nextlocation.data.db.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

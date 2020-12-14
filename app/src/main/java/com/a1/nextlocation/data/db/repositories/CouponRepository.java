@@ -1,11 +1,12 @@
-package com.a1.nextlocation.data.db;
+package com.a1.nextlocation.data.db.repositories;
 
-import android.app.Application;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import com.a1.nextlocation.data.Coupon;
+import com.a1.nextlocation.data.db.dao.CouponDao;
+import com.a1.nextlocation.data.db.Database;
 
 import java.util.List;
 

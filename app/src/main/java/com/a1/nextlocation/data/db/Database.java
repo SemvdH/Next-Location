@@ -3,15 +3,14 @@ package com.a1.nextlocation.data.db;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import com.a1.nextlocation.data.Coupon;
 import com.a1.nextlocation.data.Route;
+import com.a1.nextlocation.data.db.dao.CouponDao;
+import com.a1.nextlocation.data.db.dao.RouteDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,7 +25,7 @@ public abstract class Database extends RoomDatabase {
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriterExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static Database getDatabase(final Context context) {
+    public static Database getDatabase(final Context context) {
         if (INSTANCE == null){
             synchronized (Database.class) {
                 if (INSTANCE == null) {
