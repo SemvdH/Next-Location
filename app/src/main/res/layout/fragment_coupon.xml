@@ -7,15 +7,15 @@
     android:background="@color/primaryColour"
     tools:context=".fragments.CouponFragment">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/buttonColour"
-        android:text="Back"
-        app:layout_constraintBottom_toTopOf="@+id/Box1"
+        android:backgroundTint="@color/primaryColour"
+        android:src="@drawable/ic_back_button_24"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
