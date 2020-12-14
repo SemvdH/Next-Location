@@ -32,7 +32,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box1"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toTopOf="@id/Box2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box2"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         android:layout_marginHorizontal="20dp"
         android:background="@color/secondaryColour"
         app:layout_constraintBottom_toTopOf="@id/Box3"
@@ -129,7 +129,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box3"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         android:layout_marginHorizontal="20dp"
         android:background="@color/secondaryColour"
         app:layout_constraintBottom_toBottomOf="@id/Box4"
@@ -176,7 +176,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box4"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
