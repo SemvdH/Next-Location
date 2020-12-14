@@ -1,5 +1,7 @@
 package com.a1.nextlocation.data;
 
+import androidx.room.Ignore;
+
 import java.util.List;
 
 public class Data {
@@ -7,8 +9,14 @@ public class Data {
     private int locationsVisited;
     private int totalTime;
     private List<Coupon> couponList;
+
+    @Ignore
     private Location nextLocation;
+
+    @Ignore
     private Location lastLocation;
+
+    @Ignore
     private Route currentRoute;
 
     
