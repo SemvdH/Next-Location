@@ -29,8 +29,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
 
         @Override
         public void onClick(View view) {
-            int clickedPosition = getAdapterPosition();
-            clickListener.onItemClick(clickedPosition);
+            clickListener.onItemClick(getAdapterPosition());
         }
     }
 

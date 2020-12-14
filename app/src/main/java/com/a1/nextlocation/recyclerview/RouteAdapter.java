@@ -29,8 +29,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
 
         @Override
         public void onClick(View view) {
-            int clickedPosition = getAdapterPosition();
-            clickListener.onItemClick(clickedPosition);
+            clickListener.onItemClick(getAdapterPosition());
         }
     }
 
