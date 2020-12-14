@@ -1,5 +1,6 @@
 package com.a1.nextlocation.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Route {
@@ -7,6 +8,17 @@ public class Route {
     private List<Location> locations;
     private float totalDistance;
     private int totalTime;
+
+    public Route(String name) {
+
+        this.name = name;
+        this.locations = new ArrayList<>();
+
+    }
+
+    public void addLocation(Location location) {
+        this.locations.add(location);
+    }
 
     public String getName() {
         return name;
@@ -25,18 +37,14 @@ public class Route {
     }
 
     public float getTotalDistance() {
+        //TODO calculate total distance according to all locations in list
         return totalDistance;
     }
 
-    public void setTotalDistance(float totalDistance) {
-        this.totalDistance = totalDistance;
-    }
 
     public int getTotalTime() {
+        //TODO calculate total time according to all locations in list
         return totalTime;
     }
 
-    public void setTotalTime(int totalTime) {
-        this.totalTime = totalTime;
-    }
 }

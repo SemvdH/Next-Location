@@ -5,6 +5,11 @@ public class Coupon {
     private String code;
     private String reward;
 
+    public Coupon(String code, String reward) {
+        this.code = code;
+        this.reward = reward;
+    }
+
     public String getCode() {
         return code;
     }
