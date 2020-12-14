@@ -6,4 +6,13 @@
     <string name="routes">Routes</string>
     <string name="statistics">Statistieken</string>
     <string name="settings">Instellingen</string>
+    <string name="taal">Taal</string>
+    <string name="imperiaal_systeem">Imperiaal systeem</string>
+    <string name="_65_stand">65+ stand</string>
+    <string name="kleurenblind">Kleurenblind</string>
+    <string name="statistieken">Statistieken</string>
+    <string name="totale_afstand">Totale afstand:</string>
+    <string name="bezochte_locaties">Bezochte locaties:</string>
+    <string name="totale_tijd">Totale tijd:</string>
+    <string name="coupons_gespaard">Coupons gespaard:</string>
 </resources>
