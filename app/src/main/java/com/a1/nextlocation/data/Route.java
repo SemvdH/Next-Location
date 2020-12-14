@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.a1.nextlocation.data.db.LocationListTypeConverter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,6 +20,7 @@ public class Route {
     @NonNull
     private String name;
 
+    @TypeConverters(LocationListTypeConverter.class)
     private List<Location> locations;
 
     @ColumnInfo(name = "total_distance")

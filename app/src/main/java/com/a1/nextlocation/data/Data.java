@@ -1,23 +1,34 @@
 package com.a1.nextlocation.data;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
+import com.a1.nextlocation.data.db.CouponListTypeConverter;
+
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(tableName = "userdata")
 public class Data {
 
 
 
     @PrimaryKey
     @NonNull
+    @ColumnInfo(name = "distance_traveled")
     private float distanceTraveled;
 
+    @ColumnInfo(name = "locations_visited")
     private int locationsVisited;
+
+    @ColumnInfo(name = "total_time")
     private int totalTime;
+
+    @TypeConverters(CouponListTypeConverter.class)
     private List<Coupon> couponList;
 
     @Ignore
@@ -34,6 +45,7 @@ public class Data {
         this.distanceTraveled = 0;
         this.locationsVisited = 0;
         this.totalTime = 0;
+        couponList = new ArrayList<>();
     }
     
 

@@ -8,9 +8,11 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.a1.nextlocation.data.Coupon;
+import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.data.db.dao.CouponDao;
+import com.a1.nextlocation.data.db.dao.DataDao;
 import com.a1.nextlocation.data.db.dao.LocationDao;
 import com.a1.nextlocation.data.db.dao.RouteDao;
 
@@ -20,12 +22,13 @@ import java.util.concurrent.Executors;
 /**
  * @author Sem
  */
-@androidx.room.Database(entities = {Coupon.class,Route.class, Location.class},version = 1,exportSchema = false)
+@androidx.room.Database(entities = {Coupon.class,Route.class, Location.class, Data.class},version = 1,exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
     public abstract RouteDao routeDao();
     public abstract CouponDao couponDao();
     public abstract LocationDao locationDao();
+    public abstract DataDao dataDao();
 
     private static volatile Database INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
