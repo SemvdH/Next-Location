@@ -1,4 +1,4 @@
-package com.a1.nextlocation.fragments;
+package com.a1.nextlocation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
