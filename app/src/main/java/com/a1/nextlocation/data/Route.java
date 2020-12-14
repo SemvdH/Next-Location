@@ -1,15 +1,31 @@
 package com.a1.nextlocation.data;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Route {
+
+    @PrimaryKey
+    @NonNull
     private String name;
+
     private List<Location> locations;
+
+    @ColumnInfo(name = "total_distance")
     private float totalDistance;
+
+    @ColumnInfo(name = "total_time")
     private int totalTime;
 
-    public Route(String name) {
+    public Route(@NotNull String name) {
 
         this.name = name;
         this.locations = new ArrayList<>();
@@ -20,11 +36,12 @@ public class Route {
         this.locations.add(location);
     }
 
+    @NotNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NotNull String name) {
         this.name = name;
     }
 
@@ -45,6 +62,14 @@ public class Route {
     public int getTotalTime() {
         //TODO calculate total time according to all locations in list
         return totalTime;
+    }
+
+    public void setTotalDistance(float totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
     }
 
 }
