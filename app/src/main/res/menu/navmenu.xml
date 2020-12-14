@@ -4,25 +4,25 @@
     <item
         android:id="@+id/locations"
         android:title="@string/locations"
-        android:icon="@drawable/ic_placeholder"
+        android:icon="@drawable/ic_baseline_outlined_flag_24"
         />
 
     <item
         android:id="@+id/routes"
         android:title="@string/routes"
-        android:icon="@drawable/ic_placeholder"
+        android:icon="@drawable/ic_baseline_location_on_24"
         />
 
     <item
         android:id="@+id/statistics"
         android:title="@string/statistics"
-        android:icon="@drawable/ic_placeholder"
+        android:icon="@drawable/ic_baseline_graphic_eq_24"
         />
 
     <item
         android:id="@+id/settings"
         android:title="@string/settings"
-        android:icon="@drawable/ic_placeholder"
+        android:icon="@drawable/ic_baseline_settings_24"
         />
 
 </menu>
