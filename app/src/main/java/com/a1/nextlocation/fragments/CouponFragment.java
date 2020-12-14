@@ -1,4 +1,4 @@
-package com.a1.nextlocation;
+package com.a1.nextlocation.fragments;
 
 import android.os.Bundle;
 
@@ -8,18 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class LocationFragment extends Fragment {
+import com.a1.nextlocation.R;
+
+public class CouponFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location, container, false);
+        return inflater.inflate(R.layout.fragment_coupon, container, false);
     }
 }
