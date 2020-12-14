@@ -7,6 +7,16 @@
     android:background="@color/primaryColour"
     tools:context=".fragments.SettingsFragment">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonColour"
+        android:text="Back"
+        app:layout_constraintBottom_toTopOf="@+id/Box1"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -22,7 +32,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box1"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toTopOf="@id/Box2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +80,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box2"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         android:layout_marginHorizontal="20dp"
         android:background="@color/secondaryColour"
         app:layout_constraintBottom_toTopOf="@id/Box3"
@@ -116,14 +126,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box3"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         android:layout_marginHorizontal="20dp"
         android:background="@color/secondaryColour"
         app:layout_constraintBottom_toBottomOf="@id/Box4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Box2"
-
         >
 
         <TextView
@@ -161,7 +170,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Box4"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
