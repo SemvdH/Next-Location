@@ -1,11 +1,21 @@
 package com.a1.nextlocation.data;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.List;
 
+@Entity
 public class Data {
+
+
+
+    @PrimaryKey
+    @NonNull
     private float distanceTraveled;
+
     private int locationsVisited;
     private int totalTime;
     private List<Coupon> couponList;
@@ -19,6 +29,12 @@ public class Data {
     @Ignore
     private Route currentRoute;
 
+
+    public Data() {
+        this.distanceTraveled = 0;
+        this.locationsVisited = 0;
+        this.totalTime = 0;
+    }
     
 
     public float getDistanceTraveled() {
