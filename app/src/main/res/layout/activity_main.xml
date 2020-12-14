@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <view
+    <View
         android:id="@+id/scroller_devider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -39,5 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/navmenu"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
