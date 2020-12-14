@@ -1,27 +1,24 @@
 package com.a1.nextlocation.recyclerview;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.a1.nextlocation.data.Location;
+
+import java.util.List;
+
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
 
-    @NonNull
-    @Override
-    public LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
-    }
+    private Context appContext;
+    private List<Location> locationList;
+    private CouponAdapter.OnItemClickListener clickListener;
 
-    @Override
-    public void onBindViewHolder(@NonNull LocationViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
+    public interface OnItemClickListener {
+        void onItemClick(int clickedPosition);
     }
 
     class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -32,9 +29,30 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
         @Override
         public void onClick(View view) {
-
+            int clickedPosition = getAdapterPosition();
+            clickListener.onItemClick(clickedPosition);
         }
     }
 
+    public LocationAdapter(Context context, List<Location> location, CouponAdapter.OnItemClickListener listener){
+        appContext = context;
+        locationList = location;
+        clickListener = listener;
+    }
 
+    @NonNull
+    @Override
+    public LocationAdapter.LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull LocationAdapter.LocationViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return locationList.size();
+    }
 }
