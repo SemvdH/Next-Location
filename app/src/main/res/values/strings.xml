@@ -2,4 +2,8 @@
     <string name="app_name">Next Location</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="locations">Locaties</string>
+    <string name="routes">Routes</string>
+    <string name="statistics">Statistieken</string>
+    <string name="settings">Instellingen</string>
 </resources>
