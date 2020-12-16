@@ -1,22 +1,23 @@
 package com.a1.nextlocation.fragments;
 
+
+
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.a1.nextlocation.R;
 
@@ -69,7 +70,7 @@ public class HomeFragment extends Fragment {
         Configuration.getInstance().setUserAgentValue(userAgent);
 
         // create the map view
-        mapView = (MapView) view.findViewById(R.id.mapView);
+        mapView = view.findViewById(R.id.mapView);
         mapView.setDestroyMode(false);
         mapView.setTag("mapView");
         mapView.setMultiTouchControls(true);

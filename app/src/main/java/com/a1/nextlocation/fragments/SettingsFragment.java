@@ -2,6 +2,8 @@ package com.a1.nextlocation.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,15 +25,20 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        
+        return inflater.inflate(R.layout.fragment_settings, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         // Inflate the layout for this fragment
-        View view = getView();
         Spinner dropdown = view.findViewById(R.id.dropdown_menu_Settings);
 
         String[] items = new String[]{"Nederlands", "Engels", "Chinees"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
 
         dropdown.setAdapter(arrayAdapter);
-
-        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 }
