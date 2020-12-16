@@ -33,8 +33,8 @@ public class Location {
         this.imageUrl = imageUrl;
     }
 
-    public Location(@NotNull String name, double startLat, double startLong, double endLat, double endLong, String description, @Nullable String imageUrl) {
-        this(name,getStringFromCoordinates(startLat,startLong,endLat,endLong),description,imageUrl);
+    public Location(@NotNull String name, double latCoord, double longCoord, String description, @Nullable String imageUrl) {
+        this(name,getStringFromCoordinates(latCoord,longCoord),description,imageUrl);
     }
 
     @NotNull
@@ -72,18 +72,23 @@ public class Location {
     }
 
     public double[] getCoordinatesAsDoubles() {
-        double[] res = new double[4];
-        String[] locations = this.coordinates.split(";");
-        res[0] =Double.parseDouble(locations[0].split(",")[0]);
-        res[1] = Double.parseDouble(locations[0].split(",")[1]);
-        res[2] = Double.parseDouble(locations[1].split(",")[0]);
-        res[3] = Double.parseDouble(locations[1].split(",")[1]);
+        double[] res = new double[2];
+        res[0] = getLat();
+        res[1] = getLong();
 
         return res;
     }
 
-    public static String getStringFromCoordinates(double lat1, double long1, double lat2, double long2) {
-        return lat1 + "," + long1 + ";" + lat2 + "," + long2;
+    public double getLat() {
+        return Double.parseDouble(this.coordinates.split(",")[0]);
+    }
+
+    public double getLong() {
+        return Double.parseDouble(this.coordinates.split(",")[1]);
+    }
+
+    public static String getStringFromCoordinates(double lat1, double long1) {
+        return lat1 + "," + long1;
     }
 
 }
