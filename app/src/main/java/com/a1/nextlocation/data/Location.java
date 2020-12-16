@@ -1,6 +1,8 @@
 package com.a1.nextlocation.data;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,10 +18,15 @@ public class Location {
     private String coordinates;
     private String description;
 
-    public Location(@NotNull String name, String coordinates, String description) {
+    @ColumnInfo(name = "image_url")
+    @Nullable
+    private String imageUrl;
+
+    public Location(@NotNull String name, String coordinates, String description, @Nullable String imageUrl) {
         this.name = name;
         this.coordinates = coordinates;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     @NotNull
@@ -46,4 +53,14 @@ public class Location {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Nullable
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(@Nullable String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 }
