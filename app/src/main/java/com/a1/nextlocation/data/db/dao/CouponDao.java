@@ -22,6 +22,9 @@ public interface CouponDao {
     @Query("SELECT * FROM coupon")
     LiveData<List<Coupon>> selectAll();
 
+    @Update
+    public void update(Coupon coupon);
+
     /*
     to add an observer to the livedata, you can use the example from https://medium.com/mindorks/using-room-database-with-livedata-android-jetpack-cbf89b677b47
      */

@@ -20,6 +20,14 @@ public class CouponRepository {
         mAllCoupons = mCouponDao.selectAll();
     }
 
+    public void insert(Coupon... coupons) {
+        mCouponDao.insertAll(coupons);
+    }
+
+    public void update(Coupon coupon) {
+        mCouponDao.update(coupon);
+    }
+
     public LiveData<List<Coupon>> getAllCoupons() {
         return mAllCoupons;
     }
