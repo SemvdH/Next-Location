@@ -21,36 +21,35 @@
 
     <ImageView
         android:id="@+id/detail_location_image"
-        android:layout_width="357dp"
-        android:layout_height="196dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="309dp"
+        android:layout_height="283dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_location_name"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/detail_location_text"
-        android:layout_width="378dp"
-        android:layout_height="379dp"
+        android:layout_width="309dp"
+        android:layout_height="283dp"
+        android:layout_marginEnd="30dp"
         android:background="@color/secondaryColour"
         android:text="Detail tekst"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_location_image"
-        app:layout_constraintVertical_bias="0.446" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_location_name" />
 
     <ImageButton
         android:id="@+id/detail_location_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_back_button_24"
+        android:layout_marginStart="30dp"
         android:backgroundTint="@color/primaryColour"
+        android:src="@drawable/ic_back_button_24"
         app:layout_constraintBottom_toBottomOf="@+id/detail_location_name"
-        app:layout_constraintEnd_toStartOf="@+id/detail_location_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/detail_location_name" />
+        app:layout_constraintTop_toTopOf="@+id/detail_location_name"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
