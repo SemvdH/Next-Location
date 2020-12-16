@@ -35,4 +35,8 @@ public class CouponRepository {
     public Coupon getCoupon(String code) {
         return mCouponDao.selectCouponByCode(code);
     }
+
+    public void deleteAll() {
+        mCouponDao.deleteAll();
+    }
 }

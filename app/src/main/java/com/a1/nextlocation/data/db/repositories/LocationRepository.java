@@ -27,4 +27,12 @@ public class LocationRepository {
     public Location getLocationByName(String name) {
         return mLocationDao.getLocationByName(name);
     }
+
+    public void insertAll(Location... locations) {
+        mLocationDao.insertAll(locations);
+    }
+
+    public void deleteAll() {
+        mLocationDao.deleteAll();
+    }
 }

@@ -27,4 +27,8 @@ public class RouteRepository {
     public Route getRouteByName(String name) {
         return  mRouteDao.getRouteByName(name);
     }
+
+    public void deleteAll() {
+        mRouteDao.deleteAll();
+    }
 }

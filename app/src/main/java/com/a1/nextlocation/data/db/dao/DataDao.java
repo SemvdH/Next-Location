@@ -23,6 +23,9 @@ public interface DataDao {
     @Query("SELECT * FROM userdata LIMIT 1")
     Data getData();
 
+    @Query("SELECT * FROM userdata WHERE distance_traveled = :distance LIMIT 1")
+    Data getDataByDistance(float distance);
+
 
 
 }

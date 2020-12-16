@@ -20,5 +20,21 @@ public class DataRepository {
         return data;
     }
 
+    public Data getDataByDistance(float distance) {
+        return mDataDao.getDataByDistance(distance);
+    }
+
+    public void deleteAll() {
+        mDataDao.delete();
+    }
+
+    public void update(Data data) {
+        mDataDao.update(data);
+    }
+
+    public void insertAll(Data... datas) {
+        mDataDao.insertAll(datas);
+    }
+
 
 }
