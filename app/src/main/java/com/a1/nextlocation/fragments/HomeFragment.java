@@ -20,6 +20,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.recyclerview.CouponListManager;
+import com.a1.nextlocation.recyclerview.LocationListManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -111,6 +113,9 @@ public class HomeFragment extends Fragment {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         }
+
+        LocationListManager locationListManager = new LocationListManager(requireContext());
+        locationListManager.load();
 
     }
     private void requestPermissionsIfNecessary(String... permissions) {

@@ -2,6 +2,7 @@ package com.a1.nextlocation.data;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -14,18 +15,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileIO<T> {
+    private final String TAG = FileIO.class.getCanonicalName();
 
 
-    public Class<T> readFileData(Context context, String fileName) {
+    public T readFileData(Context context, String fileName) {
         Gson gson = new Gson();
         AssetManager am = context.getAssets();
-        Class<T> res = null;
+        T res = null;
         try {
             InputStream is = am.open(fileName);
             InputStreamReader inputStreamReader = new InputStreamReader(is);
             res = gson.fromJson(inputStreamReader,new TypeToken<T>(){}.getType());
+            Log.d(TAG, "readFileData: got object: " + res);
 
         } catch (IOException e) {
+            Log.d(TAG, "readFileData:  exception! " + e.getLocalizedMessage());
             e.printStackTrace();
         }
         return res;
