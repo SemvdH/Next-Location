@@ -1,24 +1,18 @@
 package com.a1.nextlocation.data;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "coupon")
+
 public class Coupon {
 
     /**
      * fields need to be public for the database to be able to use them
      */
-    @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "code")
     private String code;
-
-    @ColumnInfo(name = "reward")
+    
     @NonNull
     private String reward;
 

@@ -1,43 +1,24 @@
 package com.a1.nextlocation.data;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.a1.nextlocation.data.db.CouponListTypeConverter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "userdata")
 public class Data {
 
-
-
-    @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = "distance_traveled")
     private float distanceTraveled;
 
-    @ColumnInfo(name = "locations_visited")
     private int locationsVisited;
 
-    @ColumnInfo(name = "total_time")
     private int totalTime;
 
-    @TypeConverters(CouponListTypeConverter.class)
     private List<Coupon> couponList;
 
-    @Ignore
     private Location nextLocation;
 
-    @Ignore
     private Location lastLocation;
 
-    @Ignore
     private Route currentRoute;
 
 

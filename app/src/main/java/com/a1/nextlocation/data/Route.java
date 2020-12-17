@@ -1,32 +1,25 @@
 package com.a1.nextlocation.data;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.a1.nextlocation.data.db.LocationListTypeConverter;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "route")
 public class Route {
 
-    @PrimaryKey
+
     @NonNull
     private String name;
 
-    @TypeConverters(LocationListTypeConverter.class)
+
     private List<Location> locations;
 
-    @ColumnInfo(name = "total_distance")
+
     private float totalDistance;
 
-    @ColumnInfo(name = "total_time")
+
     private int totalTime;
 
     public Route(@NotNull String name) {

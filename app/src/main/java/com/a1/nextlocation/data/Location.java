@@ -2,16 +2,11 @@ package com.a1.nextlocation.data;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "location")
 public class Location {
 
-    @PrimaryKey
     @NonNull
     private String name;
 
@@ -22,7 +17,6 @@ public class Location {
     private String coordinates;
     private String description;
 
-    @ColumnInfo(name = "image_url")
     @Nullable
     private String imageUrl;
 
