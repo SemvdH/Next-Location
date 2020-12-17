@@ -20,8 +20,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 import com.a1.nextlocation.recyclerview.LocationListManager;
+import com.a1.nextlocation.recyclerview.RouteListManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -114,8 +116,9 @@ public class HomeFragment extends Fragment {
 
         }
 
-        LocationListManager locationListManager = new LocationListManager(requireContext());
-        locationListManager.load();
+        CouponListManager couponListManager = new CouponListManager(requireContext());
+        couponListManager.load();
+        Log.d(TAG, "initMap: " + couponListManager.getCoupon(0).getCode());
 
     }
     private void requestPermissionsIfNecessary(String... permissions) {
