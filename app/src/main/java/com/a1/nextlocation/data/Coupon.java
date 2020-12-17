@@ -12,7 +12,7 @@ public class Coupon {
      */
     @NonNull
     private String code;
-    
+
     @NonNull
     private String reward;
 

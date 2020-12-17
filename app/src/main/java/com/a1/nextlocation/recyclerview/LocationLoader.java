@@ -1,8 +1,11 @@
 package com.a1.nextlocation.recyclerview;
 
-public class LocationLoader implements Loader{
-    @Override
-    public void load() {
+import com.a1.nextlocation.data.Location;
 
+public class LocationLoader implements Loader<Location>{
+
+    @Override
+    public Location load() {
+        return null;
     }
 }
