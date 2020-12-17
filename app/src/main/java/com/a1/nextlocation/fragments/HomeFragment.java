@@ -100,6 +100,9 @@ public class HomeFragment extends Fragment {
         // add location manager and set the start point
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
 
+        LocationListManager.INSTANCE.load();
+
+
         try {
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
@@ -115,10 +118,6 @@ public class HomeFragment extends Fragment {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         }
-
-        CouponListManager couponListManager = new CouponListManager(requireContext());
-        couponListManager.load();
-        Log.d(TAG, "initMap: " + couponListManager.getCoupon(0).getCode());
 
     }
     private void requestPermissionsIfNecessary(String... permissions) {

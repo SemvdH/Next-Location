@@ -3,5 +3,10 @@
     "name": "kees kroket",
     "coordinates": "2.4654645,6.2342323",
     "description": "lekkere patatjes"
+  },
+  {
+    "name" : "locatie2",
+    "coordinates": "3.65656,9.564564",
+    "description": "locatie 2"
   }
 ]

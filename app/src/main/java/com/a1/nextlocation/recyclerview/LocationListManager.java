@@ -4,16 +4,18 @@ import android.content.Context;
 
 import com.a1.nextlocation.data.Location;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class LocationListManager {
+public enum LocationListManager {
+    INSTANCE;
 
     private List<Location> locationList;
     private Context context;
 
-    public LocationListManager(Context context){
+    public void setContext(Context context) {
         this.context = context;
-
+        this.locationList = new ArrayList<>();
     }
 
     public List<Location> getLocationList() {

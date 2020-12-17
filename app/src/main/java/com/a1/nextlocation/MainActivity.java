@@ -13,6 +13,9 @@ import com.a1.nextlocation.fragments.HomeFragment;
 import com.a1.nextlocation.fragments.RouteFragment;
 import com.a1.nextlocation.fragments.SettingsFragment;
 import com.a1.nextlocation.fragments.StatisticFragment;
+import com.a1.nextlocation.recyclerview.CouponListManager;
+import com.a1.nextlocation.recyclerview.LocationListManager;
+import com.a1.nextlocation.recyclerview.RouteListManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.navbar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        LocationListManager.INSTANCE.setContext(this);
+        CouponListManager.INSTANCE.setContext(this);
+        RouteListManager.INSTANCE.setContext(this);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
     }
