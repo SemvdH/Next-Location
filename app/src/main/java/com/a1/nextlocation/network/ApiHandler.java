@@ -1,5 +1,7 @@
 package com.a1.nextlocation.network;
 
+import android.util.Log;
+
 import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
 
@@ -42,11 +44,11 @@ public enum ApiHandler {
             try (Response response = client.newCall(request).execute()) {
                 if (response.body() != null) {
                     String responseString = Objects.requireNonNull(response.body()).string();
-                    
+                    Log.d(TAG, "getDirections: got response: " + responseString);
                 }
 
             } catch (IOException e) {
-
+                Log.d(TAG, "getDirections: caught exception: " + e.getLocalizedMessage());
             }
         });
 
