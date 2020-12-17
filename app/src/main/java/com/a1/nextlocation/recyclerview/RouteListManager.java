@@ -4,7 +4,7 @@ import com.a1.nextlocation.data.Route;
 
 import java.util.List;
 
-public class RouteListManager implements Loader{
+public class RouteListManager {
 
     List<Route> routes;
 
@@ -18,10 +18,5 @@ public class RouteListManager implements Loader{
 
     public void setRoutes(List<Route> routes) {
         this.routes = routes;
-    }
-
-    @Override
-    public void load() {
-
     }
 }
