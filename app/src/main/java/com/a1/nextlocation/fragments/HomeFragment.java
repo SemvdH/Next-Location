@@ -5,6 +5,7 @@ package com.a1.nextlocation.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.recyclerview.CouponListManager;
+import com.a1.nextlocation.recyclerview.CustomOverlay;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 
@@ -29,6 +31,8 @@ import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
@@ -92,6 +96,15 @@ public class HomeFragment extends Fragment {
         mLocationOverlay.enableFollowLocation();
         mLocationOverlay.enableMyLocation();
         mapView.getOverlays().add(mLocationOverlay);
+
+        CustomOverlay customOverlay = new CustomOverlay(getResources().getDrawable(R.drawable.common_google_signin_btn_icon_dark),mapView);
+        GeoPoint p = new GeoPoint(51.49635644532748, 4.2862774306334686);
+        OverlayItem overlayItem = new OverlayItem("willys","doner",p);
+
+        customOverlay.addOverlayItem(overlayItem);
+        mapView.getOverlays().add(customOverlay);
+
+
 
         // add the zoom controller
         IMapController mapController = mapView.getController();

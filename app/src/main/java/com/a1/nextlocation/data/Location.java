@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
+import org.osmdroid.util.GeoPoint;
 
 public class Location {
 
@@ -83,6 +84,10 @@ public class Location {
 
     public static String getStringFromCoordinates(double lat1, double long1) {
         return lat1 + "," + long1;
+    }
+
+    public GeoPoint convertToGeoPoint() {
+        return new GeoPoint(this.getLat(),this.getLong());
     }
 
 }
