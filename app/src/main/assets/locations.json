@@ -1,133 +1,134 @@
 [
   {
     "name":"McDonald's Breda Karnemelkstraat",
-    "coordinates":"51.586106,4.775444",
+    "coordinates":"51.58596318905295,4.77586651481887",
     "description":"McDonald's restaurant",
     "imageUrl":"NULL"
   },
   {
     "name":"Subway Karnemelkstraat 10 A, 1",
-    "coordinates":"60.2101387,24.7109503",
+    "coordinates":"51.58632782568612,4.775219531501114",
     "description":"4811 KJ Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Wok To Go Halstraat 40",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.58650312572897,4.777467069592386",
     "description":"4811HX Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"De Boterhal Grote Markt 19",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.588069667604756,4.7762685632180695",
     "description":"4811XL Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Gauchos Grote Markt 33",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.58859328857082,4.77601349563689",
     "description":"4811XP Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"The Tosti Club Breda A4, Vlaszak 2",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.58905632735254,4.780729463841719",
     "description":"4811GR Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Coffee & Lunch 4 you Oude Vest 31",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.58741730235298,4.779832967540571",
     "description":"4811HS Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"t Zusje Breda Vismarktstraat 28",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.590133292554434,4.773911506170458",
     "description":"4811WE Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"VR-World Nassaustraat 2",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.5913566342086,4.786256804321071",
     "description":"4811DD Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Kees Kroket Houtmarkt 9",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.58647180329833,4.77741809637617",
     "description":"KEEEEES KROKET!",
     "imageUrl":"NULL"
   },
   {
     "name":"Prison Escape Kloosterlaan 168",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.59073795635181,4.784917104321059",
     "description":"4811EE Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"De Koepel - FutureDome Events Nassausingel 26",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.590431588532105,4.786756741648511",
     "description":"4811HP Breda",
     "imageUrl":"NULL"
   },
+
   {
     "name":"Escaping Breda: Escape Room Games Boschstraat 114",
-    "coordinates":" 51.5887845,4.7760237",
+    "coordinates":" 51.59110835530862,4.784147222780912",
     "description":"4811GK Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"MEZZ Breda Keizerstraat 101",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.58394697737321,4.779757901349616",
     "description":"4811HL Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Het Klooster Breda Schorsmolenstraat 13",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.58775443759389,4.765568874365066",
     "description":"4811VN Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Beach & Lounge club Spider “rooftop bar” Nieuwe Prinsenkade",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.59212977605884,4.774043765582372",
     "description":"4811VC Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Koningin Wilhelmina Paviljoen Kraanstraat 4b",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.590645369292396,4.776045124415531",
     "description":"4811XV Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Hercules en de Nemeïsche leeuw",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.59130522182325,4.778161739135078",
     "description":"4811XJ Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Nassau-Baroniemonument - 1905 - Pierre Cuypers Delpratsingel 1",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.592530636759136,4.780278353833301",
     "description":"4811AM Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Station Breda Gravinnen van Nassauboulevard 43",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.59569850758307,4.780295549958155",
     "description":"4815CA Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"Belcrum Beach Veilingkade 12a",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.599434239284726,4.76632797992092",
     "description":"4815HC Breda",
     "imageUrl":"NULL"
   },
   {
     "name":"De Belcrum Watertoren (1935) Speelhuislaan 158",
-    "coordinates":"51.5887845,4.7760237",
+    "coordinates":"51.60135351009892,4.7705765989322755",
     "description":"4815CJ Breda",
     "imageUrl":"NULL"
   }

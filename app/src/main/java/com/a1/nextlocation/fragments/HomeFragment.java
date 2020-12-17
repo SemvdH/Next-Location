@@ -97,11 +97,17 @@ public class HomeFragment extends Fragment {
         mLocationOverlay.enableMyLocation();
         mapView.getOverlays().add(mLocationOverlay);
 
-        CustomOverlay customOverlay = new CustomOverlay(getResources().getDrawable(R.drawable.common_google_signin_btn_icon_dark),mapView);
-        GeoPoint p = new GeoPoint(51.49635644532748, 4.2862774306334686);
-        OverlayItem overlayItem = new OverlayItem("willys","doner",p);
+        CustomOverlay customOverlay = new CustomOverlay(getResources().getDrawable(R.drawable.ic_baseline_location_on_24),mapView);
 
-        customOverlay.addOverlayItem(overlayItem);
+        for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
+            GeoPoint p = new GeoPoint(l.getLat(), l.getLong());
+            OverlayItem overlayItem = new OverlayItem(l.getName(),l.getDescription(), p);
+
+            customOverlay.addOverlayItem(overlayItem);
+            Log.d(TAG, "initMap: " + "succes");
+        }
+
+
         mapView.getOverlays().add(customOverlay);
 
 
