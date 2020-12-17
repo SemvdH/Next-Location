@@ -32,8 +32,11 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         LocationListManager.INSTANCE.setContext(this);
+        LocationListManager.INSTANCE.load();
         CouponListManager.INSTANCE.setContext(this);
+        CouponListManager.INSTANCE.load();
         RouteListManager.INSTANCE.setContext(this);
+        RouteListManager.INSTANCE.load();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
     }

@@ -100,8 +100,6 @@ public class HomeFragment extends Fragment {
         // add location manager and set the start point
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
 
-        LocationListManager.INSTANCE.load();
-
 
         try {
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
