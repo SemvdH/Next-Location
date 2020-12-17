@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.a1.nextlocation.data.Location;
 
+import org.osmdroid.util.GeoPoint;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,4 +32,5 @@ public enum LocationListManager {
         LocationLoader locationLoader = new LocationLoader(this.context);
         this.locationList = locationLoader.load();
     }
+
 }
