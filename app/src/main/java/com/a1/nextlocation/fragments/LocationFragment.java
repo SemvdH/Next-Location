@@ -36,21 +36,24 @@ public class LocationFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
-        locationRecyclerView = view.findViewById(R.id.locationRecyclerView);
-        locationRecyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this.getContext());
-        LocationListManager locationListManager = new LocationListManager(this.getContext());
-        locationListManager.load();
-        locationList = locationListManager.getLocationList();
-        locationAdapter = new LocationAdapter(this.getContext(), locationList, clickedPosition -> {
+        this.locationRecyclerView = view.findViewById(R.id.locationRecyclerView);
+        this.locationRecyclerView.setHasFixedSize(true);
+        this.layoutManager = new LinearLayoutManager(this.getContext());
+
+        LocationListManager.INSTANCE.setContext(this.getContext());
+        LocationListManager.INSTANCE.load();
+        this.locationList = LocationListManager.INSTANCE.getLocationList();
+
+        this.locationAdapter = new LocationAdapter(this.getContext(), this.locationList, clickedPosition -> {
             LocationDetailFragment locationDetailFragment = new LocationDetailFragment();
             Bundle locationBundle = new Bundle();
-            locationBundle.putParcelable("location", locationList.get(clickedPosition));
+            locationBundle.putParcelable("location", this.locationList.get(clickedPosition));
             locationDetailFragment.setArguments(locationBundle);
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationDetailFragment).addToBackStack(null).commit();
         });
-        locationRecyclerView.setLayoutManager(layoutManager);
-        locationRecyclerView.setAdapter(locationAdapter);
+
+        this.locationRecyclerView.setLayoutManager(this.layoutManager);
+        this.locationRecyclerView.setAdapter(this.locationAdapter);
         return view;
     }
 }
