@@ -1,26 +1,32 @@
 package com.a1.nextlocation.recyclerview;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.a1.nextlocation.data.Coupon;
 import com.a1.nextlocation.data.FileIO;
 import com.a1.nextlocation.data.Location;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CouponLoader implements Loader<List<Coupon>> {
     private final Context context;
+    private final String TAG = CouponLoader.class.getCanonicalName();
+
     public CouponLoader(Context context) {
         this.context = context;
     }
+
     @Override
-    public List<Coupon> load() {
-        FileIO<List<Coupon>> fileIO = new FileIO<>();
-        try {
-            return fileIO.readFileData(context,"coupons.json").newInstance();
-        } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public ArrayList<Coupon> load() {
+        FileIO<ArrayList<Coupon>> fileIO = new FileIO<>();
+        ArrayList<Coupon> res = fileIO.readFileData(context, "coupons.json",new TypeToken<ArrayList<Coupon>>(){}.getType());
+        Log.d(TAG, "load: " + res);
+
+        return res == null ? new ArrayList<>() : res;
+
     }
 }

@@ -4,15 +4,18 @@ import android.content.Context;
 
 import com.a1.nextlocation.data.Coupon;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CouponListManager {
+public enum CouponListManager {
+    INSTANCE;
 
     private List<Coupon> couponList;
     private Context context;
 
-    public CouponListManager(Context context){
+    public void setContext(Context context) {
         this.context = context;
+        this.couponList = new ArrayList<>();
     }
 
     public List<Coupon> getCouponList() {

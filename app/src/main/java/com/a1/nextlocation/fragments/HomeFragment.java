@@ -20,6 +20,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Route;
+import com.a1.nextlocation.recyclerview.CouponListManager;
+import com.a1.nextlocation.recyclerview.LocationListManager;
+import com.a1.nextlocation.recyclerview.RouteListManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -95,6 +99,7 @@ public class HomeFragment extends Fragment {
 
         // add location manager and set the start point
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
+
 
         try {
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);

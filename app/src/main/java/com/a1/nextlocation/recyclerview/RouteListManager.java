@@ -4,16 +4,20 @@ import android.content.Context;
 
 import com.a1.nextlocation.data.Route;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RouteListManager{
+public enum RouteListManager{
+    INSTANCE;
 
     private List<Route> routeList;
     private Context context;
 
-    public RouteListManager(Context context){
+    public void setContext(Context context) {
         this.context = context;
+        this.routeList = new ArrayList<>();
     }
+
 
     public List<Route> getRouteList() {
         return routeList;
