@@ -1,23 +1,31 @@
 package com.a1.nextlocation.recyclerview;
 
+import android.content.Context;
+
 import com.a1.nextlocation.data.Coupon;
 
 import java.util.List;
 
 public class CouponListManager {
 
-    private List<Coupon> coupon;
+    private List<Coupon> couponList;
+    private Context context;
 
-    public CouponListManager(){
-
+    public CouponListManager(Context context){
+        this.context = context;
     }
 
-    public List<Coupon> getCoupon() {
-        return coupon;
+    public List<Coupon> getCouponList() {
+        return couponList;
     }
 
-    public void setCoupon(List<Coupon> location) {
-        this.coupon = coupon;
+    public Coupon getCoupon(int place) {
+        return couponList.get(place);
+    }
+
+    public void load(){
+        CouponLoader couponLoader = new CouponLoader(this.context);
+        this.couponList = couponLoader.load();
     }
 
 }
