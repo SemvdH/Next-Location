@@ -18,7 +18,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
     private Context appContext;
     private List<Location> locationList;
-    private CouponAdapter.OnItemClickListener clickListener;
+    private OnItemClickListener clickListener;
 
     public interface OnItemClickListener {
         void onItemClick(int clickedPosition);
@@ -31,6 +31,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         public LocationViewHolder(@NonNull View itemView) {
             super(itemView);
             this.locationName = itemView.findViewById(R.id.location_name);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -43,7 +44,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         }
     }
 
-    public LocationAdapter(Context context, List<Location> location, CouponAdapter.OnItemClickListener listener){
+    public LocationAdapter(Context context, List<Location> location, OnItemClickListener listener){
         this.appContext = context;
         this.locationList = location;
         this.clickListener = listener;
