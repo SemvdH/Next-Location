@@ -42,11 +42,11 @@ public class LocationFragment extends Fragment {
         this.locationRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
-//        this.imageButton = view.findViewById(R.id.locationBackButton);
-//        this.imageButton.setOnClickListener(v -> {
-//            HomeFragment homeFragment = new HomeFragment();
-//            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
-//        });
+        this.imageButton = view.findViewById(R.id.locationBackButton);
+        this.imageButton.setOnClickListener(v -> {
+            HomeFragment homeFragment = new HomeFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+        });
 
         LocationListManager.INSTANCE.setContext(this.getContext());
         LocationListManager.INSTANCE.load();
