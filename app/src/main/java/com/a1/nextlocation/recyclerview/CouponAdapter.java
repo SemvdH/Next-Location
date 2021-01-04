@@ -3,10 +3,13 @@ package com.a1.nextlocation.recyclerview;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Coupon;
 
 import java.util.List;
@@ -23,39 +26,54 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
 
     class CouponViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private TextView couponCode;
+        private TextView couponReward;
+
         public CouponViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+        }
+
+
+        public void setTextViewName(String text){
+            this.couponReward = itemView.findViewById(R.id.coupon_name);
+            this.couponReward.setText(text);
         }
 
         @Override
-        public void onClick(View view) {
+        public void onClick(View v) {
             clickListener.onItemClick(getAdapterPosition());
         }
     }
 
     public CouponAdapter(Context context, List<Coupon> coupon, OnItemClickListener listener){
-        appContext = context;
-        couponList = coupon;
-        clickListener = listener;
+        this.appContext = context;
+        this.couponList = coupon;
+        this.clickListener = listener;
+
+    }
+
+    public CouponAdapter(Context context, List<Coupon> coupon) {
+        this.appContext = context;
+        this.couponList = coupon;
     }
 
     @NonNull
     @Override
     public CouponViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.coupon_item, parent, false);
+        return new CouponViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CouponViewHolder holder, int position) {
-
+        Coupon coupon = couponList.get(position);
+        holder.setTextViewName(coupon.getReward());
     }
 
     @Override
     public int getItemCount() {
         return couponList.size();
     }
-
-
-
 
 }

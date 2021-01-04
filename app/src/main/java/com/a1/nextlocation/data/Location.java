@@ -1,12 +1,15 @@
 package com.a1.nextlocation.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
 import org.osmdroid.util.GeoPoint;
 
-public class Location {
+public class Location implements Parcelable {
 
     @NonNull
     private String name;
@@ -31,6 +34,25 @@ public class Location {
     public Location(@NotNull String name, double latCoord, double longCoord, String description, @Nullable String imageUrl) {
         this(name,getStringFromCoordinates(latCoord,longCoord),description,imageUrl);
     }
+
+    protected Location(Parcel in) {
+        name = in.readString();
+        coordinates = in.readString();
+        description = in.readString();
+        imageUrl = in.readString();
+    }
+
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
 
     @NotNull
     public String getName() {
@@ -90,4 +112,16 @@ public class Location {
         return new GeoPoint(this.getLat(),this.getLong());
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(coordinates);
+        parcel.writeString(description);
+        parcel.writeString(imageUrl);
+    }
 }
