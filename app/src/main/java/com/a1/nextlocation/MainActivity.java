@@ -13,6 +13,7 @@ import com.a1.nextlocation.fragments.HomeFragment;
 import com.a1.nextlocation.fragments.RouteFragment;
 import com.a1.nextlocation.fragments.SettingsFragment;
 import com.a1.nextlocation.fragments.StatisticFragment;
+import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 import com.a1.nextlocation.recyclerview.RouteListManager;
