@@ -42,5 +42,6 @@ public class RouteFragment extends Fragment {
 
     public void onDirectionsAvailable(DirectionsResult result) {
         Log.d(TAG, "onDirectionsAvailable: got result! " + result);
+
     }
 }
