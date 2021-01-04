@@ -110,8 +110,6 @@ public class HomeFragment extends Fragment {
 
         mapView.getOverlays().add(customOverlay);
 
-
-
         // add the zoom controller
         IMapController mapController = mapView.getController();
         mapController.setZoom(15.0);
