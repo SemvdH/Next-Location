@@ -13,12 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Route;
@@ -42,6 +44,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     private final String userAgent = "com.ai.nextlocation.fragments";
+    private ImageButton imageButton;
     private MapView mapView;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private final String TAG = HomeFragment.class.getCanonicalName();
@@ -60,10 +63,16 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
 
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        this.imageButton = view.findViewById(R.id.location_list_button);
+        this.imageButton.setOnClickListener(v -> {
+            LocationFragment locationFragment = new LocationFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
+        });
+
+        return view;
     }
 
     @Override

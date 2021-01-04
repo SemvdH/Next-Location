@@ -40,6 +40,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         }
 
         public void setTextViewText(String text){
+            this.locationName = itemView.findViewById(R.id.location_name);
             locationName.setText(text);
         }
     }
@@ -53,9 +54,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     @NonNull
     @Override
     public LocationAdapter.LocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_location, parent, false);
-        LocationViewHolder viewHolder = new LocationViewHolder(itemView);
-        return viewHolder;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.location_item, parent, false);
+        return new LocationViewHolder(itemView);
     }
 
     @Override

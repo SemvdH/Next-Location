@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import java.util.List;
 public class StatisticFragment extends Fragment {
 
     private List<Coupon> couponList;
+    private ImageView imageButton;
 
 
     @Override

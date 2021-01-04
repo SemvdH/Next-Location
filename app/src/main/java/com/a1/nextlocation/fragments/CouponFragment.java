@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Coupon;
@@ -26,6 +27,7 @@ public class CouponFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private List<Coupon> couponList;
     private CouponAdapter couponAdapter;
+    private ImageButton imageButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,12 @@ public class CouponFragment extends Fragment {
         this.couponRecyclerView = view.findViewById(R.id.couponRecyclerView);
         this.couponRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
+
+        this.imageButton = view.findViewById(R.id.couponBackButton);
+        this.imageButton.setOnClickListener(v -> {
+            StatisticFragment statisticFragment = new StatisticFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, statisticFragment).addToBackStack(null).commit();
+        });
 
         CouponListManager.INSTANCE.setContext(this.getContext());
         CouponListManager.INSTANCE.load();

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Location;
@@ -25,6 +26,7 @@ public class LocationFragment extends Fragment {
     private LocationAdapter locationAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Location> locationList;
+    private ImageButton imageButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,12 @@ public class LocationFragment extends Fragment {
         this.locationRecyclerView = view.findViewById(R.id.locationRecyclerView);
         this.locationRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
+
+//        this.imageButton = view.findViewById(R.id.locationBackButton);
+//        this.imageButton.setOnClickListener(v -> {
+//            HomeFragment homeFragment = new HomeFragment();
+//            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+//        });
 
         LocationListManager.INSTANCE.setContext(this.getContext());
         LocationListManager.INSTANCE.load();
