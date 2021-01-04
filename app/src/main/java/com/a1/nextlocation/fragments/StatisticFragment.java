@@ -10,11 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Coupon;
+import com.a1.nextlocation.recyclerview.CouponAdapter;
+import com.a1.nextlocation.recyclerview.CouponListManager;
+
+import java.util.List;
 
 public class StatisticFragment extends Fragment {
+
+    private List<Coupon> couponList;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +33,11 @@ public class StatisticFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistic, container, false);
+
+        this.couponList = CouponListManager.INSTANCE.getCouponList();
+        CouponAdapter adapter = new CouponAdapter(this.getContext(), this.couponList);
+        TextView couponNumber = view.findViewById(R.id.couponAmount);
+        couponNumber.setText(String.valueOf(adapter.getItemCount()));
 
 
         ConstraintLayout constraintLayout = view.findViewById(R.id.Box4);

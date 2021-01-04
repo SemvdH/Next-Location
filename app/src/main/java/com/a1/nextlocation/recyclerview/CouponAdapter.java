@@ -53,6 +53,11 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
 
     }
 
+    public CouponAdapter(Context context, List<Coupon> coupon) {
+        this.appContext = context;
+        this.couponList = coupon;
+    }
+
     @NonNull
     @Override
     public CouponViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
