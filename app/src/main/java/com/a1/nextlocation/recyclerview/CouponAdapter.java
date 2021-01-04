@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,8 +26,21 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
 
     class CouponViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView couponCode;
+        private TextView couponReward;
+
         public CouponViewHolder(@NonNull View itemView) {
             super(itemView);
+        }
+
+        public void setTextViewCode(String text){
+            this.couponCode = itemView.findViewById(R.id.coupon_code);
+            this.couponCode.setText(text);
+        }
+
+        public void setTextViewReward(String text){
+            this.couponReward = itemView.findViewById(R.id.coupon_waarde);
+            this.couponReward.setText(text);
         }
     }
 
@@ -38,13 +52,15 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
     @NonNull
     @Override
     public CouponViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_coupon, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.coupon_item, parent, false);
         return new CouponViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CouponViewHolder holder, int position) {
-
+        Coupon coupon = couponList.get(position);
+        holder.setTextViewCode(coupon.getCode());
+        holder.setTextViewReward(coupon.getReward());
     }
 
     @Override
