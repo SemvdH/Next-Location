@@ -3,6 +3,7 @@ package com.a1.nextlocation;
 import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,17 +12,27 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class RouteTest {
+    private Route route;
+
+    @Before
+    public void init(){
+        route = new Route("testName");
+    }
 
     @Test
-    public void GetNameTest(){
-        Route route = new Route("testName");
-        String expected = "testName";
-        assertEquals(expected, route.getName());
+    public void nameTest(){
+        String testName = "secondTestName";
+
+        String expectedBefore = "testName";
+        String expectedAfter = "secondTestName";
+
+        assertEquals(expectedBefore, route.getName());
+        route.setName(testName);
+        assertEquals(expectedAfter, route.getName());
     }
 
     @Test
     public void getLocationsTest(){
-        Route route = new Route("testName");
         List<Location> expected = new ArrayList<>();
 
         assertEquals(expected, route.getLocations());
@@ -29,7 +40,6 @@ public class RouteTest {
 
     @Test
     public void SetLocationsTest(){
-        Route route = new Route("testName");
         List<Location> testList = new ArrayList<>();
         testList.add(new Location("name1", "coord1", "desc1", null));
         testList.add(new Location("name2", "coord2", "desc2", null));
@@ -45,7 +55,6 @@ public class RouteTest {
 
     @Test
     public void AddLocationTest(){
-        Route route = new Route("testName");
         Location testLocation = new Location("testLocationName", "testCoordinates", "testDescription", null);
 
         List<Location> expectedBefore = new ArrayList<>();
@@ -59,7 +68,6 @@ public class RouteTest {
 
     @Test
     public void totalDistanceTest(){
-        Route route = new Route("testName");
         float testDistance = 523;
 
         float expectedBefore = 0;
@@ -72,7 +80,6 @@ public class RouteTest {
 
     @Test
     public void totalTimeTest(){
-        Route route = new Route("testName");
         int testTime = 36;
 
         int expectedBefore = 0;
