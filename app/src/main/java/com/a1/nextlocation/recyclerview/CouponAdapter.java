@@ -34,13 +34,9 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
             itemView.setOnClickListener(this);
         }
 
-        public void setTextViewCode(String text){
-            this.couponCode = itemView.findViewById(R.id.coupon_code);
-            this.couponCode.setText(text);
-        }
 
-        public void setTextViewReward(String text){
-            this.couponReward = itemView.findViewById(R.id.coupon_waarde);
+        public void setTextViewName(String text){
+            this.couponReward = itemView.findViewById(R.id.coupon_name);
             this.couponReward.setText(text);
         }
 
@@ -67,8 +63,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
     @Override
     public void onBindViewHolder(@NonNull CouponViewHolder holder, int position) {
         Coupon coupon = couponList.get(position);
-        holder.setTextViewCode(coupon.getCode());
-        holder.setTextViewReward(coupon.getReward());
+        holder.setTextViewName(coupon.getReward());
     }
 
     @Override
