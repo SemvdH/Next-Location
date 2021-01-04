@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Location;
+import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.network.DirectionsListener;
@@ -37,11 +39,17 @@ public class RouteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ApiHandler.INSTANCE.getDirections(8.681436,49.41461,8.687872,49.420318);
+//        ApiHandler.INSTANCE.getDirections(8.681436,49.41461,8.687872,49.420318);
+        Route r = new Route("test");
+        r.addLocation(new Location("test",8.681436,49.41461,"route",null));
+        r.addLocation(new Location("test",8.687872,49.420318,"route",null));
+        ApiHandler.INSTANCE.getDirections(r);
     }
 
     public void onDirectionsAvailable(DirectionsResult result) {
         Log.d(TAG, "onDirectionsAvailable: got result! " + result);
+
+
 
     }
 }

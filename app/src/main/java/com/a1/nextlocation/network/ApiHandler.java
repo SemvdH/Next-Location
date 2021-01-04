@@ -5,6 +5,8 @@ import android.util.Log;
 import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.json.DirectionsResult;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public enum ApiHandler {
@@ -70,6 +73,55 @@ public enum ApiHandler {
 
     public void addListener(DirectionsListener listener) {
         this.listeners.add(listener);
+    }
+
+    public void getDirections(Route route) {
+//        for (int i = 0; i < route.getLocations().size()-1; i+= 2) {
+//            Location start = route.getLocations().get(i);
+//            Location end = route.getLocations().get(i+1);
+//            getDirections(start,end);
+//        }
+
+        ArrayList<double[]> allCoords = new ArrayList<>();
+        for (Location location : route.getLocations()) {
+            allCoords.add(location.getCoordinatesAsDoubles());
+        }
+
+        String body = "{\"coordinates\":" + new Gson().toJson(allCoords) + "}";
+
+
+        String requestUrl = BASE_URL + DIRECTIONS_MODE + "?api_key=" + API_KEY;
+
+        Thread t = new Thread(() -> {
+
+            RequestBody requestBody = RequestBody.create(body,JSON);
+            Request request = new Request.Builder()
+                    .url(requestUrl)
+                    .post(requestBody)
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                if (response.body() != null) {
+                    String responseString = Objects.requireNonNull(response.body()).string();
+                    Log.d(TAG, "getDirections: got response: " + responseString);
+
+                    DirectionsResult result = new DirectionsResult();
+                    result.parseRoute(responseString);
+                    Log.d(TAG, "getDirections: " + result.getSteps().size());
+
+                    for (DirectionsListener listener : listeners) {
+                        listener.onDirectionsAvailable(result);
+                    }
+                }
+
+            } catch (IOException e) {
+                Log.d(TAG, "getDirections: caught exception: " + e.getLocalizedMessage());
+            }
+        });
+
+        t.start();
+
+
     }
 
 
