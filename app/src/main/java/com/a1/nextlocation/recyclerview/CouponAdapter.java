@@ -30,10 +30,9 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         }
     }
 
-    public CouponAdapter(Context context, List<Coupon> coupon, OnItemClickListener listener){
+    public CouponAdapter(Context context, List<Coupon> coupon){
         appContext = context;
         couponList = coupon;
-        clickListener = listener;
     }
 
     @NonNull
