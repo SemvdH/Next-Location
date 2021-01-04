@@ -1,6 +1,7 @@
 package com.a1.nextlocation.recyclerview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -24,10 +25,11 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         void onItemClick(int clickedPosition);
     }
 
-    class CouponViewHolder extends RecyclerView.ViewHolder {
+    class CouponViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView couponCode;
         private TextView couponReward;
+        private Coupon coupon;
 
         public CouponViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -42,11 +44,22 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
             this.couponReward = itemView.findViewById(R.id.coupon_waarde);
             this.couponReward.setText(text);
         }
+
+        public void setCoupon(Coupon coupon){
+            this.coupon = coupon;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.d("yeet", "Coupon code: " + coupon.getCode());
+        }
     }
 
-    public CouponAdapter(Context context, List<Coupon> coupon){
-        appContext = context;
-        couponList = coupon;
+    public CouponAdapter(Context context, List<Coupon> coupon, OnItemClickListener listener){
+        this.appContext = context;
+        this.couponList = coupon;
+        this.clickListener = listener;
+
     }
 
     @NonNull
@@ -59,6 +72,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
     @Override
     public void onBindViewHolder(@NonNull CouponViewHolder holder, int position) {
         Coupon coupon = couponList.get(position);
+        holder.setCoupon(coupon);
         holder.setTextViewCode(coupon.getCode());
         holder.setTextViewReward(coupon.getReward());
     }

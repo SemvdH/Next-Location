@@ -42,10 +42,14 @@ public class CouponFragment extends Fragment {
         CouponListManager.INSTANCE.load();
         this.couponList = CouponListManager.INSTANCE.getCouponList();
 
-        this.couponAdapter = new CouponAdapter(this.getContext(), this.couponList);
+        this.couponAdapter = new CouponAdapter(this.getContext(), this.couponList, onClickedItem -> showPopup());
 
         this.couponRecyclerView.setLayoutManager(this.layoutManager);
         this.couponRecyclerView.setAdapter(this.couponAdapter);
         return view;
+    }
+
+    private void showPopup() {
+
     }
 }
