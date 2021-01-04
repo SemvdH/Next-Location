@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Coupon;
+import com.a1.nextlocation.data.FileIO;
+import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.fragments.HomeFragment;
 import com.a1.nextlocation.fragments.RouteFragment;
 import com.a1.nextlocation.fragments.SettingsFragment;
@@ -18,7 +22,12 @@ import com.a1.nextlocation.recyclerview.LocationListManager;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.File;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getName();
+
     /**
      * onCreate method that creates the main activity
      * @param savedInstanceState the saved instance state of the app
@@ -30,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.navbar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+
+        /*System.out.println(Arrays.toString(getFilesDir().listFiles()));
+        FileIO<Route> fileIO = new FileIO<>();
+        fileIO.writeFileData(new Route("TERSTSET"), getApplicationContext());
+        Log.d(TAG, "onCreate: " + "FILE GESCHREVENN!!!!!");*/
 
         LocationListManager.INSTANCE.setContext(this);
         LocationListManager.INSTANCE.load();
