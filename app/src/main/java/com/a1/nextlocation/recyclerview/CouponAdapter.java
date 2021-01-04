@@ -3,10 +3,12 @@ package com.a1.nextlocation.recyclerview;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Coupon;
 
 import java.util.List;
@@ -21,15 +23,10 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         void onItemClick(int clickedPosition);
     }
 
-    class CouponViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class CouponViewHolder extends RecyclerView.ViewHolder {
 
         public CouponViewHolder(@NonNull View itemView) {
             super(itemView);
-        }
-
-        @Override
-        public void onClick(View view) {
-            clickListener.onItemClick(getAdapterPosition());
         }
     }
 
@@ -42,7 +39,8 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
     @NonNull
     @Override
     public CouponViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_coupon, parent, false);
+        return new CouponViewHolder(itemView);
     }
 
     @Override

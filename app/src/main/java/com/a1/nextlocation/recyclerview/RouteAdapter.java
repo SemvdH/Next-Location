@@ -57,8 +57,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
     @Override
     public RouteAdapter.RouteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.route_item, parent, false);
-        RouteAdapter.RouteViewHolder viewHolder = new RouteAdapter.RouteViewHolder(itemView);
-        return viewHolder;
+        return new RouteViewHolder(itemView);
     }
 
     @Override

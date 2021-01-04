@@ -5,11 +5,9 @@ import android.util.Log;
 
 import com.a1.nextlocation.data.Coupon;
 import com.a1.nextlocation.data.FileIO;
-import com.a1.nextlocation.data.Location;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CouponLoader implements Loader<List<Coupon>> {
