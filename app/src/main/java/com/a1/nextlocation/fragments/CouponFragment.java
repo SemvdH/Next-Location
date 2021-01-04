@@ -1,5 +1,7 @@
 package com.a1.nextlocation.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -42,14 +44,34 @@ public class CouponFragment extends Fragment {
         CouponListManager.INSTANCE.load();
         this.couponList = CouponListManager.INSTANCE.getCouponList();
 
-        this.couponAdapter = new CouponAdapter(this.getContext(), this.couponList, onClickedItem -> showPopup());
+        this.couponAdapter = new CouponAdapter(this.getContext(), this.couponList, clickedPosition -> showPopup(this.couponList.get(clickedPosition)));
 
         this.couponRecyclerView.setLayoutManager(this.layoutManager);
         this.couponRecyclerView.setAdapter(this.couponAdapter);
         return view;
     }
 
-    private void showPopup() {
+    private void showPopup(Coupon coupon) {
+        AlertDialog.Builder activateBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder couponCodeBuilder = new AlertDialog.Builder(getContext());
+        // TODO: use string resources instead of hardcoded strings
+        activateBuilder.setMessage("Weet je zeker dat je deze coupon wilt activeren?");
+        activateBuilder.setCancelable(true);
+        // TODO: use string resources instead of hardcoded strings
+        activateBuilder.setPositiveButton("activeren", (dialog, which) -> {
+            // TODO: use string resources instead of hardcoded strings
+            dialog.cancel();
+            couponCodeBuilder.setMessage("Code: " + coupon.getCode());
+            couponCodeBuilder.setPositiveButton("Klaar", (dialog1, which1) -> {
+                dialog.cancel();
+            });
+            AlertDialog couponCodePopup = couponCodeBuilder.create();
+            couponCodePopup.show();
+        });
+        // TODO: use string resources instead of hardcoded strings
+        activateBuilder.setNegativeButton("annuleren", (dialog, which) -> dialog.cancel());
+        AlertDialog couponPopup = activateBuilder.create();
+        couponPopup.show();
 
     }
 }

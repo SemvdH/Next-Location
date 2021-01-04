@@ -1,7 +1,6 @@
 package com.a1.nextlocation.recyclerview;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -29,10 +28,10 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
 
         private TextView couponCode;
         private TextView couponReward;
-        private Coupon coupon;
 
         public CouponViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
         }
 
         public void setTextViewCode(String text){
@@ -45,13 +44,9 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
             this.couponReward.setText(text);
         }
 
-        public void setCoupon(Coupon coupon){
-            this.coupon = coupon;
-        }
-
         @Override
         public void onClick(View v) {
-            Log.d("yeet", "Coupon code: " + coupon.getCode());
+            clickListener.onItemClick(getAdapterPosition());
         }
     }
 
@@ -72,7 +67,6 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
     @Override
     public void onBindViewHolder(@NonNull CouponViewHolder holder, int position) {
         Coupon coupon = couponList.get(position);
-        holder.setCoupon(coupon);
         holder.setTextViewCode(coupon.getCode());
         holder.setTextViewReward(coupon.getReward());
     }
@@ -81,8 +75,5 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
     public int getItemCount() {
         return couponList.size();
     }
-
-
-
 
 }
