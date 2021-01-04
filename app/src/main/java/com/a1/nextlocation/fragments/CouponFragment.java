@@ -34,7 +34,7 @@ public class CouponFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_coupon, container, false);
 
-        this.couponRecyclerView = view.findViewById(R.id.routeRecyclerView);
+        this.couponRecyclerView = view.findViewById(R.id.couponRecyclerView);
         this.couponRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
