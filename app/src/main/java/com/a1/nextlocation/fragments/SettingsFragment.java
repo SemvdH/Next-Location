@@ -55,7 +55,8 @@ public class SettingsFragment extends Fragment {
         languageDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                setLocale(dropdownPositionToLanguage(position));
+                setLocale(dropdownPositionToLanguage(id));
+
             }
 
             @Override
@@ -67,11 +68,11 @@ public class SettingsFragment extends Fragment {
 
     /**
      * converts the languageDropdown position to the belonging language
-     * @param position desired position to convert
+     * @param id desired position to convert
      * @return the language belonging to the position of the languageDropdown
      */
-    private String dropdownPositionToLanguage(int position) {
-        switch (position){
+    private String dropdownPositionToLanguage(long id) {
+        switch ((int) id){
             case 0:
                 return "nl";
             case 1:
@@ -106,7 +107,7 @@ public class SettingsFragment extends Fragment {
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.setLocale(locale);
-        getContext().getResources().getConfiguration().updateFrom(config);
+        getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
         editor.putString("Language", language);
         editor.apply();
     }

@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private String loadLocale(){
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        return sharedPreferences.getString("Language", "");
+        return sharedPreferences.getString("Language", "nl");
     }
 
     /**
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.setLocale(locale);
-        getBaseContext().getResources().getConfiguration().updateFrom(configuration);
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
     }
 
 
