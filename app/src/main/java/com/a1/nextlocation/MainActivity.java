@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
@@ -54,7 +58,31 @@ public class MainActivity extends AppCompatActivity {
         RouteListManager.INSTANCE.setContext(this);
         RouteListManager.INSTANCE.load();
 
+        // initialize saved language from sharedPreferences
+        setLocale(loadLocale());
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
+    }
+
+    /**
+     * loads the saved language from SharedPreferences
+     * @return the language as string
+     */
+    private String loadLocale(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        return sharedPreferences.getString("Language", "");
+    }
+
+    /**
+     * sets the language of the application to the desired one
+     * @param language the desired language
+     */
+    private void setLocale(String language){
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.setLocale(locale);
+        getBaseContext().getResources().getConfiguration().updateFrom(configuration);
     }
 
 
