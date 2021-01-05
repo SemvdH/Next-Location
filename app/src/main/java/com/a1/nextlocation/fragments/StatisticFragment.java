@@ -41,6 +41,12 @@ public class StatisticFragment extends Fragment {
         TextView couponNumber = view.findViewById(R.id.couponAmount);
         couponNumber.setText(String.valueOf(adapter.getItemCount()));
 
+        
+        this.imageButton = view.findViewById(R.id.route_back_button);
+        this.imageButton.setOnClickListener(v -> {
+            HomeFragment homeFragment = new HomeFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+        });
 
         ConstraintLayout constraintLayout = view.findViewById(R.id.Box4);
         constraintLayout.setOnClickListener(v -> {
