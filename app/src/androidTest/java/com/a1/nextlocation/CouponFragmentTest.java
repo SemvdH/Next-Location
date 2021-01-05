@@ -29,6 +29,7 @@ public class CouponFragmentTest {
 
     @Test
     public void clickBackButton() throws Exception{
+        //Here we click the back button and then we check if the statisticsFragment is shown
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new CouponFragment()).commit();
         onView(withId(R.id.coupon_back_button)).perform(click());
         onView(withId(R.id.statisticsFragment)).check(matches(isDisplayed()));
@@ -36,6 +37,8 @@ public class CouponFragmentTest {
 
     @Test
     public void clickDetailButton() throws Exception{
+        //Here we click a coupon and then a popup dialog shows, we press the "activeren" button in it and if the next dialog with the code and with
+        //the button "Klaar" is shown then the test works
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new CouponFragment()).commit();
         onView(withId(R.id.coupon_recyclerview)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         onView(withText("activeren")).inRoot(RootMatchers.isDialog()).perform(click());
