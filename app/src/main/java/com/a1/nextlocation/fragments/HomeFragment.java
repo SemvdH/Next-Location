@@ -5,7 +5,6 @@ package com.a1.nextlocation.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -23,17 +22,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
-import com.a1.nextlocation.data.Route;
-import com.a1.nextlocation.recyclerview.CouponListManager;
 import com.a1.nextlocation.recyclerview.CustomOverlay;
 import com.a1.nextlocation.recyclerview.LocationListManager;
-import com.a1.nextlocation.recyclerview.RouteListManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
@@ -87,7 +82,7 @@ public class HomeFragment extends Fragment {
         Configuration.getInstance().setUserAgentValue(userAgent);
 
         // create the map view
-        mapView = view.findViewById(R.id.mapView);
+        mapView = view.findViewById(R.id.map_view);
         mapView.setDestroyMode(false);
         mapView.setTag("mapView");
         mapView.setMultiTouchControls(true);

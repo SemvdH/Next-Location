@@ -14,11 +14,9 @@ import android.widget.ImageButton;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Location;
-import com.a1.nextlocation.recyclerview.CouponAdapter;
 import com.a1.nextlocation.recyclerview.LocationAdapter;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LocationFragment extends Fragment {
@@ -38,11 +36,11 @@ public class LocationFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
-        this.locationRecyclerView = view.findViewById(R.id.locationRecyclerView);
+        this.locationRecyclerView = view.findViewById(R.id.location_recyclerview);
         this.locationRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
-        this.imageButton = view.findViewById(R.id.locationBackButton);
+        this.imageButton = view.findViewById(R.id.location_back_button);
         this.imageButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();

@@ -21,6 +21,6 @@
         android:gravity="center"
         android:text="location"
         android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/routeImage" />
+        app:layout_constraintStart_toEndOf="@+id/route_Image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
