@@ -27,7 +27,7 @@ public class StatisticFragmentTest {
     public void checkText() throws Exception{
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new StatisticFragment()).commit();
         onView(withId(R.id.textView)).check(matches(isDisplayed()));
-        onView(withId(R.id.Box1)).check(matches(isDisplayed()));
+        onView(withId(R.id.name_box)).check(matches(isDisplayed()));
         onView(withId(R.id.Box2)).check(matches(isDisplayed()));
         onView(withId(R.id.Box3)).check(matches(isDisplayed()));
         onView(withId(R.id.Box4)).check(matches(isDisplayed()));

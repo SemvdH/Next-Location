@@ -38,7 +38,7 @@ public class SettingsFragmentTest {
     @Test
     public void clickBackButton() throws Exception{
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new SettingsFragment()).commit();
-        onView(withId(R.id.settingsBackButton)).perform(click());
+        onView(withId(R.id.settings_back_button)).perform(click());
         onView(withId(R.id.homeFragment)).check(matches(isDisplayed()));
     }
 
@@ -56,7 +56,7 @@ public class SettingsFragmentTest {
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new SettingsFragment()).commit();
         onView(withId(R.id.settingsImperialButton)).check(matches(isClickable()));
         onView(withId(R.id.settingsOldButton)).check(matches(isClickable()));
-        onView(withId(R.id.settingsEyeButton)).check(matches(isClickable()));
+        onView(withId(R.id.settingsEyesButton)).check(matches(isClickable()));
 
         onView(withId(R.id.settingsImperialButton)).perform(click());
         onView(withId(R.id.settingsImperialButton)).check(matches(isChecked()));
@@ -64,7 +64,7 @@ public class SettingsFragmentTest {
         onView(withId(R.id.settingsOldButton)).perform(click());
         onView(withId(R.id.settingsOldButton)).check(matches(isChecked()));
 
-        onView(withId(R.id.settingsEyeButton)).perform(click());
-        onView(withId(R.id.settingsEyeButton)).check(matches(isChecked()));
+        onView(withId(R.id.settingsEyesButton)).perform(click());
+        onView(withId(R.id.settingsEyesButton)).check(matches(isChecked()));
     }
 }
