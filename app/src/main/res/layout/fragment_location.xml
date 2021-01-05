@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColour"
+    android:id="@+id/locationFragment"
     tools:context=".fragments.LocationFragment">
 
     <TextView
@@ -35,5 +36,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeBackButton" />
+        app:layout_constraintTop_toBottomOf="@+id/locationBackButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

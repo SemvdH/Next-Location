@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryColour"
+    android:id="@+id/settingFragment"
     tools:context=".fragments.SettingsFragment">
 
     <androidx.appcompat.widget.AppCompatImageButton

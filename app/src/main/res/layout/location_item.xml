@@ -4,6 +4,7 @@
     android:layout_height="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/secondaryColour"
+    android:id="@+id/locationItem"
     android:layout_margin="20dp">
 
     <ImageView
