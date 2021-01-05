@@ -30,14 +30,14 @@ public class CouponFragmentTest {
     @Test
     public void clickBackButton() throws Exception{
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new CouponFragment()).commit();
-        onView(withId(R.id.couponBackButton)).perform(click());
+        onView(withId(R.id.coupon_back_button)).perform(click());
         onView(withId(R.id.statisticsFragment)).check(matches(isDisplayed()));
     }
 
     @Test
     public void clickDetailButton() throws Exception{
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new CouponFragment()).commit();
-        onView(withId(R.id.couponRecyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        onView(withId(R.id.coupon_recyclerview)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         onView(withText("activeren")).inRoot(RootMatchers.isDialog()).perform(click());
         onView(withText("Klaar")).inRoot(RootMatchers.isDialog()).check(matches(isDisplayed()));
 

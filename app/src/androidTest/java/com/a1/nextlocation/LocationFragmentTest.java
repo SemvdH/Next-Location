@@ -25,7 +25,7 @@ public class LocationFragmentTest {
     @Test
     public void clickBackButton() throws Exception{
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new LocationFragment()).commit();
-        onView(withId(R.id.locationBackButton)).perform(click());
+        onView(withId(R.id.location_back_button)).perform(click());
         onView(withId(R.id.homeFragment)).check(matches(isDisplayed()));
 
     }
@@ -33,7 +33,7 @@ public class LocationFragmentTest {
     @Test
     public void clickDetailButton() throws Exception{
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new LocationFragment()).commit();
-        onView(withId(R.id.locationRecyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        onView(withId(R.id.location_recyclerview)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         onView(withId(R.id.locationDetailFragment)).check(matches(isDisplayed()));
 
     }
