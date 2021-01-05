@@ -19,7 +19,6 @@ import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.recyclerview.RouteAdapter;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
@@ -46,7 +45,7 @@ public class RouteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_route, container, false);
 
-        this.routeRecyclerView = view.findViewById(R.id.routeRecyclerView);
+        this.routeRecyclerView = view.findViewById(R.id.route_recyclerview);
         this.routeRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
