@@ -43,7 +43,7 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         Spinner dropdown = view.findViewById(R.id.dropdown_menu_Settings);
 
-        this.imageButton = view.findViewById(R.id.route_detail_back_button);
+        this.imageButton = view.findViewById(R.id.settings_back_button);
         this.imageButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
