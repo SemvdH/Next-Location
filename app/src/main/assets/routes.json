@@ -3,9 +3,35 @@
     "name": "rondje stad",
     "locations": [
       {
-        "name": "KesCrOkÊt breeda",
-        "coordinates": "2.4654645,6.2342323",
-        "description": "lekkere patatjes"
+        "name":"Prison Escape Kloosterlaan 168",
+        "coordinates":"51.59073795635181,4.784917104321059",
+        "description":"4811EE Breda",
+        "imageUrl":"NULL"
+      },
+      {
+        "name":"De Koepel - FutureDome Events Nassausingel 26",
+        "coordinates":"51.590431588532105,4.786756741648511",
+        "description":"4811HP Breda",
+        "imageUrl":"NULL"
+      },
+
+      {
+        "name":"Escaping Breda: Escape Room Games Boschstraat 114",
+        "coordinates":" 51.59110835530862,4.784147222780912",
+        "description":"4811GK Breda",
+        "imageUrl":"NULL"
+      },
+      {
+        "name":"MEZZ Breda Keizerstraat 101",
+        "coordinates":"51.58394697737321,4.779757901349616",
+        "description":"4811HL Breda",
+        "imageUrl":"NULL"
+      },
+      {
+        "name":"Het Klooster Breda Schorsmolenstraat 13",
+        "coordinates":"51.58775443759389,4.765568874365066",
+        "description":"4811VN Breda",
+        "imageUrl":"NULL"
       }
     ],
     "totalDistance": 2.3434,

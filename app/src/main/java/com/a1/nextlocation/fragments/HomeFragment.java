@@ -6,6 +6,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,7 +33,6 @@ import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 import com.a1.nextlocation.recyclerview.CustomOverlay;
 import com.a1.nextlocation.recyclerview.LocationListManager;
-import com.a1.nextlocation.recyclerview.RouteListManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.routing.MapQuestRoadManager;
@@ -41,6 +42,7 @@ import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.Polyline;
@@ -54,7 +56,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements LocationListener {
+public class HomeFragment extends Fragment {
     private final String userAgent = "com.ai.nextlocation.fragments";
     public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
     private ImageButton imageButton;
@@ -133,7 +135,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         Configuration.getInstance().setUserAgentValue(userAgent);
 
         // create the map view
-        mapView = view.findViewById(R.id.mapView);
+        mapView = view.findViewById(R.id.map_view);
         mapView.setDestroyMode(false);
         mapView.setTag("mapView");
         mapView.setMultiTouchControls(true);
@@ -162,8 +164,6 @@ public class HomeFragment extends Fragment implements LocationListener {
 
 
         try {
-
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if( location != null ) {
                 currentLocation = new GeoPoint(location.getLatitude(), location.getLongitude());
@@ -181,6 +181,14 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         }
 
+
+        displayRoute();
+        addLocations();
+
+    }
+
+    private void displayRoute() {
+
         if (roadOverlay == null) {
             if (CurrentRoute.INSTANCE.getCurrentRoute() != null) {
                 roadOverlay = CurrentRoute.INSTANCE.getCurrentRoute();
@@ -193,6 +201,34 @@ public class HomeFragment extends Fragment implements LocationListener {
             mapView.invalidate();
             Log.d(TAG, "initMap: successfully added road!");
         }
+    }
+
+    private void addLocations() {
+        List<com.a1.nextlocation.data.Location> locations = LocationListManager.INSTANCE.getLocationList();
+        final ArrayList<OverlayItem> items = new ArrayList<>(locations.size());
+        Drawable marker = this.getResources().getDrawable(R.drawable.ic_baseline_location_on_24);
+        for (com.a1.nextlocation.data.Location location : locations) {
+            OverlayItem item = new OverlayItem(location.getName(),location.getDescription(),location.convertToGeoPoint());
+            item.setMarker(marker);
+            items.add(item);
+        }
+        Overlay allLocationsOverlay = new ItemizedIconOverlay<OverlayItem>(items,
+                new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+                    @Override
+                    public boolean onItemSingleTapUp(int index, OverlayItem item) {
+
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onItemLongPress(int index, OverlayItem item) {
+                        Toast.makeText(requireContext(), locations.get(index).getName(),Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                },requireContext());
+
+        mapView.getOverlays().add(allLocationsOverlay);
+        Log.d(TAG, "addLocations: successfully added locations");
 
     }
 
@@ -212,33 +248,5 @@ public class HomeFragment extends Fragment implements LocationListener {
                     permissionsToRequest.toArray(new String[0]),
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
-    }
-
-    /**
-     * animate to the new location
-     * @param location the new location
-     */
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-
-        currentLocation = new GeoPoint(location);
-        IMapController mapController = mapView.getController();
-        mapController.animateTo(new GeoPoint(location.getLatitude(),location.getLongitude()));
-    }
-
-    @Override
-    public void onProviderEnabled(@NonNull String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(@NonNull String provider) {
-
-    }
-
-    // this is deprecated but android is stupid and gives an error if I don't override it
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
     }
 }

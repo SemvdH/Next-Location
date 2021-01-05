@@ -90,8 +90,8 @@ public class Location implements Parcelable {
 
     public double[] getCoordinatesAsDoubles() {
         double[] res = new double[2];
-        res[0] = getLat();
-        res[1] = getLong();
+        res[1] = getLat();
+        res[0] = getLong();
 
         return res;
     }

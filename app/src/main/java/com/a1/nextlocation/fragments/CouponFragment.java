@@ -1,7 +1,6 @@
 package com.a1.nextlocation.fragments;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -38,11 +37,11 @@ public class CouponFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_coupon, container, false);
 
-        this.couponRecyclerView = view.findViewById(R.id.couponRecyclerView);
+        this.couponRecyclerView = view.findViewById(R.id.coupon_recyclerview);
         this.couponRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
-        this.imageButton = view.findViewById(R.id.couponBackButton);
+        this.imageButton = view.findViewById(R.id.coupon_back_button);
         this.imageButton.setOnClickListener(v -> {
             StatisticFragment statisticFragment = new StatisticFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, statisticFragment).addToBackStack(null).commit();
