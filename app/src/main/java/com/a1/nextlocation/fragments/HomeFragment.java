@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,7 +54,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements LocationListener {
     private final String userAgent = "com.ai.nextlocation.fragments";
     public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
     private ImageButton imageButton;
@@ -62,6 +63,9 @@ public class HomeFragment extends Fragment {
     private final String TAG = HomeFragment.class.getCanonicalName();
     private RoadManager roadManager;
     private Polyline roadOverlay;
+    private int color;
+
+    private GeoPoint currentLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,8 +75,10 @@ public class HomeFragment extends Fragment {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        roadManager = new OSRMRoadManager(requireContext());
+        roadManager = new MapQuestRoadManager(MAPQUEST_API_KEY);
+        roadManager.addRequestOption("routeType=foot-walking");
 
+        color = requireContext().getColor(R.color.red);
     }
 
     @Override
@@ -98,7 +104,14 @@ public class HomeFragment extends Fragment {
         ArrayList<GeoPoint> geoPoints = directionsResult.getGeoPoints();
         roadOverlay = new Polyline();
         roadOverlay.setPoints(geoPoints);
-        roadOverlay.setColor(R.color.red);
+
+        // this is for mapquest, but it gives a "no value for guidancelinkcollection" error and google has never heard of that
+//        GeoPoint[] gp = directionsResult.getStartAndEndPoint();
+//        ArrayList<GeoPoint> arrayList = new ArrayList<>(Arrays.asList(gp));
+//        Road road = roadManager.getRoad(arrayList);
+//        roadOverlay = RoadManager.buildRoadOverlay(road);
+
+        roadOverlay.setColor(color);
 
 
         CurrentRoute.INSTANCE.setCurrentRoute(roadOverlay);
@@ -137,19 +150,6 @@ public class HomeFragment extends Fragment {
         mLocationOverlay.enableMyLocation();
         mapView.getOverlays().add(mLocationOverlay);
 
-//        CustomOverlay customOverlay = new CustomOverlay(getResources().getDrawable(R.drawable.ic_baseline_location_on_24),mapView);
-//
-//        for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
-//            GeoPoint p = new GeoPoint(l.getLat(), l.getLong());
-//            OverlayItem overlayItem = new OverlayItem(l.getName(),l.getDescription(), p);
-//
-//            customOverlay.addOverlayItem(overlayItem);
-//            Log.d(TAG, "initMap: " + "succes");
-//        }
-
-
-//        mapView.getOverlays().add(customOverlay);
-
         // add the zoom controller
         IMapController mapController = mapView.getController();
         mapController.setZoom(15.0);
@@ -158,10 +158,15 @@ public class HomeFragment extends Fragment {
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
 
 
+
         try {
+
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
-            mapController.setCenter(startPoint);
+            if( location != null ) {
+                currentLocation = new GeoPoint(location.getLatitude(), location.getLongitude());
+                mapController.setCenter(currentLocation);
+            }
 
         } catch (SecurityException e) {
             Log.d(TAG, "onViewCreated: exception while getting location: " + e.getLocalizedMessage());
@@ -204,5 +209,29 @@ public class HomeFragment extends Fragment {
                     permissionsToRequest.toArray(new String[0]),
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+
+        currentLocation = new GeoPoint(location);
+        IMapController mapController = mapView.getController();
+        mapController.animateTo(new GeoPoint(location.getLatitude(),location.getLongitude()));
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+
+    }
+
+    // this is deprecated but android is stupid and gives an error if I don't override it
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
     }
 }

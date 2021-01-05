@@ -131,11 +131,11 @@ public enum ApiHandler {
 
         t.start();
 
-//        try {
-//            t.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
