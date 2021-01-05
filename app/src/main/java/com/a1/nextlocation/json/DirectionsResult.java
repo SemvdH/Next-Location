@@ -15,6 +15,7 @@ import org.osmdroid.util.GeoPoint;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DirectionsResult {
@@ -23,6 +24,7 @@ public class DirectionsResult {
     private double distance;
     private double duration;
     private double[][] wayPointCoordinates;
+    private GeoPoint[] startAndEndPoint = new GeoPoint[2];
 
     public List<DirectionsStep> getSteps() {
         return steps;
@@ -52,8 +54,31 @@ public class DirectionsResult {
         this.steps.add(step);
     }
 
+    public GeoPoint[] getStartAndEndPoint() {
+        return startAndEndPoint;
+    }
+
+    /**
+     * converts all the geopoints in all the steps into an arraylist to display it on the map
+     * @return the list of geopoints
+     */
+    public ArrayList<GeoPoint> getGeoPoints() {
+        int size = 0;
+        // we'll have a lot of waypoints, so calculate the size first so that the list won't have to be extended (o p t i m i z e)
+        for (int i = 0; i < this.getSteps().size(); i++) {
+            size += this.getSteps().get(i).getWaypoints().length;
+        }
+
+        ArrayList<GeoPoint> res = new ArrayList<>(size);
+        for (DirectionsStep step : this.getSteps()) {
+            Collections.addAll(res, step.getWaypoints());
+        }
+        return res;
+    }
+
     /**
      * parses a given json string into this object. It gets all the waypoints and steps and combines them so that every step also has the correct coordinates associated with it
+     *
      * @param json the json string to parse.
      */
     public void parse(String json) {
@@ -86,7 +111,7 @@ public class DirectionsResult {
 
             for (JsonElement j : steps) {
 
-                DirectionsStep step = gson.fromJson(j,DirectionsStep.class);
+                DirectionsStep step = gson.fromJson(j, DirectionsStep.class);
                 double lat;
                 double longl;
 
@@ -94,13 +119,16 @@ public class DirectionsResult {
                 for (int i = 0; i < 2; i++) {
                     lat = this.wayPointCoordinates[step.getWay_points().get(i)][0];
                     longl = this.wayPointCoordinates[step.getWay_points().get(i)][1];
-                    step.getWaypoints()[i] = new GeoPoint(lat,longl);
+                    step.getWaypoints()[i] = new GeoPoint(lat, longl);
                 }
 
                 addStep(step);
                 Log.d(TAG, "parse: added step" + step);
             }
         }
+
+        startAndEndPoint[0] = this.getSteps().get(0).getWaypoints()[0];
+        startAndEndPoint[1] = this.getSteps().get(this.getSteps().size()-1).getWaypoints()[1];
 
     }
 
@@ -115,7 +143,7 @@ public class DirectionsResult {
             this.duration = summary.get("duration").getAsDouble();
 
             JsonPrimitive geometry = route.getAsJsonPrimitive("geometry");
-            JsonArray wayPointCoordinates = GeometryDecoder.decodeGeometry(geometry.getAsString(),false);
+            JsonArray wayPointCoordinates = GeometryDecoder.decodeGeometry(geometry.getAsString(), false);
             this.wayPointCoordinates = new double[wayPointCoordinates.size()][2];
 
 
@@ -140,7 +168,7 @@ public class DirectionsResult {
 
                 for (JsonElement j : steps) {
 
-                    DirectionsStep step = gson.fromJson(j,DirectionsStep.class);
+                    DirectionsStep step = gson.fromJson(j, DirectionsStep.class);
                     double lat;
                     double longl;
 
@@ -148,7 +176,7 @@ public class DirectionsResult {
                     for (int i = 0; i < 2; i++) {
                         lat = this.wayPointCoordinates[step.getWay_points().get(i)][0];
                         longl = this.wayPointCoordinates[step.getWay_points().get(i)][1];
-                        step.getWaypoints()[i] = new GeoPoint(lat,longl);
+                        step.getWaypoints()[i] = new GeoPoint(lat, longl);
                     }
 
                     addStep(step);
@@ -157,8 +185,6 @@ public class DirectionsResult {
             }
 
         }
-
-
 
     }
 }

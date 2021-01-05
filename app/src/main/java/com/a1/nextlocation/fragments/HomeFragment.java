@@ -23,31 +23,45 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.CurrentRoute;
 import com.a1.nextlocation.data.Route;
+import com.a1.nextlocation.json.DirectionsResult;
+import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 import com.a1.nextlocation.recyclerview.CustomOverlay;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.routing.MapQuestRoadManager;
+import org.osmdroid.bonuspack.routing.OSRMRoadManager;
+import org.osmdroid.bonuspack.routing.Road;
+import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private final String userAgent = "com.ai.nextlocation.fragments";
+    public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
     private ImageButton imageButton;
     private MapView mapView;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private final String TAG = HomeFragment.class.getCanonicalName();
+    private RoadManager roadManager;
+    private Polyline roadOverlay;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,7 @@ public class HomeFragment extends Fragment {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        roadManager = new OSRMRoadManager(requireContext());
 
     }
 
@@ -72,7 +87,23 @@ public class HomeFragment extends Fragment {
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
+
+//        roadManager.addRequestOption("routeType=foot-walking");
+        ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
         return view;
+    }
+
+    private void onDirectionsAvailable(DirectionsResult directionsResult) {
+        Log.d(TAG, "onDirectionsAvailable: got result! " + directionsResult);
+        ArrayList<GeoPoint> geoPoints = directionsResult.getGeoPoints();
+        roadOverlay = new Polyline();
+        roadOverlay.setPoints(geoPoints);
+        roadOverlay.setColor(R.color.red);
+
+
+        CurrentRoute.INSTANCE.setCurrentRoute(roadOverlay);
+        Log.d(TAG, "onDirectionsAvailable: successfully added road!");
+
     }
 
     @Override
@@ -106,18 +137,18 @@ public class HomeFragment extends Fragment {
         mLocationOverlay.enableMyLocation();
         mapView.getOverlays().add(mLocationOverlay);
 
-        CustomOverlay customOverlay = new CustomOverlay(getResources().getDrawable(R.drawable.ic_baseline_location_on_24),mapView);
+//        CustomOverlay customOverlay = new CustomOverlay(getResources().getDrawable(R.drawable.ic_baseline_location_on_24),mapView);
+//
+//        for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
+//            GeoPoint p = new GeoPoint(l.getLat(), l.getLong());
+//            OverlayItem overlayItem = new OverlayItem(l.getName(),l.getDescription(), p);
+//
+//            customOverlay.addOverlayItem(overlayItem);
+//            Log.d(TAG, "initMap: " + "succes");
+//        }
 
-        for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
-            GeoPoint p = new GeoPoint(l.getLat(), l.getLong());
-            OverlayItem overlayItem = new OverlayItem(l.getName(),l.getDescription(), p);
 
-            customOverlay.addOverlayItem(overlayItem);
-            Log.d(TAG, "initMap: " + "succes");
-        }
-
-
-        mapView.getOverlays().add(customOverlay);
+//        mapView.getOverlays().add(customOverlay);
 
         // add the zoom controller
         IMapController mapController = mapView.getController();
@@ -141,6 +172,19 @@ public class HomeFragment extends Fragment {
                     // WRITE_EXTERNAL_STORAGE is required in order to show the map
                     Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
+        }
+
+        if (roadOverlay == null) {
+            if (CurrentRoute.INSTANCE.getCurrentRoute() != null) {
+                roadOverlay = CurrentRoute.INSTANCE.getCurrentRoute();
+                mapView.getOverlays().add(roadOverlay);
+                mapView.invalidate();
+                Log.d(TAG, "initMap: successfully added road!");
+            }
+        } else {
+            mapView.getOverlays().add(roadOverlay);
+            mapView.invalidate();
+            Log.d(TAG, "initMap: successfully added road!");
         }
 
     }

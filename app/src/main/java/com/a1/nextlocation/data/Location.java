@@ -105,7 +105,7 @@ public class Location implements Parcelable {
     }
 
     public static String getStringFromCoordinates(double lat1, double long1) {
-        return lat1 + "," + long1;
+        return long1 + "," + lat1;
     }
 
     public GeoPoint convertToGeoPoint() {

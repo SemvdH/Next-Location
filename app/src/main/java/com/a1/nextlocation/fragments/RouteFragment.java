@@ -38,7 +38,6 @@ public class RouteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
 
     }
 
@@ -71,16 +70,15 @@ public class RouteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        ApiHandler.INSTANCE.getDirections(8.681436,49.41461,8.687872,49.420318);
-//        Route r = new Route("test");
-//        r.addLocation(new Location("test",8.681436,49.41461,"route",null));
-//        r.addLocation(new Location("test",8.687872,49.420318,"route",null));
-//        ApiHandler.INSTANCE.getDirections(r);
-    }
-
-    public void onDirectionsAvailable(DirectionsResult result) {
-        Log.d(TAG, "onDirectionsAvailable: got result! " + result);
-
-
+        ApiHandler.INSTANCE.getDirections(51.49017262451581, 4.289038164073164,51.47337383133509, 4.303535222390562);
+        Route r = new Route("test");
+        r.addLocation(new Location("test",51.487963606716185, 4.280396603442448,"route",null));
+        r.addLocation(new Location("test",51.486962126272886, 4.27884897122147,"route",null));
+        r.addLocation(new Location("test",51.485412622620224, 4.277392376189963,"route",null));
+        r.addLocation(new Location("test",51.4801212376542, 4.281610432511638,"route",null));
+        r.addLocation(new Location("test",51.481103969835665, 4.2903500027691805,"route",null));
+//        r.addLocation(new Location("test",51.489063681658145, 4.289596063527951,"route",null));
+//        r.addLocation(new Location("test",51.483012677667766, 4.28003245468457,"route",null));
+        ApiHandler.INSTANCE.getDirections(r);
     }
 }
