@@ -34,6 +34,8 @@ public class RouteDetailFragment extends Fragment {
         this.routeDetailText.setText(this.route.getName());
 
 
+
+
         return view;
     }
 }

@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     private MapView mapView;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private final String TAG = HomeFragment.class.getCanonicalName();
-    private RoadManager roadManager;
+//    private RoadManager roadManager;
     private Polyline roadOverlay;
     private int color;
 
@@ -75,8 +75,8 @@ public class HomeFragment extends Fragment implements LocationListener {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        roadManager = new MapQuestRoadManager(MAPQUEST_API_KEY);
-        roadManager.addRequestOption("routeType=foot-walking");
+//        roadManager = new MapQuestRoadManager(MAPQUEST_API_KEY);
+//        roadManager.addRequestOption("routeType=foot-walking");
 
         color = requireContext().getColor(R.color.red);
     }
@@ -93,8 +93,6 @@ public class HomeFragment extends Fragment implements LocationListener {
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
-
-//        roadManager.addRequestOption("routeType=foot-walking");
         ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
         return view;
     }
@@ -126,6 +124,10 @@ public class HomeFragment extends Fragment implements LocationListener {
         initMap(view);
     }
 
+    /**
+     * This method initializes the map and all the things it needs
+     * @param view the view the map is on
+     */
     private void initMap(@NonNull View view) {
         // set the user agent
         Configuration.getInstance().setUserAgentValue(userAgent);
@@ -193,6 +195,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         }
 
     }
+
     private void requestPermissionsIfNecessary(String... permissions) {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         if (this.getContext() != null)
@@ -211,6 +214,10 @@ public class HomeFragment extends Fragment implements LocationListener {
         }
     }
 
+    /**
+     * animate to the new location
+     * @param location the new location
+     */
     @Override
     public void onLocationChanged(@NonNull Location location) {
 
