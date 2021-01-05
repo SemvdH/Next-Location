@@ -19,20 +19,17 @@ public class LocationDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_location_detail, container, false);
-//
-//        this.imageButton = view.findViewById(R.id.detail_location_back_button);
-//        this.imageButton.setOnClickListener(v -> {
-//            LocationFragment locationFragment = new LocationFragment();
-//            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
-//        });
+        this.imageButton = view.findViewById(R.id.detail_location_back_button);
+        this.imageButton.setOnClickListener(v -> {
+            LocationFragment locationFragment = new LocationFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
+        });
 
         return view;
     }

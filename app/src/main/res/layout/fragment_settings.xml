@@ -9,22 +9,22 @@
     tools:context=".fragments.SettingsFragment">
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/settingsBackButton"
+        android:id="@+id/settings_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/primaryColour"
         android:src="@drawable/ic_back_button_24"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/settings"
+        android:text="@string/instellingen"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Box1"
+        android:id="@+id/name_box"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:layout_constraintBottom_toTopOf="@id/Box2"
@@ -88,7 +88,7 @@
         app:layout_constraintBottom_toTopOf="@id/Box3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Box1"
+        app:layout_constraintTop_toBottomOf="@id/name_box"
 
         >
 
@@ -115,7 +115,6 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/settingsImperialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -160,7 +159,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/settingsOldButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -207,7 +205,6 @@
             />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/settingsEyeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

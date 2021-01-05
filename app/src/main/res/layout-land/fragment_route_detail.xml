@@ -7,20 +7,33 @@
     android:background="@color/primaryColour"
     tools:context=".fragments.RouteDetailFragment">
 
+    <Button
+        android:id="@+id/start_route_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryColour"
+        android:text="@string/start_route"
+        android:textColor="@color/buttonColour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/routeDetailText"
+        app:layout_constraintStart_toStartOf="@+id/routeDetailText"
+        app:layout_constraintTop_toBottomOf="@+id/routeDetailText"
+        app:layout_constraintVertical_bias="0.873" />
+
     <ImageButton
         android:id="@+id/routeDetailBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/ic_back_button_24"
-        app:layout_constraintBottom_toBottomOf="@+id/routeTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/route_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/routeTitle"
-        app:layout_constraintEnd_toStartOf="@id/routeTitle"
+        app:layout_constraintTop_toTopOf="@+id/route_title"
+        app:layout_constraintEnd_toStartOf="@id/route_title"
         />
 
     <TextView
-        android:id="@+id/routeTitle"
+        android:id="@+id/route_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="250dp"
@@ -54,30 +67,4 @@
         app:layout_constraintStart_toEndOf="@id/routeDetailImage"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/startRouteButton"
-        android:src="@drawable/ic_baseline_play_arrow_24"
-        android:backgroundTint="@color/primaryColour"
-        android:scaleX="5"
-        android:scaleY="5"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="350dp"
-        app:layout_constraintBottom_toBottomOf="@+id/startRouteText"
-        app:layout_constraintEnd_toStartOf="@id/startRouteText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/startRouteText" />
-
-    <TextView
-        android:id="@+id/startRouteText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/start_route"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/startRouteButton"
-        app:layout_constraintTop_toBottomOf="@id/routeDetailImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
