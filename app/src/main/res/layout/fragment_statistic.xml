@@ -55,6 +55,7 @@
             />
 
         <TextView
+            android:id="@+id/statistics_km"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" km"
@@ -103,6 +104,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/statistics_locations_visited"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="GETAL"

@@ -154,7 +154,12 @@ public class HomeFragment extends Fragment implements LocationListener{
 
 
 
+
         try {
+
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,this);
+
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (currentLocation == null) {
                 currentLocation = location;
@@ -257,6 +262,16 @@ public class HomeFragment extends Fragment implements LocationListener{
         double distance = currentLocation.distanceTo(location); // in meters
         StaticData.INSTANCE.addDistance(distance);
         currentLocation = location;
+
+        Thread t = new Thread(() -> {
+            for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
+                if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(),currentLocation.getLongitude(),l.getLat(),l.getLong()) < 10) {
+                    StaticData.INSTANCE.visitLocation(l);
+                }
+            }
+        });
+
+        t.start();
     }
 
     @Override
