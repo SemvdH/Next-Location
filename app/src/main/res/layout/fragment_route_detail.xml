@@ -8,21 +8,20 @@
     tools:context=".fragments.RouteDetailFragment">
 
     <ImageButton
-        android:id="@+id/routeDetailBackButton"
+        android:id="@+id/route_detail_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/ic_back_button_24"
-        app:layout_constraintBottom_toBottomOf="@id/route_title"
-        app:layout_constraintEnd_toStartOf="@id/route_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/route_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/route_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="titel"
+        android:text="@string/titel"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/routeDetailImage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +33,7 @@
         android:layout_height="250dp"
         android:layout_margin="40dp"
         android:id="@+id/routeDetailImage"
-        app:layout_constraintTop_toBottomOf="@id/routeDetailBackButton"
+        app:layout_constraintTop_toBottomOf="@id/route_detail_back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/routeDetailText"
@@ -56,7 +55,7 @@
         android:id="@+id/start_route_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Route"
+        android:text="@string/start_route"
         android:backgroundTint="@color/secondaryColour"
         android:textColor="@color/buttonColour"
         app:layout_constraintBottom_toBottomOf="parent"

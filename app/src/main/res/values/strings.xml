@@ -1,20 +1,25 @@
 <resources>
     <string name="app_name">Next Location</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="locations">Locaties</string>
+    <string name="locaties">Locaties</string>
     <string name="routes">Routes</string>
-    <string name="statistics">Statistieken</string>
-    <string name="settings">Instellingen</string>
+    <string name="statistieken">Statistieken</string>
+    <string name="instellingen">Instellingen</string>
     <string name="taal">Taal</string>
     <string name="imperiaal_systeem">Imperiaal systeem</string>
     <string name="_65_stand">65+ stand</string>
     <string name="kleurenblind">Kleurenblind</string>
-    <string name="statistieken">Statistieken</string>
     <string name="totale_afstand">Totale afstand:</string>
     <string name="bezochte_locaties">Bezochte locaties:</string>
     <string name="totale_tijd">Totale tijd:</string>
     <string name="coupons_gespaard">Coupons gespaard:</string>
     <string name="coupons">Coupons</string>
     <string name="start_route">Start Route</string>
+    <string name="naam">Naam</string>
+    <string name="terug">Terug</string>
+    <string name="locatie_detail">Locatie Detail</string>
+    <string name="locatie_detail_tekst">Detail tekst</string>
+    <string name="titel">Titel</string>
+    <string name="km">Kilometer</string>
+    <string name="getal">Getal</string>
+    <string name="minuten">Minuten</string>
 </resources>

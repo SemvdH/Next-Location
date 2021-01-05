@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Route;
@@ -24,6 +25,7 @@ public class RouteFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private List<Route> routeList;
     private RouteAdapter routeAdapter;
+    private ImageButton imageButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,12 @@ public class RouteFragment extends Fragment {
             routeBundle.putParcelable("route", this.routeList.get(clickedPosition));
             routeDetailFragment.setArguments(routeBundle);
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeDetailFragment).addToBackStack(null).commit();
+        });
+
+        this.imageButton = view.findViewById(R.id.route_back_button);
+        this.imageButton.setOnClickListener(v -> {
+            HomeFragment homeFragment = new HomeFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
         this.routeRecyclerView.setLayoutManager(this.layoutManager);
