@@ -19,6 +19,7 @@ public class LocationDetailFragment {
 
     @Test
     public void clickBackButton() throws Exception{
+        //Here we click the back button and then we check if the locationFragment is shown
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new com.a1.nextlocation.fragments.LocationDetailFragment()).commit();
         onView(withId(R.id.detail_location_back_button)).perform(click());
         onView(withId(R.id.locationFragment)).check(matches(isDisplayed()));
