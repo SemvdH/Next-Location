@@ -5,7 +5,6 @@ package com.a1.nextlocation.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -26,19 +25,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
-import com.a1.nextlocation.data.CurrentRoute;
-import com.a1.nextlocation.data.Route;
+import com.a1.nextlocation.data.StaticData;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
-import com.a1.nextlocation.recyclerview.CouponListManager;
-import com.a1.nextlocation.recyclerview.CustomOverlay;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 
 import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.routing.MapQuestRoadManager;
-import org.osmdroid.bonuspack.routing.OSRMRoadManager;
-import org.osmdroid.bonuspack.routing.Road;
-import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
@@ -52,11 +44,9 @@ import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements LocationListener{
     private final String userAgent = "com.ai.nextlocation.fragments";
     public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
     private ImageButton imageButton;
@@ -66,8 +56,7 @@ public class HomeFragment extends Fragment {
 //    private RoadManager roadManager;
     private Polyline roadOverlay;
     private int color;
-
-    private GeoPoint currentLocation;
+    private Location currentLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,7 +103,7 @@ public class HomeFragment extends Fragment {
         roadOverlay.setColor(color);
 
 
-        CurrentRoute.INSTANCE.setCurrentRoute(roadOverlay);
+        StaticData.INSTANCE.setCurrentRoute(roadOverlay);
         Log.d(TAG, "onDirectionsAvailable: successfully added road!");
 
     }
@@ -148,6 +137,8 @@ public class HomeFragment extends Fragment {
         compassOverlay.enableCompass();
         mapView.getOverlays().add(compassOverlay);
 
+        addLocations();
+
         // add the location overlay
         MyLocationNewOverlay mLocationOverlay = new MyLocationNewOverlay(gpsMyLocationProvider, mapView);
         mLocationOverlay.enableFollowLocation();
@@ -165,9 +156,13 @@ public class HomeFragment extends Fragment {
 
         try {
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (currentLocation == null) {
+                currentLocation = location;
+            }
+
             if( location != null ) {
-                currentLocation = new GeoPoint(location.getLatitude(), location.getLongitude());
-                mapController.setCenter(currentLocation);
+                GeoPoint start = new GeoPoint(location.getLatitude(), location.getLongitude());
+                mapController.setCenter(start);
             }
 
         } catch (SecurityException e) {
@@ -183,15 +178,14 @@ public class HomeFragment extends Fragment {
 
 
         displayRoute();
-        addLocations();
 
     }
 
     private void displayRoute() {
 
         if (roadOverlay == null) {
-            if (CurrentRoute.INSTANCE.getCurrentRoute() != null) {
-                roadOverlay = CurrentRoute.INSTANCE.getCurrentRoute();
+            if (StaticData.INSTANCE.getCurrentRoute() != null) {
+                roadOverlay = StaticData.INSTANCE.getCurrentRoute();
                 mapView.getOverlays().add(roadOverlay);
                 mapView.invalidate();
                 Log.d(TAG, "initMap: successfully added road!");
@@ -206,7 +200,9 @@ public class HomeFragment extends Fragment {
     private void addLocations() {
         List<com.a1.nextlocation.data.Location> locations = LocationListManager.INSTANCE.getLocationList();
         final ArrayList<OverlayItem> items = new ArrayList<>(locations.size());
-        Drawable marker = this.getResources().getDrawable(R.drawable.ic_baseline_location_on_24);
+        Drawable marker = ContextCompat.getDrawable(requireContext(),R.drawable.ic_baseline_location_on_24);
+        marker.setAlpha(255);
+        marker.setTint(getResources().getColor(R.color.primaryColour));
         for (com.a1.nextlocation.data.Location location : locations) {
             OverlayItem item = new OverlayItem(location.getName(),location.getDescription(),location.convertToGeoPoint());
             item.setMarker(marker);
@@ -216,13 +212,19 @@ public class HomeFragment extends Fragment {
                 new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
                     @Override
                     public boolean onItemSingleTapUp(int index, OverlayItem item) {
-
+                        com.a1.nextlocation.data.Location clicked = locations.get(index);
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new LocationDetailFragment(clicked)).commit();
                         return false;
                     }
 
                     @Override
                     public boolean onItemLongPress(int index, OverlayItem item) {
-                        Toast.makeText(requireContext(), locations.get(index).getName(),Toast.LENGTH_SHORT).show();
+                        com.a1.nextlocation.data.Location clicked = locations.get(index);
+                        Toast.makeText(requireContext(), clicked.getName(),Toast.LENGTH_SHORT).show();
+//                        Route route = new Route("Route to " + clicked.getName());
+//                        route.addLocation(new com.a1.nextlocation.data.Location("Current location",currentLocation.getLatitude(),currentLocation.getLongitude(),"your location",null));
+//                        route.addLocation(clicked);
+//                        ApiHandler.INSTANCE.getDirections(route);
                         return true;
                     }
                 },requireContext());
@@ -248,5 +250,27 @@ public class HomeFragment extends Fragment {
                     permissionsToRequest.toArray(new String[0]),
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        double distance = currentLocation.distanceTo(location); // in meters
+        StaticData.INSTANCE.addDistance(distance);
+        currentLocation = location;
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+
     }
 }

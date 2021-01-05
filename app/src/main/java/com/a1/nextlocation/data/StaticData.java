@@ -2,8 +2,20 @@ package com.a1.nextlocation.data;
 
 import org.osmdroid.views.overlay.Polyline;
 
-public enum CurrentRoute {
+/**
+ * singleton to keep track of different global data
+ */
+public enum StaticData {
     INSTANCE;
+    private double distanceTraveled = 0;
+
+    public void addDistance(double d) {
+        distanceTraveled += d;
+    }
+
+    public double getDistanceTraveled() {
+        return distanceTraveled;
+    }
 
     private Polyline currentRoute;
 

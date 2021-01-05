@@ -108,6 +108,25 @@ public class Location implements Parcelable {
         return long1 + "," + lat1;
     }
 
+    public double getDistance(Location other) {
+        double dlon = other.getLong() - getLong();
+        double dlat = other.getLat() - getLong();
+        double a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(getLat()) * Math.cos(other.getLong())
+                * Math.pow(Math.sin(dlon / 2),2);
+
+        double c = 2 * Math.asin(Math.sqrt(a));
+
+        // Radius of earth in kilometers. Use 3956
+        // for miles
+        double r = 6371;
+
+        // calculate the result
+        double distance = c * r;
+
+        return Math.floor(distance);
+    }
+
     public GeoPoint convertToGeoPoint() {
         return new GeoPoint(this.getLat(),this.getLong());
     }
