@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="9dp"
+        android:layout_marginTop="20dp"
         android:text="Statistics"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/couponBackButton"
@@ -21,10 +22,11 @@
         android:id="@+id/couponBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/ic_back_button_24"
         android:backgroundTint="@color/buttonColour"
         android:text="Back"
-        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

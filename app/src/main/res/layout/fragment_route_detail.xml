@@ -46,36 +46,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toTopOf="@id/startRouteText"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/routeDetailImage" />
 
-    <ImageButton
-        android:id="@+id/startRouteButton"
-        android:backgroundTint="@color/primaryColour"
-        android:scaleX="5"
-        android:scaleY="5"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/startRouteText"
-        app:layout_constraintEnd_toStartOf="@+id/startRouteText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/startRouteText"
-        android:src="@drawable/ic_baseline_play_arrow_24"
-        />
-
-    <TextView
-        android:id="@+id/startRouteText"
+    <Button
+        android:id="@+id/start_route_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="@string/start_route"
-        android:textSize="50sp"
+        android:text="Start Route"
+        android:backgroundTint="@color/secondaryColour"
+        android:textColor="@color/buttonColour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/startRouteButton"
-        app:layout_constraintTop_toBottomOf="@id/routeDetailText" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/routeDetailText"
+        app:layout_constraintVertical_bias="0.671" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

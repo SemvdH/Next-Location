@@ -44,11 +44,11 @@
         android:id="@+id/detail_location_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_back_button_24"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/primaryColour"
-        app:layout_constraintBottom_toBottomOf="@+id/detail_location_name"
-        app:layout_constraintEnd_toStartOf="@+id/detail_location_name"
+        android:src="@drawable/ic_back_button_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/detail_location_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
