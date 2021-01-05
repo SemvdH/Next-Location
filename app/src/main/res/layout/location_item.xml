@@ -19,9 +19,13 @@
         android:id="@+id/location_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginEnd="294dp"
         android:gravity="center"
-        android:text="location"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/route_Image" />
+        android:text="@string/locaties"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
