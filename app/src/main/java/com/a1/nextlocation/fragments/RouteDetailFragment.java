@@ -33,7 +33,7 @@ public class RouteDetailFragment extends Fragment {
             this.route = getArguments().getParcelable("route");
         }
 
-        this.routeDetailText = view.findViewById(R.id.routeDetailText);
+        this.routeDetailText = view.findViewById(R.id.reoute_detail_tekst);
         this.routeDetailText.setText(this.route.getName());
 
         this.imageButton = view.findViewById(R.id.route_detail_back_button);

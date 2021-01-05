@@ -169,10 +169,10 @@
         android:background="@color/secondaryColour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Box3"
 
-        >
+        app:layout_constraintTop_toBottomOf="@id/Box3">
 
         <TextView
             android:layout_width="wrap_content"
@@ -206,6 +206,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/Balk4"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/coupon_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_back_button_24"
+            android:scaleX="-1"
+            android:text="@string/terug"
+            app:layout_constraintBottom_toBottomOf="@+id/couponAmount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/couponAmount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,9 +15,9 @@
         android:text="@string/start_route"
         android:textColor="@color/buttonColour"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/routeDetailText"
-        app:layout_constraintStart_toStartOf="@+id/routeDetailText"
-        app:layout_constraintTop_toBottomOf="@+id/routeDetailText"
+        app:layout_constraintEnd_toEndOf="@+id/reoute_detail_tekst"
+        app:layout_constraintStart_toStartOf="@+id/reoute_detail_tekst"
+        app:layout_constraintTop_toBottomOf="@+id/reoute_detail_tekst"
         app:layout_constraintVertical_bias="0.873" />
 
     <ImageButton
@@ -39,13 +39,13 @@
         android:layout_marginEnd="250dp"
         android:text="titel"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/routeDetailImage"
-        app:layout_constraintEnd_toStartOf="@+id/routeDetailText"
+        app:layout_constraintBottom_toTopOf="@+id/route_detail_image"
+        app:layout_constraintEnd_toStartOf="@+id/reoute_detail_tekst"
         app:layout_constraintStart_toEndOf="@id/routeDetailBackButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/routeDetailImage"
+        android:id="@+id/route_detail_image"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginEnd="350dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/routeDetailText"
+        android:id="@+id/reoute_detail_tekst"
         android:layout_width="0dp"
         android:layout_height="10dp"
         android:layout_marginStart="50dp"
@@ -64,7 +64,7 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/routeDetailImage"
+        app:layout_constraintStart_toEndOf="@id/route_detail_image"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
