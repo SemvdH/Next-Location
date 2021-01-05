@@ -9,6 +9,7 @@
     tools:context=".fragments.SettingsFragment">
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/settingsBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primaryColour"
@@ -114,6 +115,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/settingsImperialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -158,6 +160,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/settingsOldButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -204,6 +207,7 @@
             />
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/settingsEyeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

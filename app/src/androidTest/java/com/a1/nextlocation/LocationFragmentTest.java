@@ -27,7 +27,6 @@ public class LocationFragmentTest {
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new LocationFragment()).commit();
         onView(withId(R.id.locationBackButton)).perform(click());
         onView(withId(R.id.homeFragment)).check(matches(isDisplayed()));
-
     }
 
     @Test
