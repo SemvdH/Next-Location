@@ -59,18 +59,22 @@ public class SettingsFragment extends Fragment {
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
+        //Initialises 65+ switchCompat
         this.fontChanger = view.findViewById(R.id.BigFont);
 
+        //Initialises sharedpreference to save state of 65+ mode
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("com.a1.nextlocation",0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         fontChanger.setChecked(sharedPreferences.getBoolean("switch", false));
 
+        //Initial check to see what setting was last chosen
         if (fontChanger.isChecked()){
             requireActivity().setTheme(R.style.Theme_NextLocationBig);
         }else if (!fontChanger.isChecked()){
             requireActivity().setTheme(R.style.Theme_NextLocation);
         }
 
+        //Changes the font settings depending on the state of the toggle
         fontChanger.setOnClickListener(view1 -> {
             if(fontChanger.isChecked())
             {
