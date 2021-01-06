@@ -1,5 +1,6 @@
 package com.a1.nextlocation.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,16 +23,12 @@ import java.util.List;
 
 public class StatisticFragment extends Fragment {
 
-    private List<Coupon> couponList;
-    private ImageView imageButton;
-    private ImageView couponButton;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistic, container, false);
@@ -51,24 +48,27 @@ public class StatisticFragment extends Fragment {
         timeText.setText(p2 + ":" + p3 + ":" + p1);
 
 
-        this.couponList = CouponListManager.INSTANCE.getCouponList();
-        CouponAdapter adapter = new CouponAdapter(this.getContext(), this.couponList);
+        //loads the couponList
+        List<Coupon> couponList = CouponListManager.INSTANCE.getCouponList();
+        CouponAdapter adapter = new CouponAdapter(this.getContext(), couponList);
         TextView couponNumber = view.findViewById(R.id.couponAmount);
         couponNumber.setText(String.valueOf(adapter.getItemCount()));
 
-
-        this.imageButton = view.findViewById(R.id.statistics_back_button);
-        this.imageButton.setOnClickListener(v -> {
+        //Initialises the back button
+        ImageView backButton = view.findViewById(R.id.statistics_back_button);
+        backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
-        this.couponButton = view.findViewById(R.id.coupon_button);
-        this.couponButton.setOnClickListener(v -> {
+        //Initialises the coupon button
+        ImageView couponButton = view.findViewById(R.id.coupon_button);
+        couponButton.setOnClickListener(v -> {
             CouponFragment couponFragment = new CouponFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
         });
 
+        //Makes the constraintlayout clickable and opens the same layout as the coupon button
         ConstraintLayout constraintLayout = view.findViewById(R.id.Box4);
         constraintLayout.setOnClickListener(v -> {
             CouponFragment couponFragment = new CouponFragment();

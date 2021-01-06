@@ -42,11 +42,19 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
             clickListener.onItemClick(getAdapterPosition());
         }
 
+        /**
+         * Sets the text of the location name
+         * @param text the text that will be set
+         */
         public void setTextViewText(String text){
             this.locationName = itemView.findViewById(R.id.location_name);
-            locationName.setText(text);
+            this.locationName.setText(text);
         }
 
+        /**
+         * Sets the image of the locatoin
+         * @param text the text of the image filename
+         */
         public void setImageViewImage(String text){
             this.locationImage = itemView.findViewById(R.id.location_image);
             Context context = locationImage.getContext();
