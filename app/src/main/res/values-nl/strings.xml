@@ -19,6 +19,7 @@
     <string name="activate_question">Weet je zeker dat je deze coupon wilt activeren?</string>
     <string name="activate">activeren</string>
     <string name="done">Klaar</string>
+    <string name="total_distance_route">De totale afstand van de route is: </string>
     <string name="cancel">annuleren</string>
     <string name="English">Engels</string>
     <string name="Dutch">Nederlands</string>

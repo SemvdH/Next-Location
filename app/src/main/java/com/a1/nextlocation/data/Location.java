@@ -113,15 +113,6 @@ public class Location implements Parcelable {
     }
 
     /**
-     * calculates the distance to the other location.
-     * @param other the other location
-     * @return the distance between the locations in meters
-     */
-    public double getDistance(Location other) {
-        return getDistance(this.getLat(),this.getLong(),other.getLat(),other.getLong());
-    }
-
-    /**
      * calculates the distance between two coordinates
      * @param lat1 the first latitude
      * @param lon1 the first longitude
@@ -145,8 +136,12 @@ public class Location implements Parcelable {
 
         // Radius of earth in kilometers. Use 3956
         // for miles
-        double r = 6371;
-
+//        if(miles) {
+//            double r = 3956;
+//        }
+//        else {
+            double r = 6371;
+//        }
         // calculate the result
         double distance = c * r;
 

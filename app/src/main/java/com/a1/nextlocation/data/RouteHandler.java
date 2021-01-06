@@ -28,6 +28,10 @@ public enum RouteHandler {
         this.routeFinishedListener = routeFinishedListener;
     }
 
+    public RouteFinishedListener getRouteFinishedListener() {
+        return routeFinishedListener;
+    }
+
     public int getStepCount() {
         return stepCount;
     }
