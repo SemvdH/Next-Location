@@ -39,6 +39,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="@string/help"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@color/secondaryColour"
         android:paddingVertical="10dp"/>
@@ -52,6 +53,7 @@
         android:layout_width="280dp"
         android:layout_height="380dp"
         android:text="@string/help_discription"
+        android:textColor="@color/white"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
