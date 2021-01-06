@@ -112,25 +112,23 @@ public class Location implements Parcelable {
         return long1 + "," + lat1;
     }
 
+    /**
+     * calculates the distance to the other location.
+     * @param other the other location
+     * @return the distance between the locations in meters
+     */
     public double getDistance(Location other) {
-        double dlon = other.getLong() - getLong();
-        double dlat = other.getLat() - getLong();
-        double a = Math.pow(Math.sin(dlat / 2), 2)
-                + Math.cos(getLat()) * Math.cos(other.getLong())
-                * Math.pow(Math.sin(dlon / 2),2);
-
-        double c = 2 * Math.asin(Math.sqrt(a));
-
-        // Radius of earth in kilometers. Use 3956
-        // for miles
-        double r = 6371;
-
-        // calculate the result
-        double distance = c * r;
-
-        return Math.floor(distance);
+        return getDistance(this.getLat(),this.getLong(),other.getLat(),other.getLong());
     }
 
+    /**
+     * calculates the distance between two coordinates
+     * @param lat1 the first latitude
+     * @param lon1 the first longitude
+     * @param lat2 the second latitude
+     * @param lon2 the second longitude
+     * @return the distance between the coordinates in meters
+     */
     public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
         double dlon = lon2 - lon1;
         double dlat = lat2 - lat1;
