@@ -14,9 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.data.RouteHandler;
 import com.a1.nextlocation.network.ApiHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RouteDetailFragment extends Fragment {
 
@@ -53,6 +57,7 @@ public class RouteDetailFragment extends Fragment {
         Button startButton = view.findViewById(R.id.start_route_button);
         startButton.setOnClickListener(this::startRoute);
 
+        calculateRoute(this.route.getLocations());
 
         return view;
     }
@@ -68,4 +73,23 @@ public class RouteDetailFragment extends Fragment {
         ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).addToBackStack(null).commit();
 
     }
+
+    //Calculates the route total distance
+    public double calculateRoute(List<Location> route){
+        ArrayList<Location> routeArraylist = new ArrayList<>(route);
+        double totalDistance = 0;
+        Location firstLocation;
+        Location secondLocation;
+        System.out.println("Total locations: " + routeArraylist.size());
+        for(int i = 0; i < routeArraylist.size() - 1; i++) {
+            firstLocation = routeArraylist.get(i);
+            secondLocation = routeArraylist.get(i+1);
+            System.out.println("locations distance calculated: " + (i+1) + " and " + (i+2) + "\nThe added distance is: " + Location.getDistance(firstLocation.getLat(), firstLocation.getLong(), secondLocation.getLat(), secondLocation.getLong()));
+            totalDistance += Location.getDistance(firstLocation.getLat(), firstLocation.getLong(), secondLocation.getLat(), secondLocation.getLong());
+//            totalDistance += firstLocation.getDistance(secondLocation);
+            System.out.println("Distance nu: " + totalDistance);
+        }
+        return totalDistance;
+    }
+
 }
