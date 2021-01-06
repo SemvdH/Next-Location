@@ -1,10 +1,22 @@
 [
   {
-    "code": "KROKET10",
+    "code": "KROKETMEUP",
     "reward": "Gratis 2e kroket bij Kees Kroket™"
   },
   {
-    "code": "654",
-    "reward": ",juygly"
+    "code": "ESCAPEME",
+    "reward": "Gratis ticket voor de escape room!"
+  },
+  {
+    "code": "WOK50",
+    "reward": "50% korting op een tweede wokschotel naar keuze!"
+  },
+  {
+    "code": "JESUSRISE",
+    "reward": "Een gratis rondleiding door het klooster!"
+  },
+  {
+    "code": "FOOTLONGSURPRISE",
+    "reward": "Een gratis Footlong bij Subway!"
   }
 ]
