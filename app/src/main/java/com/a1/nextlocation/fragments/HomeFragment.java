@@ -263,6 +263,7 @@ public class HomeFragment extends Fragment implements LocationListener{
         StaticData.INSTANCE.addDistance(distance);
         currentLocation = location;
 
+        //new thread because we don't want the main thread to hang
         Thread t = new Thread(() -> {
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
                 if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(),currentLocation.getLongitude(),l.getLat(),l.getLong()) < 10) {
