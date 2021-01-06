@@ -45,7 +45,7 @@ public class StatisticFragment extends Fragment {
         long p2 = seconds / 60;
         long p3 = p2 % 60;
         p2 = p2 / 60;
-        timeText.setText(p2 + ":" + p3 + ":" + p1);
+        timeText.setText(p2 + "u, " + p3 + "m, " + p1 + "s");
 
 
         //loads the couponList
