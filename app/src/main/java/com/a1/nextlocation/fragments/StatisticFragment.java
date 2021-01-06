@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Coupon;
-import com.a1.nextlocation.data.StaticData;
+import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.recyclerview.CouponAdapter;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 
@@ -39,11 +39,11 @@ public class StatisticFragment extends Fragment {
         TextView distance = view.findViewById(R.id.statistics_km);
         TextView locs = view.findViewById(R.id.statistics_locations_visited);
         TextView timeText = view.findViewById(R.id.statistics_time_value);
-        double dist = StaticData.INSTANCE.getDistanceTraveled()/1000;
+        double dist = Data.INSTANCE.getDistanceTraveled()/1000;
         distance.setText(""  + String.format("%.1f",dist) + " km");
-        locs.setText("" + StaticData.INSTANCE.getLocationsVisited());
+        locs.setText("" + Data.INSTANCE.getLocationsVisited());
         
-        long seconds = StaticData.INSTANCE.getTimeWalked() / 1000;
+        long seconds = Data.INSTANCE.getTotalTime() / 1000;
         long p1 = seconds % 60;
         long p2 = seconds / 60;
         long p3 = p2 % 60;

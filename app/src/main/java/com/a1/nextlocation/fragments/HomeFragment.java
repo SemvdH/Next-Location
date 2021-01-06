@@ -27,7 +27,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.RouteHandler;
-import com.a1.nextlocation.data.StaticData;
+import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.network.DirectionsListener;
@@ -181,10 +181,10 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         // add the zoom controller
         IMapController mapController = mapView.getController();
-        if (StaticData.INSTANCE.getZoom() == 0) {
-            StaticData.INSTANCE.setZoom(15.0);
+        if (Data.INSTANCE.getZoom() == 0) {
+            Data.INSTANCE.setZoom(15.0);
         }
-        mapController.setZoom(StaticData.INSTANCE.getZoom());
+        mapController.setZoom(Data.INSTANCE.getZoom());
 
         // add location manager and set the start point
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -341,7 +341,7 @@ public class HomeFragment extends Fragment implements LocationListener {
             double distance = currentLocation.distanceTo(location); // in meters
             // can't walk 100 meters in a few seconds
             if (distance < 100)
-                StaticData.INSTANCE.addDistance(distance);
+                Data.INSTANCE.addDistance(distance);
         }
         currentLocation = location;
 
@@ -357,12 +357,12 @@ public class HomeFragment extends Fragment implements LocationListener {
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
                 // mark the location visited if we are less than 20 meters away
                 if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 20) {
-                    StaticData.INSTANCE.visitLocation(l);
+                    Data.INSTANCE.visitLocation(l);
                     if (l.equals(last)) stopRoute();
                 }
             }
 
-            StaticData.INSTANCE.setZoom(mapView.getZoomLevelDouble());
+            Data.INSTANCE.setZoom(mapView.getZoomLevelDouble());
         });
 
         t.start();

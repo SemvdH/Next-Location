@@ -1,88 +1,55 @@
 package com.a1.nextlocation.data;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class Data {
+/**
+ * singleton to keep track of different global data
+ */
+public enum Data {
+    INSTANCE;
+    private double distanceTraveled = 0;
+    private int locationsVisited = 0;
+    private long totalTime = 0;
+    private double zoom = 0;
 
-    private float distanceTraveled;
-
-    private int locationsVisited;
-
-    private int totalTime;
-
-    private List<Coupon> couponList;
-
-    private Location nextLocation;
-
-    private Location lastLocation;
-
-    private Route currentRoute;
-
-
-    public Data() {
-        this.distanceTraveled = 0;
-        this.locationsVisited = 0;
-        this.totalTime = 0;
-        couponList = new ArrayList<>();
+    public double getZoom() {
+        return zoom;
     }
-    
 
-    public float getDistanceTraveled() {
+    public void setZoom(double zoom) {
+        this.zoom = zoom;
+    }
+
+    private ArrayList<String> visitedNames = new ArrayList<>();
+
+    public void addDistance(double d) {
+        distanceTraveled += d;
+    }
+
+    public long getTotalTime() {
+        return totalTime;
+    }
+
+    public void addTimeWalked(long time) {
+        totalTime += time;
+    }
+
+
+    public double getDistanceTraveled() {
         return distanceTraveled;
     }
 
-    public void setDistanceTraveled(float distanceTraveled) {
-        this.distanceTraveled = distanceTraveled;
+    public void visitLocation(Location location) {
+        if (!visitedNames.contains(location.getName())) {
+            locationsVisited++;
+            visitedNames.add(location.getName());
+        }
     }
 
     public int getLocationsVisited() {
         return locationsVisited;
     }
 
-    public void setLocationsVisited(int locationsVisited) {
-        this.locationsVisited = locationsVisited;
-    }
 
-    public int getTotalTime() {
-        return totalTime;
-    }
 
-    public void setTotalTime(int totalTime) {
-        this.totalTime = totalTime;
-    }
-
-    public List<Coupon> getCouponList() {
-        return couponList;
-    }
-
-    public void setCouponList(List<Coupon> couponList) {
-        this.couponList = couponList;
-    }
-
-    public Location getNextLocation() {
-        return nextLocation;
-    }
-
-    public void setNextLocation(Location nextLocation) {
-        this.nextLocation = nextLocation;
-    }
-
-    public Location getLastLocation() {
-        return lastLocation;
-    }
-
-    public void setLastLocation(Location lastLocation) {
-        this.lastLocation = lastLocation;
-    }
-
-    public Route getCurrentRoute() {
-        return currentRoute;
-    }
-
-    public void setCurrentRoute(Route currentRoute) {
-        this.currentRoute = currentRoute;
-    }
 }
