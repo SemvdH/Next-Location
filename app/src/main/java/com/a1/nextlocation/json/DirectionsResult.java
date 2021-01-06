@@ -109,8 +109,8 @@ public class DirectionsResult {
     }
 
     /**
-     * parses the given json string into this object. This method is used for when you want to
-     * @param json
+     * parses the given json string into this object. This method is used for when you have requested directions from the API for a {@link com.a1.nextlocation.data.Route route object}
+     * @param json the json string
      */
     public void parseRoute(String json) {
 
@@ -145,6 +145,11 @@ public class DirectionsResult {
 
     }
 
+    /**
+     * parses different segments, and the steps in it using {@link DirectionsResult#parseSteps(JsonArray, Gson) the method for parsing steps}
+     * @param segments the segments to parse
+     * @param gson the gson object to use
+     */
     private void parseSegments(JsonArray segments, Gson gson) {
         //unfold the individual segments
         for (JsonElement e : segments) {
@@ -159,6 +164,11 @@ public class DirectionsResult {
         }
     }
 
+    /**
+     * parses the given steps into this object, transforms them into a {@link DirectionsStep} object.
+     * @param steps the steps to parse
+     * @param gson the gson object to use
+     */
     private void parseSteps(JsonArray steps, Gson gson) {
         for (JsonElement j : steps) {
 

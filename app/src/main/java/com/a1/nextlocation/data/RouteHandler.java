@@ -46,6 +46,9 @@ public enum RouteHandler {
     }
 
     public void followRoute(Route route) {
+        if (isFollowingRoute) {
+            StaticData.INSTANCE.addTimeWalked(System.currentTimeMillis()-startedTime);
+        }
         this.currentRoute = route;
         setFollowingRoute(true);
         startedTime = System.currentTimeMillis();
