@@ -2,6 +2,7 @@ package com.a1.nextlocation.fragments;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -34,6 +36,7 @@ import com.a1.nextlocation.recyclerview.LocationListManager;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Overlay;
@@ -49,13 +52,14 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements LocationListener {
     private final String userAgent = "com.ai.nextlocation.fragments";
-    public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
+
     private ImageButton imageButton;
     private ImageButton stopButton;
     private MapView mapView;
+
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private final String TAG = HomeFragment.class.getCanonicalName();
-    //    private RoadManager roadManager;
+
     private Polyline roadOverlay;
     private int color;
     private Location currentLocation;
@@ -92,11 +96,14 @@ public class HomeFragment extends Fragment implements LocationListener {
             stopRoute();
         });
 
+        // show or hide the stop route button based on if we are following a route
         if (RouteHandler.INSTANCE.isFollowingRoute()) {
             stopButton.setVisibility(View.VISIBLE);
         } else {
             stopButton.setVisibility(View.GONE);
         }
+
+        //register as a listener for a result of the API
         ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
         return view;
     }
@@ -105,7 +112,7 @@ public class HomeFragment extends Fragment implements LocationListener {
      * stops the current route
      */
     private void stopRoute() {
-        Log.e(TAG, "stopRoute: STOPPING ROUTE" );
+        Log.d(TAG, "stopRoute: STOPPING ROUTE" );
         RouteHandler.INSTANCE.finishRoute();
         stopButton.setVisibility(View.GONE);
         Toast.makeText(requireContext(), getResources().getString(R.string.route_stop_toast), Toast.LENGTH_SHORT).show();
@@ -128,7 +135,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         roadOverlay.setPoints(geoPoints);
         roadOverlay.setColor(color);
 
-
+        // pass the line to the route handler
         RouteHandler.INSTANCE.setCurrentRouteLine(roadOverlay);
         Log.d(TAG, "onDirectionsAvailable: successfully added road!");
 
@@ -174,7 +181,10 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         // add the zoom controller
         IMapController mapController = mapView.getController();
-        mapController.setZoom(15.0);
+        if (StaticData.INSTANCE.getZoom() == 0) {
+            StaticData.INSTANCE.setZoom(15.0);
+        }
+        mapController.setZoom(StaticData.INSTANCE.getZoom());
 
         // add location manager and set the start point
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -345,14 +355,18 @@ public class HomeFragment extends Fragment implements LocationListener {
             }
 
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
-                if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 10) {
+                // mark the location visited if we are less than 20 meters away
+                if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 20) {
                     StaticData.INSTANCE.visitLocation(l);
                     if (l.equals(last)) stopRoute();
                 }
             }
+
+            StaticData.INSTANCE.setZoom(mapView.getZoomLevelDouble());
         });
 
         t.start();
+
     }
 
     // empty override methods for the LocationListener
