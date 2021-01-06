@@ -139,18 +139,18 @@ public class Location implements Parcelable {
 
         double c = 2 * Math.asin(Math.sqrt(a));
 
+        double distance;
         // Radius of earth in kilometers. Use 3956
         // for miles
 //        if(miles) {
 //            double r = 3956;
+//            distance = c * r;
 //        }
 //        else {
             double r = 6371;
+            distance = c * r;
+            distance *= 1000;
 //        }
-        // calculate the result
-        double distance = c * r;
-
-        distance *= 1000;
         return Math.floor(distance);
     }
 
