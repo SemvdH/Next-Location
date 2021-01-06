@@ -105,6 +105,7 @@ public class HomeFragment extends Fragment implements LocationListener {
      * stops the current route
      */
     private void stopRoute() {
+        Log.e(TAG, "stopRoute: STOPPING ROUTE" );
         RouteHandler.INSTANCE.finishRoute();
         stopButton.setVisibility(View.GONE);
         Toast.makeText(requireContext(), getResources().getString(R.string.route_stop_toast), Toast.LENGTH_SHORT).show();
@@ -337,12 +338,16 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         //new thread because we don't want the main thread to hang, this method gets called a lot
         Thread t = new Thread(() -> {
-            List<com.a1.nextlocation.data.Location> locs = RouteHandler.INSTANCE.getCurrentRoute().getLocations();
-            com.a1.nextlocation.data.Location last = locs.get(locs.size()-1);
+            com.a1.nextlocation.data.Location last = null;
+            if (RouteHandler.INSTANCE.isFollowingRoute()) {
+                List<com.a1.nextlocation.data.Location> locs = RouteHandler.INSTANCE.getCurrentRoute().getLocations();
+                last = locs.get(locs.size()-1);
+            }
+
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
                 if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 10) {
-                    if (l.equals(last)) stopRoute();
                     StaticData.INSTANCE.visitLocation(l);
+                    if (l.equals(last)) stopRoute();
                 }
             }
         });
