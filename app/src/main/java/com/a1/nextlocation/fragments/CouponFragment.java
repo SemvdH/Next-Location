@@ -26,7 +26,7 @@ public class CouponFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private List<Coupon> couponList;
     private CouponAdapter couponAdapter;
-    private ImageButton imageButton;
+    private ImageButton backButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,18 +37,22 @@ public class CouponFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_coupon, container, false);
 
+        //Makes the recyclerview
         this.couponRecyclerView = view.findViewById(R.id.coupon_recyclerview);
         this.couponRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
+
+        //Loads the couponList
         CouponListManager.INSTANCE.setContext(this.getContext());
         CouponListManager.INSTANCE.load();
         this.couponList = CouponListManager.INSTANCE.getCouponList();
 
         this.couponAdapter = new CouponAdapter(this.getContext(), this.couponList, clickedPosition -> showPopup(this.couponList.get(clickedPosition)));
 
-        this.imageButton = view.findViewById(R.id.coupon_back_button);
-        this.imageButton.setOnClickListener(v -> {
+        //Initialises the back button
+        this.backButton = view.findViewById(R.id.coupon_back_button);
+        this.backButton.setOnClickListener(v -> {
             StatisticFragment statisticFragment = new StatisticFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, statisticFragment).addToBackStack(null).commit();
         });
@@ -58,6 +62,10 @@ public class CouponFragment extends Fragment {
         return view;
     }
 
+    /**
+     * shows the popup of a coupon
+     * @param coupon the coupon that will be displayed
+     */
     private void showPopup(Coupon coupon) {
         AlertDialog.Builder activateBuilder = new AlertDialog.Builder(getContext());
         AlertDialog.Builder couponCodeBuilder = new AlertDialog.Builder(getContext());

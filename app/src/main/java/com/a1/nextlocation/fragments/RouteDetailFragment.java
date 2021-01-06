@@ -22,17 +22,18 @@ import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.data.RouteHandler;
 import com.a1.nextlocation.network.ApiHandler;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RouteDetailFragment extends Fragment {
 
     private Route route;
-    private ImageView imageView;
     private Refreshable refreshable;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         if (context instanceof Refreshable)
         this.refreshable = (Refreshable) context;
@@ -51,10 +52,11 @@ public class RouteDetailFragment extends Fragment {
             this.route = getArguments().getParcelable("route");
         }
 
-        this.imageView = view.findViewById(R.id.route_detail_image);
-        Context context = this.imageView.getContext();
+        //Sets the image of the RouteDetail
+        ImageView imageView = view.findViewById(R.id.route_detail_image);
+        Context context = imageView.getContext();
         int id = context.getResources().getIdentifier(this.route.getImageURL(), "drawable", context.getPackageName());
-        this.imageView.setImageResource(id);
+        imageView.setImageResource(id);
 
         TextView routeName = view.findViewById(R.id.route_title);
         routeName.setText(this.route.getName());
@@ -66,8 +68,9 @@ public class RouteDetailFragment extends Fragment {
         String distance_tekst = getResources().getString(R.string.total_distance_route);
         totalDistance.setText(distance_tekst + " " + calculateRoute(this.route.getLocations()) + "m");
 
-        ImageButton imageButton = view.findViewById(R.id.route_detail_back_button);
-        imageButton.setOnClickListener(v -> {
+        //Initialises the back button
+        ImageButton backButton = view.findViewById(R.id.route_detail_back_button);
+        backButton.setOnClickListener(v -> {
             RouteFragment routeFragment = new RouteFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeFragment).addToBackStack(null).commit();
         });

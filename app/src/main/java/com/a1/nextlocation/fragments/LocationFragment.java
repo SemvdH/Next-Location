@@ -1,6 +1,5 @@
 package com.a1.nextlocation.fragments;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,7 +24,7 @@ public class LocationFragment extends Fragment {
     private LocationAdapter locationAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Location> locationList;
-    private ImageButton imageButton;
+    private ImageButton backButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,22 +40,24 @@ public class LocationFragment extends Fragment {
         this.locationRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
-        this.imageButton = view.findViewById(R.id.location_back_button);
-        this.imageButton.setOnClickListener(v -> {
+        //Initialised the back button
+        this.backButton = view.findViewById(R.id.location_back_button);
+        this.backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
+        //Loads the location list
         LocationListManager.INSTANCE.setContext(this.getContext());
         LocationListManager.INSTANCE.load();
         this.locationList = LocationListManager.INSTANCE.getLocationList();
 
+        //Initialises the adapter
         this.locationAdapter = new LocationAdapter(this.getContext(), this.locationList, clickedPosition -> {
-            LocationDetailFragment locationDetailFragment = new LocationDetailFragment();
-            locationDetailFragment.setLocation(this.locationList.get(clickedPosition));
+            LocationDetailFragment locationDetailFragment = new LocationDetailFragment(this.locationList.get(clickedPosition));
             Bundle locationBundle = new Bundle();
+            //Gives the clicked location to the adapter
             locationBundle.putParcelable("location", this.locationList.get(clickedPosition));
-            locationDetailFragment.setLocation(this.locationList.get(clickedPosition));
             locationDetailFragment.setArguments(locationBundle);
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationDetailFragment).addToBackStack(null).commit();
         });

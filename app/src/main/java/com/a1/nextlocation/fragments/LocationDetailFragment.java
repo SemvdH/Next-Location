@@ -1,7 +1,6 @@
 package com.a1.nextlocation.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,14 +20,13 @@ import com.a1.nextlocation.data.Location;
 public class LocationDetailFragment extends Fragment {
     private static final String TAG = LocationDetailFragment.class.getCanonicalName();
 
-    private ImageButton imageButton;
+    private ImageButton backButton;
     private Location location;
     private TextView titelText;
     private TextView detailText;
     private ImageView locationImage;
 
     public LocationDetailFragment() {
-
     }
 
     public LocationDetailFragment(Location location) {
@@ -51,12 +49,14 @@ public class LocationDetailFragment extends Fragment {
         this.detailText = view.findViewById(R.id.detail_location_text);
         this.detailText.setText(location.getDescription());
 
-        this.imageButton = view.findViewById(R.id.detail_location_back_button);
-        this.imageButton.setOnClickListener(v -> {
+        //Initialises the back button
+        this.backButton = view.findViewById(R.id.detail_location_back_button);
+        this.backButton.setOnClickListener(v -> {
             LocationFragment locationFragment = new LocationFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
+        //Logs the location
         if (location != null) {
             Log.d(TAG, "onCreateView: the location has a name of: " + location.getName());
         }
@@ -67,9 +67,5 @@ public class LocationDetailFragment extends Fragment {
         this.locationImage.setImageResource(id);
 
         return view;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 }
