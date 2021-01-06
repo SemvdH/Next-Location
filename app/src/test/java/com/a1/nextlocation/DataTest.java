@@ -11,39 +11,48 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
 
 public class DataTest {
-    private Data Data;
+    private Data data;
 
     @Before
     public void init(){
-        Data = Data.INSTANCE;
+        data = Data.INSTANCE;
     }
 
     @Test
     public void testDistance(){
-        Data.addDistance(2356.234);
+        data.addDistance(2356.234);
         double expected = 2356.234;
-        assertEquals(expected, Data.getDistanceTraveled(), 0.01);
-        Data.addDistance(234342.1);
-        assertNotEquals(expected, Data.getDistanceTraveled());
+        assertEquals(expected, data.getDistanceTraveled(), 0.01);
+        data.addDistance(234342.1);
+        assertNotEquals(expected, data.getDistanceTraveled());
     }
 
     @Test
     public void testTimeWalked(){
-        Data.addTimeWalked(3456);
+        data.addTimeWalked(3456);
         long expected = 3456;
-        assertEquals(expected, Data.getTimeWalked());
-        Data.addTimeWalked(3445);
-        assertNotEquals(expected, Data.getTimeWalked());
+        assertEquals(expected, data.getTotalTime());
+        data.addTimeWalked(3445);
+        assertNotEquals(expected, data.getTotalTime());
     }
 
     @Test
     public void testVisitedLocation(){
         Location testLocation = new Location("test", "test", "test", "test");
-        Data.visitLocation(testLocation);
+        data.visitLocation(testLocation);
         int expected = 1;
-        assertEquals(expected, Data.getLocationsVisited());
-        Data.visitLocation(new Location("TESTFORFALSE", "TESTFORFALSE", "TESTFORFALSE", "TESTFORFALSE"));
-        assertNotEquals(expected, Data.getLocationsVisited());
+        assertEquals(expected, data.getLocationsVisited());
+        data.visitLocation(new Location("TESTFORFALSE", "TESTFORFALSE", "TESTFORFALSE", "TESTFORFALSE"));
+        assertNotEquals(expected, data.getLocationsVisited());
+    }
+
+    @Test
+    public void testZoom(){
+        data.setZoom(234.63);
+        double expected = 234.63;
+        assertEquals(expected, data.getZoom(), 0.01);
+        data.setZoom(342.55);
+        assertNotEquals(expected, data.getZoom());
     }
 
 }

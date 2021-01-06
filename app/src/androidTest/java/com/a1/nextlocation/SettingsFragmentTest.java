@@ -55,16 +55,13 @@ public class SettingsFragmentTest {
     public void buttonTest(){
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new SettingsFragment()).commit();
         onView(withId(R.id.settingsImperialButton)).check(matches(isClickable()));
-        onView(withId(R.id.settingsOldButton)).check(matches(isClickable()));
-        onView(withId(R.id.settingsEyesButton)).check(matches(isClickable()));
+        onView(withId(R.id.BigFont)).check(matches(isClickable()));
+
 
         onView(withId(R.id.settingsImperialButton)).perform(click());
         onView(withId(R.id.settingsImperialButton)).check(matches(isChecked()));
 
-        onView(withId(R.id.settingsOldButton)).perform(click());
-        onView(withId(R.id.settingsOldButton)).check(matches(isChecked()));
-
-        onView(withId(R.id.settingsEyesButton)).perform(click());
-        onView(withId(R.id.settingsEyesButton)).check(matches(isChecked()));
+        onView(withId(R.id.BigFont)).perform(click());
+        onView(withId(R.id.BigFont)).check(matches(isChecked()));
     }
 }

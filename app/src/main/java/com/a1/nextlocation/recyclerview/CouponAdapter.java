@@ -27,17 +27,19 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
     class CouponViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView couponCode;
-        private TextView couponReward;
 
         public CouponViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
         }
 
-
+        /**
+         * Sets the text of the coupon
+         * @param text the text that will be set
+         */
         public void setTextViewName(String text){
-            this.couponReward = itemView.findViewById(R.id.coupon_name);
-            this.couponReward.setText(text);
+            TextView couponReward = itemView.findViewById(R.id.coupon_name);
+            couponReward.setText(text);
         }
 
         @Override

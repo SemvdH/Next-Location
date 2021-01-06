@@ -22,10 +22,9 @@ public enum CouponListManager {
         return couponList;
     }
 
-    public Coupon getCoupon(int place) {
-        return couponList.get(place);
-    }
-
+    /**
+     * Prepares the list for loading
+     */
     public void load(){
         CouponLoader couponLoader = new CouponLoader(this.context);
         this.couponList = couponLoader.load();

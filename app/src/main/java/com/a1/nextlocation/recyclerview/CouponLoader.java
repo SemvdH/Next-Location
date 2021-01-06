@@ -18,6 +18,10 @@ public class CouponLoader implements Loader<List<Coupon>> {
         this.context = context;
     }
 
+    /**
+     * Loads the Arraylist of coupons out of the JSON
+     * @return Arraylist of coupons
+     */
     @Override
     public ArrayList<Coupon> load() {
         FileIO<ArrayList<Coupon>> fileIO = new FileIO<>();
