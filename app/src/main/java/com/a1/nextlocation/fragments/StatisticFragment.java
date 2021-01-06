@@ -1,6 +1,7 @@
 package com.a1.nextlocation.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,9 +33,10 @@ public class StatisticFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistic, container, false);
 
-        TextView distance = view.findViewById(R.id.statistics_km);
+        initializeDistanceTextView(view);
         TextView locs = view.findViewById(R.id.statistics_locations_visited);
         TextView timeText = view.findViewById(R.id.statistics_time_value);
+      
         double dist = Data.INSTANCE.getDistanceTraveled() / 1000;
         distance.setText("" + String.format("%.1f", dist) + " km");
         locs.setText("" + Data.INSTANCE.getLocationsVisited());
@@ -74,5 +76,14 @@ public class StatisticFragment extends Fragment {
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
         });
         return view;
+    }
+
+    private void initializeDistanceTextView(View view){
+        TextView distance = view.findViewById(R.id.statistics_km);
+        double dist = Data.INSTANCE.getDistanceTraveled()/1000;
+        if (getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false))
+            distance.setText(""  + String.format("%.1f",dist * 0.621371) + " mi");
+        else
+            distance.setText(""  + String.format("%.1f",dist) + " km");
     }
 }

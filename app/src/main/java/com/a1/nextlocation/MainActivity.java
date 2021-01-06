@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
 
             FragmentManager fragment = getSupportFragmentManager();
             DialogFragment helpPopupFragment = new HelpPopup();
-            helpPopupFragment.show(fragment, "YEET");
+            helpPopupFragment.show(fragment, "");
         }
     };
 }
