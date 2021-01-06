@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Evenementen Route",
+    "locations": [
+      {
+        "name":"Escaping Breda: Escape Room Games Boschstraat 114",
+        "coordinates":" 51.59110835530862,4.784147222780912",
+        "description": "Escaping Breda is een nieuwe moderne locatie en heeft momenteel 2 avontuurlijke escape rooms. Daarnaast komen er volgend jaar 2 nieuwe escape rooms. \n\n\nOntsnap uit de spannende escape room Let's Rob The Bank, een kamer geschikt voor volwassenen en kinderen. Als je liever ontsnapt uit een escape room met een hoger niveau van spanning en spel, kies dan voor Patiënt X. \n\n\nOp onze locatie in Breda hebben we ook een gezellig bordspelcafé. \nCombineer je ontsnapping met een drankje, een hapje en alle gratis bordspellen. \n\nEscaping Breda \nis de perfecte plek voor een uitje met familie, vrienden of collega's.",
+        "imageUrl": "escaping_room"
+      },
+      {
+        "name":"Prison Escape Kloosterlaan 168",
+        "coordinates":"51.590621347316336, 4.784612424356731",
+        "description": "Prison Escape duurt in totaal 3 uur en je doel is om uit de maximaal beveiligde gevangenis te ontsnappen. \nEen cast van 25 acteurs brengt de ervaring tot leven en het is aan jou om je weg naar buiten te vinden. Verborgen voorwerpen maken het makkelijker om de weg naar buiten te vinden. \n\nPas op, kijk om je heen, vertrouw (bijna) niemand, en benader mensen ... \nDe klok tikt en je hebt 1 doel: de weg naar vrijheid vinden.",
+        "imageUrl": "prison_escape_room"
+      },
+      {
+        "name":"De Koepel - FutureDome Events Nassausingel 26",
+        "coordinates":"51.59016000704554, 4.788289825900094",
+        "description": "In groepsverband word je door één van onze gidsen rondgeleid over de meest unieke en mooiste monumentale plekken in en rond de Koepel! \n\n De gids vertelt op de verschillende locaties het roemruchte verleden. Een rondleiding over het gevangenisterrein voert je langs de koepel, de authentieke kapel, de vrouwengevangenis, verschillende luchtruimten en het oude gerechtsgebouw.\n",
+        "imageUrl": "de_koepel_future_events"
+      },
+      {
+        "name":"MEZZ Breda Keizerstraat 101",
+        "coordinates":"51.583597834546616, 4.778605421170793",
+        "description": "MEZZ is een open club, betrokken, nieuwsgierig en onderzoekend. MEZZ heeft humor, is gevat, soms provocatief en verrassend. Beleving en plezier staan centraal waarbij wij bottom up denken. Wij zijn er voor jou, jouw MEZZ. Heb je ideeën of wil je meer weten, neem contact op. Wij reageren altijd.",
+        "imageUrl": "mezz_breda"
+      },
+      {
+        "name":"Het Klooster Breda Schorsmolenstraat 13",
+        "coordinates":"51.58774025242826, 4.765006685059431",
+        "description": "In dit oude Kapucijnenklooster wordt een woon- en werkgemeenschap gevestigd onder de naam\n”Het Klooster Breda”.\nMet de inkomsten uit bedrijvigheid wordt 12 mensen die dakloos zijn onderdak geboden, van waaruit zij zich weer een plek in de samenleving kunnen verwerven.",
+        "imageUrl": "het_klooster_breda"
+      }
+    ],
+    "totalDistance": 1073.0,
+    "totalTime": 342342,
+    "description": "Deze route laat u leuke events verspreid door breda zien! Probeer de escaperooms uit, een event bij de koepel, of een leuk feest bij MEZZ! Met deze route loopt u langs ze allemaal.",
+    "imageURL": "escaping_room"
+  },
+  {
+    "name": "Hongerige Route",
+    "locations": [
+      {
+        "name":"Subway Karnemelkstraat 10 A, 1",
+        "coordinates":"51.586110268250046, 4.775124041110522",
+        "description":"Subway is een Amerikaanse multinationale fastfoodketen die voornamelijk sandwiches verkoopt. Het bedrijf onderscheidt zich van veel andere broodjeszaken doordat de klant zelf de sandwich kan laten samenstellen. Subway werkt met franchisenemers. Het bedrijf heeft bijna 45.000 vestigingen in alle werelddelen.",
+        "imageUrl":"subway"
+      },
+      {
+        "name": "McDonald's Breda Karnemelkstraat",
+        "coordinates":"51.586058044064735, 4.775804729737406",
+        "description": "Wist je dat McDonald’s de grootste restaurantketen ter wereld is? Hierdoor hebben we een indrukwekkende geschiedenis. Maar wij kijken liever naar onze toekomst. Nieuwe restaurants, betere producten en duurzaam ondernemen.",
+        "imageUrl": "mc_donalds"
+      },
+      {
+        "name": "Kees Kroket Houtmarkt 9",
+        "coordinates":"51.58629976171061, 4.7769606819261",
+        "description": "KEEEEES KROKET! Al meer dan tien jaar is Kees Kroket in het centrum van Breda gevestigd, vlakbij het winkelend publiek. Eerst in de welbekende Houtmarktpassage en sinds april 2019 zijn we gevestigd op onze nieuwe locatie aan de Houtmarkt 9. U proeft de kwaliteit bij onze verse frites. Deze, uit de Agria aardappel gesneden frites, wordt in zonnebloemolie voorgebakken en in een mix van plantaardige oliën afgebakken. Dit zorgt niet alleen voor de heerlijke smaak maar ook dat onze frites relatief weinig verzadigde vetten en transvetzuren bevat, waardoor we van het beeldmerk ‘Verantwoord Frituren’ gebruik mogen maken.",
+        "imageUrl": "kees_kroket"
+      },
+      {
+        "name": "Wok To Go Halstraat 40",
+        "coordinates":"51.58648245586817, 4.77757540779623",
+        "description": "Bij Wok To Go houden we van snelle, gezonde en smaakvolle maaltijden. Sinds 2003 ontwikkelen onze chef-koks de lekkerste wokgerechten met verse ingrediënten. We doen dit vól overgave onder het motto “Making people happy through food”. Door het roerbakken – met een kleine hoeveelheid olie – op grote hitte, blijven de smaak en gezonde voedingsstoffen bewaard. We kiezen voor gezonde en unieke ingrediënten en bereiden uitgebalanceerde gerechten in een ‘Wokki box’ voor een gezonde levensstijl.",
+        "imageUrl": "wok_to_go"
+      },
+      {
+        "name": "The Tosti Club Breda A4, Vlaszak 2",
+        "coordinates":"51.588914881807106, 4.780460117020282",
+        "description": "Je kunt bij al onze vestigingen de hele dag terecht, want bij The Tosti Club eet je het klokje rond. Dus kom gezellig ontbijten, lunchen of voor een snelle hap aan het einde van de dag (wat dacht je van onze The Tosti Slice, onze variant op pizza!). Even geen zin in brood? Dan kunnen we je ook verblijden met onder andere acaï smoothiebowls, pancakes, granola’s / yoghurt of gewoon een lekkere warme drank met gebak. Mogen we je de Red Velvet fudge cake aanraden?",
+        "imageUrl": "the_tosti_club"
+      },
+      {
+        "name": "Gauchos Grote Markt 33",
+        "coordinates":"51.588456220778504, 4.77602051562935",
+        "description": "De middeleeuwse Grote Markt is een historische plek in het Bourgondische hart van Breda, ooit in handen van de Spaanse bezetter. Gauchos Grill-Restaurant combineert daar Brabantse gemoedelijkheid met professionele gastvrijheid. In onze Latijnse keuken bereiden wij op uw aanwijzing een malse Argentijnse steak of een smakelijk visgerecht van de grill",
+        "imageUrl": "gauchos"
+      },
+      {
+        "name": "De Boterhal Grote Markt 19",
+        "coordinates":"51.58798587092525, 4.776248508784696",
+        "description": "De Boterhal in Breda is een internationaal tapasrestaurant, speciaalbiercafé en wijnbar. Men kan gezellig bij ons lunchen, borrelen en dineren. Wij hebben een uitgebreide menukaart met een hele hoop bieren, wijnen, zowel per glas als per fles te verkrijgen, lunch en tapasgerechtjes. Naast het eten wat wij serveren hebben we ook een hoop bieren en wijnen. Naast de bieren op de kaart hebben wij wisselende bieren; vijf ketelbieren en vijf seizoensbieren",
+        "imageUrl": "de_boter_hal"
+      }
+    ],
+    "totalDistance": 955.0,
+    "totalTime": 342342,
+    "description": "Met deze route bezoekt u alle snackbars en restaurants in het centrum van Breda!",
+    "imageURL": "kees_kroket"
+  }
+]
