@@ -33,11 +33,11 @@ public class Location implements Parcelable {
     }
 
     public Location(@NotNull String name, double latCoord, double longCoord, String description, @Nullable String imageUrl) {
-        this(name,getStringFromCoordinates(latCoord,longCoord),description,imageUrl);
+        this(name, getStringFromCoordinates(latCoord, longCoord), description, imageUrl);
     }
 
     public Location(String name, android.location.Location loc, String description, String imageUrl) {
-        this(name,getStringFromCoordinates(loc.getLatitude(),loc.getLongitude()),description,imageUrl);
+        this(name, getStringFromCoordinates(loc.getLatitude(), loc.getLongitude()), description, imageUrl);
     }
 
     protected Location(Parcel in) {
@@ -89,7 +89,7 @@ public class Location implements Parcelable {
         return imageUrl;
     }
 
-    public String getIconUrl(){
+    public String getIconUrl() {
         return iconUrl;
     }
 
@@ -119,6 +119,7 @@ public class Location implements Parcelable {
 
     /**
      * calculates the distance between two coordinates
+     *
      * @param lat1 the first latitude
      * @param lon1 the first longitude
      * @param lat2 the second latitude
@@ -135,7 +136,7 @@ public class Location implements Parcelable {
         double dlat = lat2 - lat1;
         double a = Math.pow(Math.sin(dlat / 2), 2)
                 + Math.cos(lat1) * Math.cos(lat2)
-                * Math.pow(Math.sin(dlon / 2),2);
+                * Math.pow(Math.sin(dlon / 2), 2);
 
         double c = 2 * Math.asin(Math.sqrt(a));
 
@@ -147,15 +148,15 @@ public class Location implements Parcelable {
 //            distance = c * r;
 //        }
 //        else {
-            double r = 6371;
-            distance = c * r;
-            distance *= 1000;
+        double r = 6371;
+        distance = c * r;
+        distance *= 1000;
 //        }
         return Math.floor(distance);
     }
 
     public GeoPoint convertToGeoPoint() {
-        return new GeoPoint(this.getLat(),this.getLong());
+        return new GeoPoint(this.getLat(), this.getLong());
     }
 
     @Override

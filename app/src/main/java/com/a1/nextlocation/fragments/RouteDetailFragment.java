@@ -3,18 +3,17 @@ package com.a1.nextlocation.fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Location;
@@ -36,8 +35,9 @@ public class RouteDetailFragment extends Fragment {
     public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         if (context instanceof Refreshable)
-        this.refreshable = (Refreshable) context;
+            this.refreshable = (Refreshable) context;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class RouteDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_route_detail, container, false);
-        if(getArguments().getParcelable("route") != null) {
+        if (getArguments().getParcelable("route") != null) {
             this.route = getArguments().getParcelable("route");
         }
 
@@ -82,32 +82,34 @@ public class RouteDetailFragment extends Fragment {
 
     /**
      * Button onclick method that starts the route that is being viewed.
+     *
      * @param view the button
      */
     public void startRoute(View view) {
         ApiHandler.INSTANCE.getDirections(route);
         RouteHandler.INSTANCE.followRoute(route);
-        Toast.makeText(requireContext(),"Route started!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), "Route started!", Toast.LENGTH_SHORT).show();
         // navigates to the HomeFragment and refreshes the BottomNavigation
         refreshable.refreshAndNavigateTo(R.id.locations);
     }
 
     /**
      * Calculates the distance between points
+     *
      * @param route the route that is calculated
      * @return the total distance of a route
      */
-    public double calculateRoute(List<Location> route){
+    public double calculateRoute(List<Location> route) {
         ArrayList<Location> routeArraylist = new ArrayList<>(route);
         double totalDistance = 0;
         Location firstLocation;
         Location secondLocation;
         System.out.println("Total locations: " + routeArraylist.size());
         //Cycles through the arraylist
-        for(int i = 0; i < routeArraylist.size() - 1; i++) {
+        for (int i = 0; i < routeArraylist.size() - 1; i++) {
             firstLocation = routeArraylist.get(i);
-            secondLocation = routeArraylist.get(i+1);
-            System.out.println("locations distance calculated: " + (i+1) + " and " + (i+2) + "\nThe added distance is: " + Location.getDistance(firstLocation.getLat(), firstLocation.getLong(), secondLocation.getLat(), secondLocation.getLong()));
+            secondLocation = routeArraylist.get(i + 1);
+            System.out.println("locations distance calculated: " + (i + 1) + " and " + (i + 2) + "\nThe added distance is: " + Location.getDistance(firstLocation.getLat(), firstLocation.getLong(), secondLocation.getLat(), secondLocation.getLong()));
             //Calculates the distance between points
             totalDistance += Location.getDistance(firstLocation.getLat(), firstLocation.getLong(), secondLocation.getLat(), secondLocation.getLong());
         }

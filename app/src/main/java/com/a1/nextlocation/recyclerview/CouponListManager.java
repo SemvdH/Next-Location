@@ -25,7 +25,7 @@ public enum CouponListManager {
     /**
      * prepares the list for the adapter
      */
-    public void load(){
+    public void load() {
         CouponLoader couponLoader = new CouponLoader(this.context);
         this.couponList = couponLoader.load();
     }

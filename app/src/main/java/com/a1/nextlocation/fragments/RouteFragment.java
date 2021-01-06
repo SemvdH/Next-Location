@@ -1,6 +1,10 @@
 package com.a1.nextlocation.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,23 +13,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.recyclerview.RouteAdapter;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 
 import java.util.List;
-import com.a1.nextlocation.data.Location;
-import com.a1.nextlocation.data.Route;
-import com.a1.nextlocation.json.DirectionsResult;
-import com.a1.nextlocation.network.ApiHandler;
-import com.a1.nextlocation.network.DirectionsListener;
 
 public class RouteFragment extends Fragment {
     private static final String TAG = RouteFragment.class.getCanonicalName();

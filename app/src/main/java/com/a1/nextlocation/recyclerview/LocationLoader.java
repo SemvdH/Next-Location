@@ -7,7 +7,6 @@ import com.a1.nextlocation.data.Location;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LocationLoader implements Loader<List<Location>> {
@@ -19,6 +18,7 @@ public class LocationLoader implements Loader<List<Location>> {
 
     /**
      * loads the array list from a JSON file
+     *
      * @return array list with locations
      */
     @Override
@@ -32,7 +32,8 @@ public class LocationLoader implements Loader<List<Location>> {
             fileName += "-" + selectedLanguage;
         }
 
-        ArrayList<Location> res = fileIO.readFileData(context,fileName + ".json",new TypeToken<ArrayList<Location>>(){}.getType());
+        ArrayList<Location> res = fileIO.readFileData(context, fileName + ".json", new TypeToken<ArrayList<Location>>() {
+        }.getType());
 
         return res == null ? new ArrayList<>() : res;
     }

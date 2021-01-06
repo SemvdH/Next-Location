@@ -5,12 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.a1.nextlocation.R;
 
@@ -63,29 +62,27 @@ public class SettingsFragment extends Fragment {
         this.fontChanger = view.findViewById(R.id.BigFont);
 
         //Initialises sharedpreference to save state of 65+ mode
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("com.a1.nextlocation",0);
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("com.a1.nextlocation", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         fontChanger.setChecked(sharedPreferences.getBoolean("switch", false));
 
         //Initial check to see what setting was last chosen
-        if (fontChanger.isChecked()){
+        if (fontChanger.isChecked()) {
             requireActivity().setTheme(R.style.Theme_NextLocationBig);
-        }else if (!fontChanger.isChecked()){
+        } else if (!fontChanger.isChecked()) {
             requireActivity().setTheme(R.style.Theme_NextLocation);
         }
 
         //Changes the font settings depending on the state of the toggle
         fontChanger.setOnClickListener(view1 -> {
-            if(fontChanger.isChecked())
-            {
+            if (fontChanger.isChecked()) {
                 requireActivity().setTheme(R.style.Theme_NextLocationBig);
-                editor.putBoolean("switch",true);
+                editor.putBoolean("switch", true);
                 editor.apply();
             }
-            if(!fontChanger.isChecked())
-            {
+            if (!fontChanger.isChecked()) {
                 requireActivity().setTheme(R.style.Theme_NextLocation);
-                editor.putBoolean("switch",false);
+                editor.putBoolean("switch", false);
                 editor.apply();
             }
             editor.commit();
@@ -113,6 +110,7 @@ public class SettingsFragment extends Fragment {
                     refresh();
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }

@@ -3,12 +3,10 @@ package com.a1.nextlocation.recyclerview;
 import android.content.Context;
 
 import com.a1.nextlocation.data.FileIO;
-import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RouteLoader implements Loader<List<Route>> {
@@ -20,6 +18,7 @@ public class RouteLoader implements Loader<List<Route>> {
 
     /**
      * loads an array list from a JSON
+     *
      * @return an array list with routes
      */
     @Override
@@ -34,7 +33,8 @@ public class RouteLoader implements Loader<List<Route>> {
             fileName += "-" + selectedLanguage;
         }
 
-        ArrayList<Route> res = fileIO.readFileData(context, fileName + ".json",new TypeToken<ArrayList<Route>>(){}.getType());
+        ArrayList<Route> res = fileIO.readFileData(context, fileName + ".json", new TypeToken<ArrayList<Route>>() {
+        }.getType());
         return res == null ? new ArrayList<>() : res;
 
     }

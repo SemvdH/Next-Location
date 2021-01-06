@@ -2,7 +2,6 @@ package com.a1.nextlocation.fragments;
 
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -12,7 +11,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -26,17 +24,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
-import com.a1.nextlocation.data.RouteHandler;
 import com.a1.nextlocation.data.Data;
+import com.a1.nextlocation.data.RouteHandler;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
-import com.a1.nextlocation.network.DirectionsListener;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Overlay;
@@ -112,7 +108,7 @@ public class HomeFragment extends Fragment implements LocationListener {
      * stops the current route
      */
     private void stopRoute() {
-        Log.d(TAG, "stopRoute: STOPPING ROUTE" );
+        Log.d(TAG, "stopRoute: STOPPING ROUTE");
         RouteHandler.INSTANCE.finishRoute();
         stopButton.setVisibility(View.GONE);
         Toast.makeText(requireContext(), getResources().getString(R.string.route_stop_toast), Toast.LENGTH_SHORT).show();
@@ -351,7 +347,7 @@ public class HomeFragment extends Fragment implements LocationListener {
             com.a1.nextlocation.data.Location last = null;
             if (RouteHandler.INSTANCE.isFollowingRoute()) {
                 List<com.a1.nextlocation.data.Location> locs = RouteHandler.INSTANCE.getCurrentRoute().getLocations();
-                last = locs.get(locs.size()-1);
+                last = locs.get(locs.size() - 1);
             }
 
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {

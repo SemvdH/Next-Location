@@ -20,7 +20,7 @@ public enum Data {
         this.zoom = zoom;
     }
 
-    private ArrayList<String> visitedNames = new ArrayList<>();
+    private final ArrayList<String> visitedNames = new ArrayList<>();
 
     public void addDistance(double d) {
         distanceTraveled += d;
@@ -49,7 +49,6 @@ public enum Data {
     public int getLocationsVisited() {
         return locationsVisited;
     }
-
 
 
 }

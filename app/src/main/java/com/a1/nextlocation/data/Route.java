@@ -70,7 +70,7 @@ public class Route implements Parcelable {
         return totalDistance;
     }
 
-    public String getImageURL(){
+    public String getImageURL() {
         return this.imageURL;
     }
 
