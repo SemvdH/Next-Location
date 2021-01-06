@@ -30,8 +30,9 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Refreshable{
     private static final String TAG = MainActivity.class.getName();
+    private BottomNavigationView bottomNav;
 
     /**
      * onCreate method that creates the main activity
@@ -40,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setLocale(loadLocale());
         setContentView(R.layout.activity_main);
-
-        BottomNavigationView bottomNav = findViewById(R.id.navbar);
+        bottomNav = findViewById(R.id.navbar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
 
         /*System.out.println(Arrays.toString(getFilesDir().listFiles()));
         FileIO<Route> fileIO = new FileIO<>();
@@ -59,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         RouteListManager.INSTANCE.load();
 
         // initialize saved language from sharedPreferences
-        setLocale(loadLocale());
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
+        }
     }
 
     /**
@@ -107,4 +108,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, selectedFragment).commit();
         return true;
     };
+
+    /**
+     * refreshes bottom navigation
+     */
+    @Override
+    public void refresh() {
+        bottomNav.getMenu().clear();
+        bottomNav.inflateMenu(R.menu.navmenu);
+        bottomNav.setSelectedItemId(R.id.settings);
+    }
 }

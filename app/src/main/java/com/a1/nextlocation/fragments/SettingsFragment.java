@@ -19,13 +19,23 @@ import android.widget.Spinner;
 
 import com.a1.nextlocation.MainActivity;
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.Refreshable;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
 public class SettingsFragment extends Fragment {
 
     private SharedPreferences.Editor editor;
-    
+    private Refreshable refreshable;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        refreshable = (Refreshable) context;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,15 +67,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setLocale(dropdownPositionToLanguage(id));
+                // refresh fragment on language change
                 if (id != previousID) {
-                    Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_layout);
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.detach(currentFragment);
-                    fragmentTransaction.attach(currentFragment);
-                    fragmentTransaction.commit();
+                    refresh();
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -115,6 +121,8 @@ public class SettingsFragment extends Fragment {
         fragmentTransaction.detach(currentFragment);
         fragmentTransaction.attach(currentFragment);
         fragmentTransaction.commit();
+
+        refreshable.refresh();
     }
 
     /**
