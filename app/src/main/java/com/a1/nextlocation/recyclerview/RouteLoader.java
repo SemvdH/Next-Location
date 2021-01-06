@@ -18,6 +18,10 @@ public class RouteLoader implements Loader<List<Route>> {
         this.context = context;
     }
 
+    /**
+     * loads an array list from a JSON
+     * @return an array list with routes
+     */
     @Override
     public ArrayList<Route> load() {
 
