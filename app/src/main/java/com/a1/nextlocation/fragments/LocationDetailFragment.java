@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Location;
+import com.a1.nextlocation.recyclerview.LocationListManager;
 
 public class LocationDetailFragment extends Fragment {
     private static final String TAG = LocationDetailFragment.class.getCanonicalName();
@@ -62,9 +63,11 @@ public class LocationDetailFragment extends Fragment {
         }
 
         this.locationImage = view.findViewById(R.id.detail_location_image);
-        Context context = this.locationImage.getContext();
-        int id = context.getResources().getIdentifier(this.location.getImageUrl(), "drawable", context.getPackageName());
-        this.locationImage.setImageResource(id);
+        if (this.location.getImageUrl() != null) {
+
+            int id = requireContext().getResources().getIdentifier(this.location.getImageUrl(), "drawable", requireContext().getPackageName());
+            this.locationImage.setImageResource(id);
+        }
 
         return view;
     }
