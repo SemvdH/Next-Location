@@ -9,12 +9,13 @@
 
     <TextView
         android:id="@+id/detail_location_name"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Locatie detail"
+        android:text="@string/locatie_detail"
         android:textColor="@color/white"
         android:textSize="30sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,16 +30,24 @@
         app:layout_constraintTop_toBottomOf="@+id/detail_location_name"
         tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/detail_location_text"
+    <ScrollView
         android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_margin="20dp"
-        android:layout_height="wrap_content"
-        android:background="@color/secondaryColour"
-        android:text="Detail tekst"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_location_image" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_location_image">
+
+        <TextView
+            android:id="@+id/detail_location_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/secondaryColour"
+            android:text="@string/locatie_detail_tekst"
+             />
+    </ScrollView>
+
+
 
     <ImageButton
         android:id="@+id/detail_location_back_button"

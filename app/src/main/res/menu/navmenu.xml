@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/locations"
-        android:title="@string/locations"
+        android:title="@string/locaties"
         android:icon="@drawable/ic_baseline_outlined_flag_24"
         />
 
@@ -15,13 +15,13 @@
 
     <item
         android:id="@+id/statistics"
-        android:title="@string/statistics"
+        android:title="@string/statistieken"
         android:icon="@drawable/ic_baseline_graphic_eq_24"
         />
 
     <item
         android:id="@+id/settings"
-        android:title="@string/settings"
+        android:title="@string/instellingen"
         android:icon="@drawable/ic_baseline_settings_24"
         />
 
