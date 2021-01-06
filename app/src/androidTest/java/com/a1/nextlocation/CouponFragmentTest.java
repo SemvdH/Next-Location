@@ -41,8 +41,8 @@ public class CouponFragmentTest {
         //the button "Klaar" is shown then the test works
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new CouponFragment()).commit();
         onView(withId(R.id.coupon_recyclerview)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
-        onView(withId(R.string.activate)).inRoot(RootMatchers.isDialog()).perform(click());
-        onView(withId(R.string.done)).inRoot(RootMatchers.isDialog()).check(matches(isDisplayed()));
+        onView(withText(R.string.activate)).inRoot(RootMatchers.isDialog()).perform(click());
+        onView(withText(R.string.done)).inRoot(RootMatchers.isDialog()).check(matches(isDisplayed()));
 
 
     }
