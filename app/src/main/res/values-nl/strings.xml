@@ -20,4 +20,7 @@
     <string name="activate">activeren</string>
     <string name="done">Klaar</string>
     <string name="cancel">annuleren</string>
+    <string name="English">Engels</string>
+    <string name="Dutch">Nederlands</string>
+    <string name="Chinese">Chinees</string>
 </resources>

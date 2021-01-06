@@ -18,4 +18,7 @@
     <string name="activate">activate</string>
     <string name="done">Done</string>
     <string name="cancel">cancel</string>
+    <string name="Dutch">Dutch</string>
+    <string name="English">English</string>
+    <string name="Chinese">Chinese</string>
 </resources>

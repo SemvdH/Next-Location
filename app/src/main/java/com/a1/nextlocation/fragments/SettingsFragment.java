@@ -55,7 +55,7 @@ public class SettingsFragment extends Fragment {
 
     private void initializeLanguageDropdown(View view) {
         Spinner languageDropdown = view.findViewById(R.id.dropdown_menu_Settings);
-        String[] items = new String[]{"Nederlands", "Engels", "Chinees"};
+        String[] items = new String[]{getResources().getString(R.string.Dutch), getResources().getString(R.string.English), getResources().getString(R.string.Chinese)};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
         languageDropdown.setAdapter(arrayAdapter);
 
