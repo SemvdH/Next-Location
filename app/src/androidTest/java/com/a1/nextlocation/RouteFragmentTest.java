@@ -27,13 +27,4 @@ public class RouteFragmentTest {
         onView(withId(R.id.homeFragment)).check(matches(isDisplayed()));
 
     }
-
-    @Test
-    public void clickDetailButton() throws Exception{
-        //Here we click an item in the recyclerview and then check if the routeDetailFragment is called
-        mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new RouteFragment()).commit();
-        onView(withId(R.id.route_recyclerview)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-        onView(withId(R.id.routeDetailFragment)).check(matches(isDisplayed()));
-
-    }
 }
