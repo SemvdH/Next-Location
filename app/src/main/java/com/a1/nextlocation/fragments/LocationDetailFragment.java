@@ -63,11 +63,14 @@ public class LocationDetailFragment extends Fragment {
         }
 
         this.locationImage = view.findViewById(R.id.detail_location_image);
-        if (this.location.getImageUrl() != null) {
-
-            int id = requireContext().getResources().getIdentifier(this.location.getImageUrl(), "drawable", requireContext().getPackageName());
-            this.locationImage.setImageResource(id);
+        int id;
+        if (this.location.getImageUrl() == null) {
+            String newUrl = LocationListManager.INSTANCE.findByName(this.location.getName()).getImageUrl();
+            id = requireContext().getResources().getIdentifier(newUrl, "drawable", requireContext().getPackageName());
+        } else {
+            id = requireContext().getResources().getIdentifier(this.location.getImageUrl(), "drawable", requireContext().getPackageName());
         }
+        this.locationImage.setImageResource(id);
 
         return view;
     }

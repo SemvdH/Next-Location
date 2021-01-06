@@ -3,24 +3,34 @@
     "name": "Evenementen Route",
     "locations": [
       {
-        "name":"Escaping Breda: Escape Room Games Boschstraat 114",
-        "coordinates":"51.59096518753322, 4.783727736123234"
+        "name": "Escaping Breda: Escape Room Games Boschstraat 114",
+        "coordinates": " 51.59110835530862,4.784147222780912",
+        "description": "Escaping Breda is a new modern location and currently has 2 adventurous escape rooms. Besides, 2 extra escape rooms will be added next year. \n\nEscape from the exciting escape room Let's Rob The Bank, a room suitable for adults and children. If you prefer to escape from an escape room with a higher level of excitement and play, then choose Patient X. \n\nOt our location in Breda we also have a cozy board game café. Combine your escape with a drink, snack, and all free board games. \n\nEscaping Breda is the perfect place for an outing with your family, friends, or colleagues.",
+        "imageUrl": "escaping_room"
       },
       {
-        "name":"Prison Escape Kloosterlaan 168",
-        "coordinates":"51.59058740778487, 4.784723144974098"
+        "name": "Prison Escape Kloosterlaan 168",
+        "coordinates": "51.59073795635181,4.784917104321059",
+        "description": "Prison Escape lasts a total of 3 hours and your goal is to escape the maximum-security prison. A cast of 25 actors brings the experience to life and it's up to you to find your way out. Hidden objects that might make it easier to realize the way out. \n\nBe careful, look around you, trust (almost) nobody, and approach people .. \nThe clock is ticking and you have 1 goal: to find the way to freedom.",
+        "imageUrl": "prison_escape_room"
       },
       {
-        "name":"De Koepel - FutureDome Events Nassausingel 26",
-        "coordinates":"51.59025697138579, 4.787354025225596"
+        "name": "De Koepel - FutureDome Events Nassausingel 26",
+        "coordinates": "51.590431588532105,4.786756741648511",
+        "description": "In groups, you will be guided by one of our guides across the most unique and beautiful monumental places in and around the Dome! \n\n The guide will explain the illustrious past at the various locations. tour of the prison grounds will take you past the dome, the authentic chapel, women's prison, various air places, and the old court building.",
+        "imageUrl": "de_koepel_future_events"
       },
       {
-        "name":"MEZZ Breda Keizerstraat 101",
-        "coordinates":"51.5837840024532, 4.779037836841554"
+        "name": "MEZZ Breda Keizerstraat 101",
+        "coordinates": "51.58394697737321,4.779757901349616",
+        "description": "MEZZ is an open club, involved, curious and inquisitive. MEZZ has humor, is witty, sometimes provocative, and surprising. Experience and fun are central where we think bottom-up. We are there for you, your MEZZ. Do you have ideas or will you want to know more, contact us. We always respond.",
+        "imageUrl": "mezz_breda"
       },
       {
-        "name":"Het Klooster Breda Schorsmolenstraat 13",
-        "coordinates":"51.58775443759389,4.765568874365066"
+        "name": "Het Klooster Breda Schorsmolenstraat 13",
+        "coordinates": "51.58775443759389,4.765568874365066",
+        "description": "In this old Capuchin monastery a living and working community will be established under the name\" Het Klooster Breda \". \nWith the income from activities, 12 people who are homeless are offered shelter, from which they can regain a place in society .",
+        "imageUrl": "het_klooster_breda"
       }
     ],
     "totalDistance": 1073.0,
@@ -33,33 +43,39 @@
     "locations": [
       {
         "name": "McDonald's Breda Karnemelkstraat",
-        "coordinates": "51.586062613842245, 4.777606887874218",
-        "description": "Wist je dat McDonald’s de grootste restaurantketen ter wereld is? Hierdoor hebben we een indrukwekkende geschiedenis. Maar wij kijken liever naar onze toekomst. Nieuwe restaurants, betere producten en duurzaam ondernemen. Wil je meer weten over McDonald’s? Lees verder op: https://www.mcdonalds.com/nl/nl-nl/over-ons.html!"
+        "coordinates": "51.58596318905295,4.77586651481887",
+        "description": "Did you know McDonald's is the largest restaurant chain in the world? This gives us an impressive history. But we prefer to look at our future. New restaurants, better products, and sustainable entrepreneurship.",
+        "imageUrl": "mc_donalds"
       },
       {
         "name": "Kees Kroket Houtmarkt 9",
-        "coordinates": "51.58628401688983, 4.77579695141302",
-        "description": "lekkere patatjes"
+        "coordinates": "51.58647180329833,4.77741809637617",
+        "description": "KEEEEES KROKET! For more than ten years, Kees Kroket has been located in the center of Breda, close to shoppers. First in the well-known Houtmarktpassage and since April 2019, we have been located at our new location at Houtmarkt 9. You can taste the quality of our fresh fries. These fries, cut from the Agria potato, are pre-fried in sunflower oil and finished in a mix of vegetable oils. This not only ensures the delicious taste, but also that our fries contain relatively little saturated fats and trans-fatty acids, so may use the logo 'Responsible Frying'.",
+        "imageUrl": "kees_kroket"
       },
       {
         "name": "Wok To Go Halstraat 40",
-        "coordinates": "51.586464146477574, 4.777606887874218",
-        "description": "Bij Wok To Go houden we van snelle, gezonde en smaakvolle maaltijden. Sinds 2003 ontwikkelen onze chef-koks de lekkerste wokgerechten met verse ingrediënten. We doen dit vól overgave onder het motto “Making people happy through food”. Door het roerbakken – met een kleine hoeveelheid olie – op grote hitte, blijven de smaak en gezonde voedingsstoffen bewaard. We kiezen voor gezonde en unieke ingrediënten en bereiden uitgebalanceerde gerechten in een ‘Wokki box’ voor een gezonde levensstijl."
+        "coordinates": "51.58650312572897,4.777467069592386",
+        "description": "At Wok To Go we love fast, healthy and tasty meals. Since 2003 our chefs have been developing the most delicious wok dishes with fresh ingredients. We do this with complete dedication under the motto “ Making people happy through food ”. By stir-frying - with a small amount of oil - on high heat, the taste and healthy nutrients are preserved. We choose healthy and different ingredients and prepare balanced courses in a 'Wokki box' for a healthy lifestyle. ",
+        "imageUrl": "wok_to_go"
       },
       {
         "name": "The Tosti Club Breda A4, Vlaszak 2",
-        "coordinates": "51.588922458012384, 4.7804923888638",
-        "description": "Je kunt bij al onze vestigingen de hele dag terecht, want bij The Tosti Club eet je het klokje rond. Dus kom gezellig ontbijten, lunchen of voor een snelle hap aan het einde van de dag (wat dacht je van onze The Tosti Slice, onze variant op pizza!). Even geen zin in brood? Dan kunnen we je ook verblijden met onder andere acaï smoothiebowls, pancakes, granola’s / yoghurt of gewoon een lekkere warme drank met gebak. Mogen we je de Red Velvet fudge cake aanraden?"
+        "coordinates": "51.58905632735254,4.780729463841719",
+        "description": "You can go to all our branches all day because at The Tosti Club you eat around the clock. So come for breakfast, lunch, or a quick bite at the end of the day (how about our The Tosti Slice, our variant on pizza!). If you don't feel like bread, then we can also delight you with acai smoothie bowls, pancakes, granolas/yogurt, or just a nice hot drink with cake. Can we recommend the Red Velvet fudge cake?",
+        "imageUrl": "the_tosti_club"
       },
       {
         "name": "Gauchos Grote Markt 33",
-        "coordinates": "51.588449106286255, 4.77604936398091",
-        "description": "De middeleeuwse Grote Markt is een historische plek in het Bourgondische hart van Breda, ooit in handen van de Spaanse bezetter. Gauchos Grill-Restaurant combineert daar Brabantse gemoedelijkheid met professionele gastvrijheid. In onze Latijnse keuken bereiden wij op uw aanwijzing een malse Argentijnse steak of een smakelijk visgerecht van de grill."
+        "coordinates": "51.58859328857082,4.77601349563689",
+        "description": "The medieval Grote Markt is a historic place in the Burgundian heart of Breda, once in the hands of the Spanish occupier. Gauchos Grill-Restaurant combines Brabant conviviality with professional hospitality. In our Latin kitchen, we prepare a tender Argentinian steak or a tasty fish dish from the grill. ",
+        "imageUrl": "gauchos"
       },
       {
         "name": "De Boterhal Grote Markt 19",
-        "coordinates": "51.58798747205394, 4.776265846483903",
-        "description": "De Boterhal in Breda is een internationaal tapasrestaurant, speciaalbiercafé en wijnbar. Men kan gezellig bij ons lunchen, borrelen en dineren. Wij hebben een uitgebreide menukaart met een hele hoop bieren, wijnen, zowel per glas als per fles te verkrijgen, lunch en tapasgerechtjes. Naast het eten wat wij serveren hebben we ook een hoop bieren en wijnen. Naast de bieren op de kaart hebben wij wisselende bieren; vijf ketelbieren en vijf seizoensbieren."
+        "coordinates": "51.588069667604756,4.7762685632180695",
+        "description": "De Boterhal in Breda is an international tapas restaurant, specialty beer café, and wine bar. You can enjoy lunch, drinks, and dinner with us. We have an extensive menu with a lot of beers, wines, both per glass and per bottle, lunch, and tapas dishes. In addition to the food we serve, we also have a lot of beers and wines. In addition to the beers on the menu, we have varying beers: five kettle beers and five seasonal beers. ",
+        "imageUrl": "de_boter_hal"
       }
     ],
     "totalDistance": 955.0,
