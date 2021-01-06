@@ -61,22 +61,18 @@ public class CouponFragment extends Fragment {
     private void showPopup(Coupon coupon) {
         AlertDialog.Builder activateBuilder = new AlertDialog.Builder(getContext());
         AlertDialog.Builder couponCodeBuilder = new AlertDialog.Builder(getContext());
-        // TODO: use string resources instead of hardcoded strings
-        activateBuilder.setMessage("Weet je zeker dat je deze coupon wilt activeren?");
+        activateBuilder.setMessage(getResources().getString(R.string.activate_question));
         activateBuilder.setCancelable(true);
-        // TODO: use string resources instead of hardcoded strings
-        activateBuilder.setPositiveButton("activeren", (dialog, which) -> {
-            // TODO: use string resources instead of hardcoded strings
+        activateBuilder.setPositiveButton(R.string.activate, (dialog, which) -> {
             dialog.cancel();
             couponCodeBuilder.setMessage("Code: " + coupon.getCode());
-            couponCodeBuilder.setPositiveButton("Klaar", (dialog1, which1) -> {
+            couponCodeBuilder.setPositiveButton(R.string.done, (dialog1, which1) -> {
                 dialog.cancel();
             });
             AlertDialog couponCodePopup = couponCodeBuilder.create();
             couponCodePopup.show();
         });
-        // TODO: use string resources instead of hardcoded strings
-        activateBuilder.setNegativeButton("annuleren", (dialog, which) -> dialog.cancel());
+        activateBuilder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.cancel());
         AlertDialog couponPopup = activateBuilder.create();
         couponPopup.show();
 
