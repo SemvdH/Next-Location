@@ -7,28 +7,20 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 
-import com.a1.nextlocation.R;
-import com.a1.nextlocation.data.Coupon;
-import com.a1.nextlocation.data.FileIO;
-import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.fragments.HomeFragment;
+import com.a1.nextlocation.fragments.Refreshable;
 import com.a1.nextlocation.fragments.RouteFragment;
 import com.a1.nextlocation.fragments.SettingsFragment;
 import com.a1.nextlocation.fragments.StatisticFragment;
-import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements Refreshable{
+public class MainActivity extends AppCompatActivity implements Refreshable {
     private static final String TAG = MainActivity.class.getName();
     private BottomNavigationView bottomNav;
 
