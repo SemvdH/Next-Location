@@ -127,6 +127,7 @@ public enum ApiHandler {
             } catch (IOException e) {
                 Log.d(TAG, "getDirections: caught exception: " + e.getLocalizedMessage());
             }
+
         });
 
         t.start();

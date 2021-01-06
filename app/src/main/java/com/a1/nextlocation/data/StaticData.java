@@ -11,24 +11,6 @@ public enum StaticData {
     INSTANCE;
     private double distanceTraveled = 0;
     private int locationsVisited = 0;
-    private boolean isFollowingRoute = false;
-    private String routeName = "";
-
-    public void followRoute(Route route) {
-        routeName = route.getName();
-        setFollowingRoute(true);
-    }
-
-    public boolean isFollowingRoute(Route route) {
-        return isFollowingRoute && route.getName().equals(routeName);
-    }
-    public void setFollowingRoute(boolean followingRoute) {
-        isFollowingRoute = followingRoute;
-    }
-
-    public boolean isFollowingRoute() {
-        return isFollowingRoute;
-    }
 
     private ArrayList<String> visitedNames = new ArrayList<>();
 
