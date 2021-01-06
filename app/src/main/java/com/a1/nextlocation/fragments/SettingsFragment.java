@@ -22,16 +22,24 @@ import android.widget.Spinner;
 
 import com.a1.nextlocation.MainActivity;
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.Refreshable;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
 public class SettingsFragment extends Fragment {
 
     private SharedPreferences.Editor editor;
-    
     private ImageView imageButton;
-
     SwitchCompat fontChanger;
+    private Refreshable refreshable;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        refreshable = (Refreshable) context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +95,7 @@ public class SettingsFragment extends Fragment {
 
     private void initializeLanguageDropdown(View view) {
         Spinner languageDropdown = view.findViewById(R.id.dropdown_menu_Settings);
-        String[] items = new String[]{"Nederlands", "Engels", "Chinees"};
+        String[] items = new String[]{getResources().getString(R.string.Dutch), getResources().getString(R.string.English), getResources().getString(R.string.Chinese)};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
         languageDropdown.setAdapter(arrayAdapter);
 
@@ -99,15 +107,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setLocale(dropdownPositionToLanguage(id));
+                // refresh fragment on language change
                 if (id != previousID) {
-                    Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_layout);
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.detach(currentFragment);
-                    fragmentTransaction.attach(currentFragment);
-                    fragmentTransaction.commit();
+                    refresh();
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -157,6 +161,8 @@ public class SettingsFragment extends Fragment {
         fragmentTransaction.detach(currentFragment);
         fragmentTransaction.attach(currentFragment);
         fragmentTransaction.commit();
+
+        refreshable.refresh();
     }
 
     /**
