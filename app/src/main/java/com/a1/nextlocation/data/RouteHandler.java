@@ -1,5 +1,7 @@
 package com.a1.nextlocation.data;
 
+import org.osmdroid.views.overlay.Polyline;
+
 /**
  * singleton to track the current route that is being followed
  */
@@ -9,6 +11,21 @@ public enum RouteHandler {
     private boolean isFollowingRoute = false;
     private Route currentRoute;
     private int stepCount = 0;
+    private RouteFinishedListener routeFinishedListener;
+
+    private Polyline currentRouteLine;
+
+    public void setCurrentRouteLine(Polyline currentRouteLine) {
+        this.currentRouteLine = currentRouteLine;
+    }
+
+    public Polyline getCurrentRouteLine() {
+        return currentRouteLine;
+    }
+
+    public void setRouteFinishedListener(RouteFinishedListener routeFinishedListener) {
+        this.routeFinishedListener = routeFinishedListener;
+    }
 
     public int getStepCount() {
         return stepCount;
@@ -22,6 +39,7 @@ public enum RouteHandler {
         stepCount = 0;
         isFollowingRoute = false;
         currentRoute = null;
+        currentRouteLine = null;
     }
 
     public void followRoute(Route route) {
@@ -38,5 +56,14 @@ public enum RouteHandler {
 
     public boolean isFollowingRoute() {
         return isFollowingRoute;
+    }
+
+    public Route getCurrentRoute() {
+        return currentRoute;
+    }
+
+    @FunctionalInterface
+    public interface RouteFinishedListener {
+        void onRouteFinish();
     }
 }

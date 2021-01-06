@@ -17,4 +17,5 @@
     <string name="coupons_gespaard">Coupons gespaard:</string>
     <string name="coupons">Coupons</string>
     <string name="start_route">Start Route</string>
+    <string name="route_stop_toast">Route stopped!</string>
 </resources>
