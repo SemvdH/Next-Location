@@ -316,11 +316,13 @@ public class HomeFragment extends Fragment implements LocationListener {
     @Override
     public void onLocationChanged(@NonNull Location location) {
         // calculate the distance walked
-        if (currentLocation != null && currentLocation.getLatitude() != 0 && currentLocation.getLongitude() != 0) {
-            double distance = currentLocation.distanceTo(location); // in meters
+
+        double distance = currentLocation.distanceTo(location); // in meters
+        // can't walk 100 meters in a few seconds
+        if (distance < 100)
             StaticData.INSTANCE.addDistance(distance);
-            currentLocation = location;
-        }
+        currentLocation = location;
+
 
         //new thread because we don't want the main thread to hang, this method gets called a lot
         Thread t = new Thread(() -> {
