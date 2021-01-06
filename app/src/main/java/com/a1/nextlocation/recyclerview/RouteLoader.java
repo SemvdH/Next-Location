@@ -26,7 +26,15 @@ public class RouteLoader implements Loader<List<Route>> {
     public ArrayList<Route> load() {
 
         FileIO<ArrayList<Route>> fileIO = new FileIO<>();
-        ArrayList<Route> res = fileIO.readFileData(context, "routes.json",new TypeToken<ArrayList<Route>>(){}.getType());
+
+        String selectedLanguage = context.getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Language", "nl");
+        String fileName = "routes";
+        // choose the routes.json based of the selected language
+        if (!selectedLanguage.equals("en")) {
+            fileName += "-" + selectedLanguage;
+        }
+
+        ArrayList<Route> res = fileIO.readFileData(context, fileName + ".json",new TypeToken<ArrayList<Route>>(){}.getType());
         return res == null ? new ArrayList<>() : res;
 
     }
