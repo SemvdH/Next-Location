@@ -89,14 +89,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         // set up the route stop button
         stopButton = view.findViewById(R.id.home_stop_route_button);
         stopButton.setOnClickListener(v -> {
-            RouteHandler.INSTANCE.finishRoute();
-            stopButton.setVisibility(View.GONE);
-            Toast.makeText(requireContext(), getResources().getString(R.string.route_stop_toast), Toast.LENGTH_SHORT).show();
-            mapView.getOverlays().remove(roadOverlay);
-            mapView.getOverlays().remove(allLocationsOverlay);
-            addLocations();
-            mapView.invalidate();
-            roadOverlay = null;
+            stopRoute();
         });
 
         if (RouteHandler.INSTANCE.isFollowingRoute()) {
@@ -106,6 +99,20 @@ public class HomeFragment extends Fragment implements LocationListener {
         }
         ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
         return view;
+    }
+
+    /**
+     * stops the current route
+     */
+    private void stopRoute() {
+        RouteHandler.INSTANCE.finishRoute();
+        stopButton.setVisibility(View.GONE);
+        Toast.makeText(requireContext(), getResources().getString(R.string.route_stop_toast), Toast.LENGTH_SHORT).show();
+        mapView.getOverlays().remove(roadOverlay);
+        mapView.getOverlays().remove(allLocationsOverlay);
+        addLocations();
+        mapView.invalidate();
+        roadOverlay = null;
     }
 
     /**
@@ -330,8 +337,11 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         //new thread because we don't want the main thread to hang, this method gets called a lot
         Thread t = new Thread(() -> {
+            List<com.a1.nextlocation.data.Location> locs = RouteHandler.INSTANCE.getCurrentRoute().getLocations();
+            com.a1.nextlocation.data.Location last = locs.get(locs.size()-1);
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
                 if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 10) {
+                    if (l.equals(last)) stopRoute();
                     StaticData.INSTANCE.visitLocation(l);
                 }
             }
