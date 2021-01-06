@@ -65,46 +65,4 @@ public class FileIO<T> {
         }
         return res;
     }
-
-//    public void writeFileData(T objectToWrite, Context context) {
-//        //TODO make
-//        //object naar jsonobject
-//        //jsonarray toevoegen/maken
-//        //filewriter naar file
-//
-//        String filename = "";
-//        if (objectToWrite instanceof Coupon){
-//            filename = "coupons.json";
-//        }
-//
-//        if (objectToWrite instanceof Route){
-//            filename = "routes.json";
-//        }
-//
-//        if (objectToWrite instanceof Location){
-//            filename = "locations.json";
-//        }
-//
-//        try (FileOutputStream fileOutputStream = context.openFileOutput(filename, Context.MODE_PRIVATE)){
-//            String json = new Gson().toJson(objectToWrite);
-//
-//            fileOutputStream.write(json.getBytes(StandardCharsets.UTF_8));
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        /*try (FileWriter fileWriter = new FileWriter(filename)){
-//
-//            String json = new Gson().toJson(objectToWrite);
-//
-//            fileWriter.append(json);
-//            fileWriter.flush();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }*/
-//    }
 }

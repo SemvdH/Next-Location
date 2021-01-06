@@ -74,9 +74,14 @@ public class Route implements Parcelable {
         return this.imageURL;
     }
 
+    public int calculateTotalTimeMinutes() {
+        // 5 km / h walking speed
+        return (int) ((totalDistance / 1000) / 5) * 60;
+    }
+
 
     public int getTotalTime() {
-        //TODO calculate total time according to all locations in list
+
         return totalTime;
     }
 
