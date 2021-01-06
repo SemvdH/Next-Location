@@ -171,12 +171,12 @@ public enum ApiHandler {
 
         t.start();
 
-//
-//        try {
-//            t.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        // wait for when we have a result from the api until we can continue, otherwise the route will be drawn before we get the result
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }

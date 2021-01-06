@@ -11,11 +11,20 @@ public enum StaticData {
     INSTANCE;
     private double distanceTraveled = 0;
     private int locationsVisited = 0;
+    private long timeWalkedRoute = 0;
 
     private ArrayList<String> visitedNames = new ArrayList<>();
 
     public void addDistance(double d) {
         distanceTraveled += d;
+    }
+
+    public long getTimeWalkedRoute() {
+        return timeWalkedRoute;
+    }
+
+    public void addTimeWalked(long time) {
+        timeWalkedRoute += time;
     }
 
 

@@ -209,6 +209,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     private void displayRoute() {
 
         if (RouteHandler.INSTANCE.isFollowingRoute()) {
+            Log.d(TAG, "displayRoute: WE ARE FOLLOWING A ROUTE");
             if (roadOverlay == null) {
                 if (RouteHandler.INSTANCE.getCurrentRouteLine() != null) {
                     roadOverlay = RouteHandler.INSTANCE.getCurrentRouteLine();
@@ -318,10 +319,12 @@ public class HomeFragment extends Fragment implements LocationListener {
     public void onLocationChanged(@NonNull Location location) {
         // calculate the distance walked
 
-        double distance = currentLocation.distanceTo(location); // in meters
-        // can't walk 100 meters in a few seconds
-        if (distance < 100)
-            StaticData.INSTANCE.addDistance(distance);
+        if (currentLocation != null) {
+            double distance = currentLocation.distanceTo(location); // in meters
+            // can't walk 100 meters in a few seconds
+            if (distance < 100)
+                StaticData.INSTANCE.addDistance(distance);
+        }
         currentLocation = location;
 
 

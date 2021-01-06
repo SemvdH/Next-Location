@@ -40,9 +40,11 @@ public class StatisticFragment extends Fragment {
 
         TextView distance = view.findViewById(R.id.statistics_km);
         TextView locs = view.findViewById(R.id.statistics_locations_visited);
+        TextView timeText = view.findViewById(R.id.statistics_time_value);
         double dist = StaticData.INSTANCE.getDistanceTraveled()/1000;
         distance.setText(""  + String.format("%.1f",dist) + " km");
         locs.setText("" + StaticData.INSTANCE.getLocationsVisited());
+        timeText.setText("" + StaticData.INSTANCE.getTimeWalkedRoute());
 
 
         this.couponList = CouponListManager.INSTANCE.getCouponList();

@@ -12,6 +12,7 @@ public enum RouteHandler {
     private Route currentRoute;
     private int stepCount = 0;
     private RouteFinishedListener routeFinishedListener;
+    private long startedTime;
 
     private Polyline currentRouteLine;
 
@@ -40,11 +41,14 @@ public enum RouteHandler {
         isFollowingRoute = false;
         currentRoute = null;
         currentRouteLine = null;
+        StaticData.INSTANCE.addTimeWalked(System.currentTimeMillis()-startedTime);
+        startedTime = 0;
     }
 
     public void followRoute(Route route) {
         this.currentRoute = route;
         setFollowingRoute(true);
+        startedTime = System.currentTimeMillis();
     }
 
     public boolean isFollowingRoute(Route route) {
