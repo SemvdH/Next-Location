@@ -99,4 +99,13 @@ public class RouteTest {
         assertNotEquals(expected, route.getDescription());
     }
 
+    @Test
+    public void testCalculate(){
+        route.setTotalDistance(18000);
+        int expected = 216;
+        System.out.println(route.getTotalDistance());
+        System.out.println(route.calculateTotalTimeMinutes());
+        assertEquals(expected, route.calculateTotalTimeMinutes(), 0.01);
+    }
+
 }
