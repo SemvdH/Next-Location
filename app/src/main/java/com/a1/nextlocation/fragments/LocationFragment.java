@@ -54,6 +54,7 @@ public class LocationFragment extends Fragment {
             LocationDetailFragment locationDetailFragment = new LocationDetailFragment();
             Bundle locationBundle = new Bundle();
             locationBundle.putParcelable("location", this.locationList.get(clickedPosition));
+            locationDetailFragment.setLocation(this.locationList.get(clickedPosition));
             locationDetailFragment.setArguments(locationBundle);
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationDetailFragment).addToBackStack(null).commit();
         });

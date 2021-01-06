@@ -1,5 +1,6 @@
 package com.a1.nextlocation.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Location;
 
 public class LocationDetailFragment extends Fragment {
 
     private ImageButton imageButton;
+    private ImageView locationImage;
+    private Location location;
+
+    public LocationDetailFragment(){}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,15 @@ public class LocationDetailFragment extends Fragment {
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
+        this.locationImage = view.findViewById(R.id.detail_location_image);
+        Context context = this.locationImage.getContext();
+        int id = context.getResources().getIdentifier(this.location.getImageUrl(), "drawable", context.getPackageName());
+        this.locationImage.setImageResource(id);
+
         return view;
+    }
+
+    public void setLocation(Location location){
+        this.location = location;
     }
 }
