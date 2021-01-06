@@ -21,7 +21,14 @@ public class LocationLoader implements Loader<List<Location>> {
     public ArrayList<Location> load() {
         FileIO<ArrayList<Location>> fileIO = new FileIO<>();
 
-        ArrayList<Location> res = fileIO.readFileData(context,"locations.json",new TypeToken<ArrayList<Location>>(){}.getType());
+        String selectedLanguage = context.getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Language", "nl");
+        String fileName = "locations";
+        // choose the locations.json based of the selectedLanguage
+        if (!selectedLanguage.equals("en")) {
+            fileName += "-" + selectedLanguage;
+        }
+
+        ArrayList<Location> res = fileIO.readFileData(context,fileName + ".json",new TypeToken<ArrayList<Location>>(){}.getType());
 
         return res == null ? new ArrayList<>() : res;
     }
