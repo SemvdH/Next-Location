@@ -18,6 +18,10 @@ public enum StaticData {
         routeName = route.getName();
         setFollowingRoute(true);
     }
+
+    public boolean isFollowingRoute(Route route) {
+        return isFollowingRoute && route.getName().equals(routeName);
+    }
     public void setFollowingRoute(boolean followingRoute) {
         isFollowingRoute = followingRoute;
     }
