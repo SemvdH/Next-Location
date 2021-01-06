@@ -3,6 +3,12 @@
     "name": "rondje stad",
     "locations": [
       {
+        "name":"Escaping Breda: Escape Room Games Boschstraat 114",
+        "coordinates":"51.59096518753322, 4.783727736123234",
+        "description":"4811GK Breda",
+        "imageUrl":"NULL"
+      },
+      {
         "name":"Prison Escape Kloosterlaan 168",
         "coordinates":"51.59058740778487, 4.784723144974098",
         "description":"4811EE Breda",
@@ -12,13 +18,6 @@
         "name":"De Koepel - FutureDome Events Nassausingel 26",
         "coordinates":"51.59025697138579, 4.787354025225596",
         "description":"4811HP Breda",
-        "imageUrl":"NULL"
-      },
-
-      {
-        "name":"Escaping Breda: Escape Room Games Boschstraat 114",
-        "coordinates":"51.59096518753322, 4.783727736123234",
-        "description":"4811GK Breda",
         "imageUrl":"NULL"
       },
       {
@@ -34,21 +33,21 @@
         "imageUrl":"NULL"
       }
     ],
-    "totalDistance": 2.3434,
+    "totalDistance": 1073.0,
     "totalTime": 342342
   },
   {
     "name": "Obesi Route",
     "locations": [
       {
-        "name": "Kees Kroket Houtmarkt 9",
-        "coordinates": "51.58628401688983, 4.77579695141302",
-        "description": "lekkere patatjes"
-      },
-      {
         "name": "McDonald's Breda Karnemelkstraat",
         "coordinates": "51.586062613842245, 4.777606887874218",
         "description": "Wist je dat McDonald’s de grootste restaurantketen ter wereld is? Hierdoor hebben we een indrukwekkende geschiedenis. Maar wij kijken liever naar onze toekomst. Nieuwe restaurants, betere producten en duurzaam ondernemen. Wil je meer weten over McDonald’s? Lees verder op: https://www.mcdonalds.com/nl/nl-nl/over-ons.html!"
+      },
+      {
+        "name": "Kees Kroket Houtmarkt 9",
+        "coordinates": "51.58628401688983, 4.77579695141302",
+        "description": "lekkere patatjes"
       },
       {
         "name": "Wok To Go Halstraat 40",
@@ -56,9 +55,9 @@
         "description": "Bij Wok To Go houden we van snelle, gezonde en smaakvolle maaltijden. Sinds 2003 ontwikkelen onze chef-koks de lekkerste wokgerechten met verse ingrediënten. We doen dit vól overgave onder het motto “Making people happy through food”. Door het roerbakken – met een kleine hoeveelheid olie – op grote hitte, blijven de smaak en gezonde voedingsstoffen bewaard. We kiezen voor gezonde en unieke ingrediënten en bereiden uitgebalanceerde gerechten in een ‘Wokki box’ voor een gezonde levensstijl."
       },
       {
-        "name": "De Boterhal Grote Markt 19",
-        "coordinates": "51.58798747205394, 4.776265846483903",
-        "description": "De Boterhal in Breda is een internationaal tapasrestaurant, speciaalbiercafé en wijnbar. Men kan gezellig bij ons lunchen, borrelen en dineren. Wij hebben een uitgebreide menukaart met een hele hoop bieren, wijnen, zowel per glas als per fles te verkrijgen, lunch en tapasgerechtjes. Naast het eten wat wij serveren hebben we ook een hoop bieren en wijnen. Naast de bieren op de kaart hebben wij wisselende bieren; vijf ketelbieren en vijf seizoensbieren."
+        "name": "The Tosti Club Breda A4, Vlaszak 2",
+        "coordinates": "51.588922458012384, 4.7804923888638",
+        "description": "Je kunt bij al onze vestigingen de hele dag terecht, want bij The Tosti Club eet je het klokje rond. Dus kom gezellig ontbijten, lunchen of voor een snelle hap aan het einde van de dag (wat dacht je van onze The Tosti Slice, onze variant op pizza!). Even geen zin in brood? Dan kunnen we je ook verblijden met onder andere acaï smoothiebowls, pancakes, granola’s / yoghurt of gewoon een lekkere warme drank met gebak. Mogen we je de Red Velvet fudge cake aanraden?"
       },
       {
         "name": "Gauchos Grote Markt 33",
@@ -66,12 +65,12 @@
         "description": "De middeleeuwse Grote Markt is een historische plek in het Bourgondische hart van Breda, ooit in handen van de Spaanse bezetter. Gauchos Grill-Restaurant combineert daar Brabantse gemoedelijkheid met professionele gastvrijheid. In onze Latijnse keuken bereiden wij op uw aanwijzing een malse Argentijnse steak of een smakelijk visgerecht van de grill."
       },
       {
-        "name": "The Tosti Club Breda A4, Vlaszak 2",
-        "coordinates": "51.588922458012384, 4.7804923888638",
-        "description": "Je kunt bij al onze vestigingen de hele dag terecht, want bij The Tosti Club eet je het klokje rond. Dus kom gezellig ontbijten, lunchen of voor een snelle hap aan het einde van de dag (wat dacht je van onze The Tosti Slice, onze variant op pizza!). Even geen zin in brood? Dan kunnen we je ook verblijden met onder andere acaï smoothiebowls, pancakes, granola’s / yoghurt of gewoon een lekkere warme drank met gebak. Mogen we je de Red Velvet fudge cake aanraden?"
+        "name": "De Boterhal Grote Markt 19",
+        "coordinates": "51.58798747205394, 4.776265846483903",
+        "description": "De Boterhal in Breda is een internationaal tapasrestaurant, speciaalbiercafé en wijnbar. Men kan gezellig bij ons lunchen, borrelen en dineren. Wij hebben een uitgebreide menukaart met een hele hoop bieren, wijnen, zowel per glas als per fles te verkrijgen, lunch en tapasgerechtjes. Naast het eten wat wij serveren hebben we ook een hoop bieren en wijnen. Naast de bieren op de kaart hebben wij wisselende bieren; vijf ketelbieren en vijf seizoensbieren."
       }
     ],
-    "totalDistance": 2.3434,
+    "totalDistance": 955.0,
     "totalTime": 342342
   }
 ]

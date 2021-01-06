@@ -66,7 +66,6 @@ public class Route implements Parcelable {
     }
 
     public float getTotalDistance() {
-        //TODO calculate total distance according to all locations in list
         return totalDistance;
     }
 
