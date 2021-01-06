@@ -1,36 +1,36 @@
 [
   {
-    "name": "rondje stad",
+    "name": "Evenementen Route",
     "locations": [
       {
         "name":"Escaping Breda: Escape Room Games Boschstraat 114",
         "coordinates":" 51.59110835530862,4.784147222780912",
-        "description":"4811GK Breda",
-        "imageUrl":"NULL"
+        "description": "Escaping Breda is a new modern location and currently has 2 adventurous escape rooms. Besides, 2 extra escape rooms will be added next year. \n\nEscape from the exciting escape room Let's Rob The Bank, a room suitable for adults and children. If you prefer to escape from an escape room with a higher level of excitement and play, then choose Patient X. \n\nOt our location in Breda we also have a cozy board game café. Combine your escape with a drink, snack, and all free board games. \n\nEscaping Breda is the perfect place for an outing with your family, friends, or colleagues.",
+        "imageUrl": "escaping_room"
       },
       {
         "name":"Prison Escape Kloosterlaan 168",
         "coordinates":"51.590621347316336, 4.784612424356731",
-        "description":"4811EE Breda",
-        "imageUrl":"NULL"
+        "description": "Prison Escape lasts a total of 3 hours and your goal is to escape the maximum-security prison. A cast of 25 actors brings the experience to life and it's up to you to find your way out. Hidden objects that might make it easier to realize the way out. \n\nBe careful, look around you, trust (almost) nobody, and approach people .. \nThe clock is ticking and you have 1 goal: to find the way to freedom.",
+        "imageUrl": "prison_escape_room"
       },
       {
         "name":"De Koepel - FutureDome Events Nassausingel 26",
         "coordinates":"51.59016000704554, 4.788289825900094",
-        "description":"4811HP Breda",
-        "imageUrl":"NULL"
+        "description": "In groups, you will be guided by one of our guides across the most unique and beautiful monumental places in and around the Dome! \n\n The guide will explain the illustrious past at the various locations. tour of the prison grounds will take you past the dome, the authentic chapel, women's prison, various air places, and the old court building.",
+        "imageUrl": "de_koepel_future_events"
       },
       {
         "name":"MEZZ Breda Keizerstraat 101",
         "coordinates":"51.583597834546616, 4.778605421170793",
-        "description":"4811HL Breda",
-        "imageUrl":"NULL"
+        "description": "MEZZ is an open club, involved, curious and inquisitive. MEZZ has humor, is witty, sometimes provocative, and surprising. Experience and fun are central where we think bottom-up. We are there for you, your MEZZ. Do you have ideas or will you want to know more, contact us. We always respond.",
+        "imageUrl": "mezz_breda"
       },
       {
         "name":"Het Klooster Breda Schorsmolenstraat 13",
         "coordinates":"51.58774025242826, 4.765006685059431",
-        "description":"4811VN Breda",
-        "imageUrl":"NULL"
+        "description": "In this old Capuchin monastery a living and working community will be established under the name\" Het Klooster Breda \". \nWith the income from activities, 12 people who are homeless are offered shelter, from which they can regain a place in society .",
+        "imageUrl": "het_klooster_breda"
       }
     ],
     "totalDistance": 1073.0,
@@ -87,5 +87,4 @@
     "description": "Met deze route bezoekt u alle snackbars en restaurants in het centrum van Breda!",
     "imageURL": "kees_kroket"
   }
-]
 ]
