@@ -101,7 +101,7 @@ public class SettingsFragment extends Fragment {
         languageDropdown.setAdapter(arrayAdapter);
 
         // set the language dropdown on the currently selected language stored in the sharedPreferences
-        languageDropdown.setSelection(languageToDropdownPosition(getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Language", "")));
+        languageDropdown.setSelection(languageToDropdownPosition(getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Language", "nl")));
 
         long previousID = languageDropdown.getSelectedItemId();
         languageDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

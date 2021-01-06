@@ -5,7 +5,7 @@
       {
         "name": "Escaping Breda: Escape Room Games Boschstraat 114",
         "coordinates":" 51.59110835530862,4.784147222780912",
-        "description": "Escaping Breda is a new modern location and currently has 2 adventurous escape rooms. Besides, 2 extra escape rooms will be added next year. \n\nEscape from the exciting escape room Let's Rob The Bank, a room suitable for adults and children. If you prefer to escape from an escape room with a higher level of excitement and play, then choose Patient X. \n\nOt our location in Breda we also have a cozy board game café. Combine your escape with a drink, snack, and all free board games. \n\nEscaping Breda is the perfect place for an outing with your family, friends, or colleagues.",
+        "description": "Escaping Breda is a new modern location and currently has 2 adventurous escape rooms. Besides, 2 extra escape rooms will be added next year. \n\nEscape from the exciting escape room Let's Rob The Bank, a room suitable for adults and children. If you prefer to escape from an escape room with a higher level of excitement and play, then choose Patient X. \n\nAt our location in Breda we also have a cozy board game café. Combine your escape with a drink, snack, and all free board games. \n\nEscaping Breda is the perfect place for an outing with your family, friends, or colleagues.",
         "imageUrl": "escaping_room"
       },
       {
@@ -35,7 +35,7 @@
     ],
     "totalDistance": 1073.0,
     "totalTime": 342342,
-    "description": "This route will show you different and fun events scattered all around Breda! Try the escape rooms, an event at the dome or a fun party at MEZZ! With this route you walk past them all.",
+    "description": "Deze route laat u leuke events verspreid door breda zien! Probeer de escaperooms uit, een event bij de koepel, of een leuk feest bij MEZZ! Met deze route loopt u langs ze allemaal.",
     "imageURL": "escaping_room"
   },
   {
@@ -44,7 +44,7 @@
       {
         "name":"Subway Karnemelkstraat 10 A, 1",
         "coordinates":"51.586110268250046, 4.775124041110522",
-        "description":"Subway is een Amerikaanse multinationale fastfoodketen die voornamelijk sandwiches verkoopt. Het bedrijf onderscheidt zich van veel andere broodjeszaken doordat de klant zelf de sandwich kan laten samenstellen. Subway werkt met franchisenemers. Het bedrijf heeft bijna 45.000 vestigingen in alle werelddelen.",
+        "description":"Subway is an American multinational fast food chain that mainly sells sandwiches. The company distinguishes itself from many other sandwich shops because the customer can have the sandwich put together themselves. Subway works with franchisees. The company has nearly 45,000 offices on all continents.",
         "imageUrl":"subway"
       },
       {
@@ -86,7 +86,7 @@
     ],
     "totalDistance": 955.0,
     "totalTime": 342342,
-    "description": "With this route you'll visit all the snack bars and restaurants in the city centre of Breda!\n",
+    "description": "With this route you can visit all snackbars and restaurants in the centrum of Breda!",
     "imageURL": "kees_kroket"
   }
 ]
