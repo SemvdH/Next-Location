@@ -38,7 +38,7 @@ public enum ApiHandler {
     }
 
     public void getDirections(double startLat, double startLong, double endLat, double endLong) {
-        getDirections(startLat + "," + startLong, endLat + "," + endLong);
+        getDirections(startLong + "," + startLat, endLong + "," + endLat);
     }
 
     public void getDirections(String startLocation, String endLocation) {
@@ -68,6 +68,12 @@ public enum ApiHandler {
         });
 
         t.start();
+
+//        try {
+//            t.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -104,6 +110,10 @@ public enum ApiHandler {
                 if (response.body() != null) {
                     String responseString = Objects.requireNonNull(response.body()).string();
                     Log.d(TAG, "getDirections: got response: " + responseString);
+                    if (responseString.startsWith("{\"error")) {
+                        Log.e(TAG, "getDirections: ERROR IN REQUEST!");
+                        return;
+                    }
 
                     DirectionsResult result = new DirectionsResult();
                     result.parseRoute(responseString);
@@ -120,6 +130,12 @@ public enum ApiHandler {
         });
 
         t.start();
+
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
