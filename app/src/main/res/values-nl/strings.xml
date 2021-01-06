@@ -25,5 +25,5 @@
     <string name="Dutch">Nederlands</string>
     <string name="Chinese">Chinees</string>
     <string name="help">HELP</string>
-    <string name="help_discription">Onderaan het scherm zijn verschillende knoppen te zien. Deze knoppen hebben de volgende functies: \nLocaties: toont een lijst met alle locaties die bezocht kunnen worden. Elke locatie wordt kort beschreven. \nRoutes: Toont een lijst met alle routes die gelopen kunnen worden. Van elke route wordt een omschrijving gegeven. \nStatistieken: Toont persoonlijke statistieken.  \nInstellingen: Hier kunnen app-instellingen worden aangepast naar eigen voorkeur. \n\nEen locatie ingedrukt houden laat extra informatie zien over de gekozen locatie</string>
+    <string name="help_discription">Onderaan het scherm zijn verschillende knoppen te zien. Deze knoppen hebben de volgende functies: \n\nLocaties: toont een lijst met alle locaties die bezocht kunnen worden. Elke locatie wordt kort beschreven. \n\nRoutes: Toont een lijst met alle routes die gelopen kunnen worden. Van elke route wordt een omschrijving gegeven. \n\nStatistieken: Toont persoonlijke statistieken.  \n\nInstellingen: Hier kunnen app-instellingen worden aangepast naar eigen voorkeur. \n\nEen locatie ingedrukt houden laat extra informatie zien over de gekozen locatie</string>
 </resources>

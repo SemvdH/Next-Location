@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
         android:id="@+id/start_route_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="45dp"
         android:backgroundTint="@color/secondaryColour"
         android:text="@string/start_route"
         android:textColor="@color/buttonColour"
@@ -69,15 +69,14 @@
         android:id="@+id/total_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="141dp"
-        android:layout_marginBottom="19dp"
-        android:text="@string/total_distance"
+        android:layout_marginTop="20dp"
         android:background="@color/secondaryColour"
+        android:text="@string/total_distance"
         android:textColor="@color/buttonColour"
         app:layout_constraintBottom_toTopOf="@+id/start_route_button"
-        app:layout_constraintTop_toBottomOf="@+id/reoute_detail_tekst"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteX="169dp" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reoute_detail_tekst" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
