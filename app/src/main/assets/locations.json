@@ -3,133 +3,155 @@
     "name":"McDonald's Breda Karnemelkstraat",
     "coordinates":"51.586058044064735, 4.775804729737406",
     "description":"Did you know McDonald's is the largest restaurant chain in the world? This gives us an impressive history. But we prefer to look at our future. New restaurants, better products, and sustainable entrepreneurship.",
-    "imageUrl":"mc_donalds"
+    "imageUrl":"mc_donalds",
+    "iconUrl": "mcdonalds_icon"
   },
   {
     "name":"Subway Karnemelkstraat 10 A, 1",
     "coordinates":"51.586110268250046, 4.775124041110522",
     "description":"Subway is an American multinational fast-food chain that mainly sells sandwiches. The company distinguishes itself from many other sandwich shops because the customer can have the sandwich put together themselves. Subway works with franchises. The company has nearly 45,000 offices on all continents.",
-    "imageUrl":"subway"
+    "imageUrl":"subway",
+    "iconUrl": "subway_icon"
   },
   {
     "name":"Wok To Go Halstraat 40",
     "coordinates":"51.58648245586817, 4.77757540779623",
     "description":"At Wok To Go we love fast, healthy and tasty meals. Since 2003 our chefs have been developing the most delicious wok dishes with fresh ingredients. We do this with complete dedication under the motto “ Making people happy through food ”. By stir-frying - with a small amount of oil - on high heat, the taste and healthy nutrients are preserved. We choose healthy and different ingredients and prepare balanced courses in a 'Wokki box' for a healthy lifestyle. ",
-    "imageUrl":"wok_to_go"
+    "imageUrl":"wok_to_go",
+    "iconUrl": "wok_icon"
   },
   {
     "name":"De Boterhal Grote Markt 19",
     "coordinates":"51.58798587092525, 4.776248508784696",
     "description":"De Boterhal in Breda is an international tapas restaurant, specialty beer café, and wine bar. You can enjoy lunch, drinks, and dinner with us. We have an extensive menu with a lot of beers, wines, both per glass and per bottle, lunch, and tapas dishes. In addition to the food we serve, we also have a lot of beers and wines. In addition to the beers on the menu, we have varying beers: five kettle beers and five seasonal beers. ",
-    "imageUrl":"de_boter_hal"
+    "imageUrl":"de_boter_hal",
+    "iconUrl": "restaurant_icon"
   },
   {
     "name":"Gauchos Grote Markt 33",
     "coordinates":"51.588456220778504, 4.77602051562935",
     "description":"The medieval Grote Markt is a historic place in the Burgundian heart of Breda, once in the hands of the Spanish occupier. Gauchos Grill-Restaurant combines Brabant conviviality with professional hospitality. In our Latin kitchen, we prepare a tender Argentinian steak or a tasty fish dish from the grill. ",
-    "imageUrl":"gauchos"
+    "imageUrl":"gauchos",
+    "iconUrl": "restaurant_icon"
   },
   {
     "name":"The Tosti Club Breda A4, Vlaszak 2",
     "coordinates":"51.588914881807106, 4.780460117020282",
     "description":"You can go to all our branches all day because at The Tosti Club you eat around the clock. So come for breakfast, lunch, or a quick bite at the end of the day (how about our The Tosti Slice, our variant on pizza!). If you don't feel like bread, then we can also delight you with acai smoothie bowls, pancakes, granolas/yogurt, or just a nice hot drink with cake. Can we recommend the Red Velvet fudge cake?",
-    "imageUrl":"the_tosti_club"
+    "imageUrl":"the_tosti_club",
+    "iconUrl": "restaurant_icon"
   },
   {
     "name":"Coffee & Lunch 4 you Oude Vest 31",
     "coordinates":"51.58724065015693, 4.779495750152812",
     "description":"Welcome to Coffee & Lunch 4 you! Our atmospheric lunchroom is located in the center of Breda, near the parking garage and the bicycle shed.",
-    "imageUrl":"coffee_and_lunch"
+    "imageUrl":"coffee_and_lunch",
+    "iconUrl": "coffee_icon"
   },
   {
     "name":"t Zusje Breda Vismarktstraat 28",
     "coordinates":"51.58989852937449, 4.7734114226595885",
     "description":"That is an evening at 't Zusje. Cozy get-together in a homely atmosphere and enjoy our small dishes, which you can order all evening. At' t Zusje you are at home: you determine the content of the evening yourself. \nWe would like to hear what your wishes are, would like to surprise you with special dishes, and would like to go the extra mile. We offer you an evening out, as we would like to see in ourselves. Enjoy a full evening of Burgundian? In the beautiful building of our Zusje in Breda, you will experience a pleasant evening with full evening tapas food for 31.80. \nCall quickly and book!",
-    "imageUrl":"t_zusje_breda"
+    "imageUrl":"t_zusje_breda",
+    "iconUrl": "restaurant_icon"
   },
   {
     "name":"VR-World Nassaustraat 2",
     "coordinates":"51.59149198370258, 4.786158496485409",
     "description":"Virtual Reality is the outing of the moment. Beating zombies, shooting fireballs, or fighting with laser swords, nothing is too crazy with Virtual Reality. At VR World we are looking every day for the newest experiences for you. \n\nWhat about for an example of an Escape Room, but in Virtual Reality? At VR World we offer the latest Escapes in Virtual Reality. Escape from a Pyramid or dismantle a rocket, for example. Do you dare to take on this challenge? \n\nVR World is located at a unique location, namely the dome prison of Breda. This prison was still in operation until 2016 and then companies moved in, including VR World.",
-    "imageUrl":"vr_world"
+    "imageUrl":"vr_world",
+    "iconUrl": "vr_icon"
   },
   {
     "name":"Kees Kroket Houtmarkt 9",
     "coordinates":"51.58629976171061, 4.7769606819261",
     "description":"KEEEEES KROKET! For more than ten years, Kees Kroket has been located in the center of Breda, close to shoppers. First in the well-known Houtmarktpassage and since April 2019, we have been located at our new location at Houtmarkt 9. You can taste the quality of our fresh fries. These fries, cut from the Agria potato, are pre-fried in sunflower oil and finished in a mix of vegetable oils. This not only ensures the delicious taste, but also that our fries contain relatively little saturated fats and trans-fatty acids, so may use the logo 'Responsible Frying'.",
-    "imageUrl":"kees_kroket"
+    "imageUrl":"kees_kroket",
+    "iconUrl": "restaurant_icon"
   },
   {
     "name":"Prison Escape Kloosterlaan 168",
     "coordinates":"51.590621347316336, 4.784612424356731",
     "description":"Prison Escape lasts a total of 3 hours and your goal is to escape the maximum-security prison. A cast of 25 actors brings the experience to life and it's up to you to find your way out. Hidden objects that might make it easier to realize the way out. \n\nBe careful, look around you, trust (almost) nobody, and approach people .. \nThe clock is ticking and you have 1 goal: to find the way to freedom.",
-    "imageUrl":"prison_escape_room"
+    "imageUrl":"prison_escape_room",
+    "iconUrl": "escape_icon"
   },
   {
     "name":"De Koepel - FutureDome Events Nassausingel 26",
     "coordinates":"51.59016000704554, 4.788289825900094",
     "description":"In groups, you will be guided by one of our guides across the most unique and beautiful monumental places in and around the Dome! \n\n The guide will explain the illustrious past at the various locations. tour of the prison grounds will take you past the dome, the authentic chapel, women's prison, various air places, and the old court building.",
-    "imageUrl":"de_koepel_future_events"
+    "imageUrl":"de_koepel_future_events",
+    "iconUrl": "escape_icon"
   },
 
   {
     "name":"Escaping Breda: Escape Room Games Boschstraat 114",
     "coordinates":" 51.59110835530862,4.784147222780912",
     "description":"Escaping Breda is a new modern location and currently has 2 adventurous escape rooms. Besides, 2 extra escape rooms will be added next year. \n\nEscape from the exciting escape room Let's Rob The Bank, a room suitable for adults and children. If you prefer to escape from an escape room with a higher level of excitement and play, then choose Patient X. \n\nOt our location in Breda we also have a cozy board game café. Combine your escape with a drink, snack, and all free board games. \n\nEscaping Breda is the perfect place for an outing with your family, friends, or colleagues.",
-    "imageUrl":"escaping_room"
+    "imageUrl":"escaping_room",
+    "iconUrl": "escape_icon"
   },
   {
     "name":"MEZZ Breda Keizerstraat 101",
     "coordinates":"51.583597834546616, 4.778605421170793",
     "description":"MEZZ is an open club, involved, curious and inquisitive. MEZZ has humor, is witty, sometimes provocative, and surprising. Experience and fun are central where we think bottom-up. We are there for you, your MEZZ. Do you have ideas or will you want to know more, contact us. We always respond.",
-    "imageUrl":"mezz_breda"
+    "imageUrl":"mezz_breda",
+    "iconUrl": "mezz_icon"
   },
   {
     "name":"Het Klooster Breda Schorsmolenstraat 13",
     "coordinates":"51.58774025242826, 4.765006685059431",
     "description":"In this old Capuchin monastery a living and working community will be established under the name\" Het Klooster Breda \". \nWith the income from activities, 12 people who are homeless are offered shelter, from which they can regain a place in society .",
-    "imageUrl":"het_klooster_breda"
+    "imageUrl":"het_klooster_breda",
+    "iconUrl": "building_icon"
   },
   {
     "name":"Beach & Lounge club Spider “rooftop bar” Nieuwe Prinsenkade",
     "coordinates":"51.591384128082396, 4.771519780736044",
     "description":"Beach & Lounge Club Spider is known for its immensely popular location in Bergen op Zoom. Since 2020, this high segment lounge club has opened a second location in Breda called Beach & Lounge Club Spider Rooftop Bar.",
-    "imageUrl":"beach_and_lounge_club"
+    "imageUrl":"beach_and_lounge_club",
+    "iconUrl": "beach_icon"
   },
   {
     "name":"Koningin Wilhelmina Paviljoen Kraanstraat 4b",
     "coordinates":"51.59040026960037, 4.775767751364238",
     "description":"Queen Wilhelmina Pavilion is a building in Breda Center in Breda. It belongs to the Royal Military Academy (KMA) and has the status of a national monument. It is located at Kasteelplein 15, just in front of Breda Castle. the west side of the driveway of the castle, with the long right side wall on the castle moat and the long left side wall on the Cingelstraat. ",
-    "imageUrl":"koningin_wilhelimna_paviljoen"
+    "imageUrl":"koningin_wilhelimna_paviljoen",
+    "iconUrl": "building_icon"
   },
   {
     "name":"Hercules en de Nemeïsche leeuw",
     "coordinates":"51.59120082440261, 4.777904512729459",
     "description":"The statue shows Hercules with the skin of the Nemean lion. Heracles or Hercules is a figure from Greek mythology. He was a Greek hero and became famous for the 12 difficult works he performed at the behest of King Eurystheus. The statue is part of the 17 other sandstone statues that Willem III bought between 1670 and 1686. The statues were spread over lawns in the Valkenberg park.\nHercules is the only original statue that remains.",
-    "imageUrl":"hercules_park_valkenburg"
+    "imageUrl":"hercules_park_valkenburg",
+    "iconUrl": "statue_icon"
   },
   {
     "name":"Nassau-Baroniemonument - 1905 - Pierre Cuypers Delpratsingel 1",
     "coordinates":"51.59249639550226, 4.779742259785807",
     "description":"The Baroniemonument or Nassau-Baroniemonument is a statue of the Dutch architect Pierre Cuypers. It is located in Park Valkenberg in Breda. The monument was placed in memorial of the 500-year bond (1904) between Breda and the Oranje-Nassau house. In 1404 Engelbrecht I of Nassau-Siegen was honored as lord of Breda. ",
-    "imageUrl":"nassau_baroniemonument"
+    "imageUrl":"nassau_baroniemonument",
+    "iconUrl": "statue_icon"
   },
   {
     "name":"Station Breda Gravinnen van Nassauboulevard 43",
     "coordinates":"51.59569850758307,4.780295549958155",
     "description":"Breda Station is the central railway station of the Dutch city of Breda. It is located north of the city center. Surrounding neighborhoods are Stationskwartier and Drie Hoefijzers on the south side, and Belcrum, Doornbos-Linie, and Havenkwartier on the north side. \n\nThe first station in Breda was opened on May 1, 1855, when the Roosendaal - Breda Railway was opened. This station was replaced by a new building in 1863, when the line to Tilburg was opened, because Breda was still a fortress at the time and it station fell under the restrictions of the Fortress Act, it was constructed in such a way that it could be quickly demolished in times of war. ",
-    "imageUrl":"station_breda"
+    "imageUrl":"station_breda",
+    "iconUrl": "building_icon"
   },
   {
     "name":"Belcrum Beach Veilingkade 12a",
     "coordinates":"51.59945849923229, 4.765404193295078",
     "description":"Belcrum Beach is THE city beach of Breda, located on the Haveneiland in the Belcrum district. We started in 2013 at this unique location in Breda. The beach works with three managers and a large number of volunteers for the bar, maintenance, programming, sponsoring, and garden. A place to relax with a drink and a snack, enjoying the sun, chatting with your friends, listening to music from a band or DJ, sometimes in a festival setting. Children who can play in the sand or join do special children's activities. Belcrum Beach is also a unique location for a party or to celebrate your birthday, getting married on the beach or a wedding are also possible. ",
-    "imageUrl":"belcrum_beach"
+    "imageUrl":"belcrum_beach",
+    "iconUrl": "beach_icon"
   },
   {
     "name":"De Belcrum Watertoren (1935) Speelhuislaan 158",
     "coordinates":"51.60052702557225, 4.7689948674496145",
     "description":"The water tower in the Belcrum in Breda is an industrial monument from the interwar period. The tower is the home base for SOAB advisers for housing and living environments and underlines the mission of our office. The tower is part of the Belcrum. As a landmark and as a shelter for activities. For example, the Belcrummers celebrated their 400th anniversary in the tower, and lunches with a guided tour are organized at a high level. Watch and taste. ",
-    "imageUrl":"belcrum_watertoren"
+    "imageUrl":"belcrum_watertoren",
+    "iconUrl": "building_icon"
   }
 ]

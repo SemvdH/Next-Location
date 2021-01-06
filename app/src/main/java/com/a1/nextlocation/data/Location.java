@@ -23,6 +23,7 @@ public class Location implements Parcelable {
 
     @Nullable
     private String imageUrl;
+    private String iconUrl;
 
     public Location(@NotNull String name, String coordinates, String description, @Nullable String imageUrl) {
         this.name = name;
@@ -86,6 +87,10 @@ public class Location implements Parcelable {
     @Nullable
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getIconUrl(){
+        return iconUrl;
     }
 
     public void setImageUrl(@Nullable String imageUrl) {

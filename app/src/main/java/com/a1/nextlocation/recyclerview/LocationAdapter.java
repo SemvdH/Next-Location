@@ -80,7 +80,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     public void onBindViewHolder(@NonNull LocationAdapter.LocationViewHolder holder, int position) {
         Location location = locationList.get(position);
         holder.setTextViewText(location.getName());
-        holder.setImageViewImage(location.getImageUrl());
+        holder.setImageViewImage(location.getIconUrl());
     }
 
     @Override
