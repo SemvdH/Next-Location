@@ -19,4 +19,7 @@
     <string name="done">Done</string>
     <string name="cancel">cancel</string>
     <string name="route_stop_toast">Route stopped!</string>
+    <string name="Dutch">Dutch</string>
+    <string name="English">English</string>
+    <string name="Chinese">Chinese</string>
 </resources>
