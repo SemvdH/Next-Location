@@ -45,6 +45,10 @@ public class RouteDetailFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Button onclick method that starts the route that is being viewed.
+     * @param view the button
+     */
     public void startRoute(View view) {
         ApiHandler.INSTANCE.getDirections(route);
         RouteHandler.INSTANCE.followRoute(route);
