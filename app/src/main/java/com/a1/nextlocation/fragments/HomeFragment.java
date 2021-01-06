@@ -68,8 +68,6 @@ public class HomeFragment extends Fragment implements LocationListener {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//        roadManager = new MapQuestRoadManager(MAPQUEST_API_KEY);
-//        roadManager.addRequestOption("routeType=foot-walking");
 
         color = requireContext().getColor(R.color.red);
     }
@@ -80,12 +78,14 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // set up the location list button
         this.imageButton = view.findViewById(R.id.location_list_button);
         this.imageButton.setOnClickListener(v -> {
             LocationFragment locationFragment = new LocationFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
+        // set up the route stop button
         stopButton = view.findViewById(R.id.home_stop_route_button);
         stopButton.setOnClickListener(v -> {
             RouteHandler.INSTANCE.finishRoute();
@@ -107,18 +107,15 @@ public class HomeFragment extends Fragment implements LocationListener {
         return view;
     }
 
+    /**
+     * callback method that gets called when there are new directions available in the form of a {@link DirectionsResult} object.
+     * @param directionsResult the directions received from the api
+     */
     private void onDirectionsAvailable(DirectionsResult directionsResult) {
         Log.d(TAG, "onDirectionsAvailable: got result! " + directionsResult);
         ArrayList<GeoPoint> geoPoints = directionsResult.getGeoPoints();
         roadOverlay = new Polyline();
         roadOverlay.setPoints(geoPoints);
-
-        // this is for mapquest, but it gives a "no value for guidancelinkcollection" error and google has never heard of that
-//        GeoPoint[] gp = directionsResult.getStartAndEndPoint();
-//        ArrayList<GeoPoint> arrayList = new ArrayList<>(Arrays.asList(gp));
-//        Road road = roadManager.getRoad(arrayList);
-//        roadOverlay = RoadManager.buildRoadOverlay(road);
-
         roadOverlay.setColor(color);
 
 
@@ -175,13 +172,13 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         try {
 
+            // request location updates for the distance checking
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
+            // get the current location and set it as center
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (currentLocation == null) {
-                currentLocation = location;
-            }
+            if (currentLocation == null) currentLocation = location;
 
             if (location != null) {
                 GeoPoint start = new GeoPoint(location.getLatitude(), location.getLongitude());
@@ -204,6 +201,9 @@ public class HomeFragment extends Fragment implements LocationListener {
 
     }
 
+    /**
+     * displays the route that is currently being followed as a red line
+     */
     private void displayRoute() {
 
         if (RouteHandler.INSTANCE.isFollowingRoute()) {
@@ -222,30 +222,54 @@ public class HomeFragment extends Fragment implements LocationListener {
         }
     }
 
+    /**
+     * adds the locations of the current route to the map. If there is no current route, show all locations
+     */
     private void addLocations() {
+        // get the locations of the current route or all locations
         List<com.a1.nextlocation.data.Location> locations = RouteHandler.INSTANCE.isFollowingRoute() ? RouteHandler.INSTANCE.getCurrentRoute().getLocations() : LocationListManager.INSTANCE.getLocationList();
         final ArrayList<OverlayItem> items = new ArrayList<>(locations.size());
+        // marker icon
         Drawable marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
         marker.setAlpha(255);
         marker.setTint(getResources().getColor(R.color.primaryColour));
+
+        // add all locations to the overlay itemss
         for (com.a1.nextlocation.data.Location location : locations) {
             OverlayItem item = new OverlayItem(location.getName(), location.getDescription(), location.convertToGeoPoint());
             item.setMarker(marker);
             items.add(item);
         }
+
+        // create the overlay that will hold all locations and add listeners
         allLocationsOverlay = new ItemizedIconOverlay<OverlayItem>(items,
                 new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+                    /**
+                     * on sinlge click, navigate to that location's detail fragment
+                     * @param index the index in the location list
+                     * @param item the item that was clicked
+                     * @return true
+                     */
                     @Override
                     public boolean onItemSingleTapUp(int index, OverlayItem item) {
                         com.a1.nextlocation.data.Location clicked = locations.get(index);
                         requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new LocationDetailFragment(clicked)).commit();
-                        return false;
+                        return true;
                     }
 
+                    /**
+                     * on item long press, show that location's name in a toast message
+                     * @param index the index in the location list
+                     * @param item the item that was clicked
+                     * @return true
+                     */
                     @Override
                     public boolean onItemLongPress(int index, OverlayItem item) {
                         com.a1.nextlocation.data.Location clicked = locations.get(index);
                         Toast.makeText(requireContext(), clicked.getName(), Toast.LENGTH_SHORT).show();
+
+                        // create a route to the clicked location, didn't work and didn't have enough time to make it work ¯\_(ツ)_/¯
+
 //                        Route route = new Route("Route to " + clicked.getName());
 //                        route.addLocation(new com.a1.nextlocation.data.Location("Current location",currentLocation.getLatitude(),currentLocation.getLongitude(),"your location",null));
 //                        route.addLocation(clicked);
@@ -254,11 +278,17 @@ public class HomeFragment extends Fragment implements LocationListener {
                     }
                 }, requireContext());
 
+        // add the overlay to the map
         mapView.getOverlays().add(allLocationsOverlay);
         Log.d(TAG, "addLocations: successfully added locations");
 
     }
 
+    /**
+     * @author Ricky
+     * request the permissions needed for location and network, made by Ricky
+     * @param permissions tbe permissions we want to ask
+     */
     private void requestPermissionsIfNecessary(String... permissions) {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         if (this.getContext() != null)
@@ -277,13 +307,18 @@ public class HomeFragment extends Fragment implements LocationListener {
         }
     }
 
+    /**
+     * location callback that gets called each time the location is updated. It is used for updating the distance walked and checking if there are locations you have visited
+     * @param location the new location
+     */
     @Override
     public void onLocationChanged(@NonNull Location location) {
+        // calculate the distance walked
         double distance = currentLocation.distanceTo(location); // in meters
         StaticData.INSTANCE.addDistance(distance);
         currentLocation = location;
 
-        //new thread because we don't want the main thread to hang
+        //new thread because we don't want the main thread to hang, this method gets called a lot
         Thread t = new Thread(() -> {
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
                 if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 10) {
@@ -294,6 +329,8 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         t.start();
     }
+
+    // empty override methods for the LocationListener
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -308,5 +345,23 @@ public class HomeFragment extends Fragment implements LocationListener {
     @Override
     public void onProviderDisabled(@NonNull String provider) {
 
+    }
+
+    /**
+     * method that gets called when the app gets paused
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    /**
+     * method that gets called when the app gets resumed
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
     }
 }
