@@ -2,6 +2,7 @@ package com.a1.nextlocation.fragments;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -34,6 +36,7 @@ import com.a1.nextlocation.recyclerview.LocationListManager;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Overlay;
@@ -174,7 +177,10 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         // add the zoom controller
         IMapController mapController = mapView.getController();
-        mapController.setZoom(15.0);
+        if (StaticData.INSTANCE.getZoom() == 0) {
+            StaticData.INSTANCE.setZoom(15.0);
+        }
+        mapController.setZoom(StaticData.INSTANCE.getZoom());
 
         // add location manager and set the start point
         LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -345,14 +351,18 @@ public class HomeFragment extends Fragment implements LocationListener {
             }
 
             for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
-                if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 10) {
+                // mark the location visited if we are less than 20 meters away
+                if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 20) {
                     StaticData.INSTANCE.visitLocation(l);
                     if (l.equals(last)) stopRoute();
                 }
             }
+
+            StaticData.INSTANCE.setZoom(mapView.getZoomLevelDouble());
         });
 
         t.start();
+
     }
 
     // empty override methods for the LocationListener
