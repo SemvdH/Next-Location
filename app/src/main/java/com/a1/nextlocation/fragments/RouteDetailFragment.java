@@ -36,7 +36,7 @@ public class RouteDetailFragment extends Fragment {
             this.route = getArguments().getParcelable("route");
         }
 
-        this.routeDetailText = view.findViewById(R.id.routeDetailText);
+        this.routeDetailText = view.findViewById(R.id.reoute_detail_tekst);
         this.routeDetailText.setText(this.route.getName());
         Button startButton = view.findViewById(R.id.start_route_button);
         startButton.setOnClickListener(this::startRoute);

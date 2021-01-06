@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         stopButton.setOnClickListener(v -> {
             RouteHandler.INSTANCE.finishRoute();
             stopButton.setVisibility(View.GONE);
-            Toast.makeText(requireContext(),getResources().getString(R.string.route_stop_toast),Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), getResources().getString(R.string.route_stop_toast), Toast.LENGTH_SHORT).show();
             mapView.getOverlays().remove(roadOverlay);
             mapView.getOverlays().remove(allLocationsOverlay);
             addLocations();
@@ -109,6 +109,7 @@ public class HomeFragment extends Fragment implements LocationListener {
 
     /**
      * callback method that gets called when there are new directions available in the form of a {@link DirectionsResult} object.
+     *
      * @param directionsResult the directions received from the api
      */
     private void onDirectionsAvailable(DirectionsResult directionsResult) {
@@ -285,9 +286,9 @@ public class HomeFragment extends Fragment implements LocationListener {
     }
 
     /**
+     * @param permissions tbe permissions we want to ask
      * @author Ricky
      * request the permissions needed for location and network, made by Ricky
-     * @param permissions tbe permissions we want to ask
      */
     private void requestPermissionsIfNecessary(String... permissions) {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
@@ -309,14 +310,17 @@ public class HomeFragment extends Fragment implements LocationListener {
 
     /**
      * location callback that gets called each time the location is updated. It is used for updating the distance walked and checking if there are locations you have visited
+     *
      * @param location the new location
      */
     @Override
     public void onLocationChanged(@NonNull Location location) {
         // calculate the distance walked
-        double distance = currentLocation.distanceTo(location); // in meters
-        StaticData.INSTANCE.addDistance(distance);
-        currentLocation = location;
+        if (currentLocation != null && currentLocation.getLatitude() != 0 && currentLocation.getLongitude() != 0) {
+            double distance = currentLocation.distanceTo(location); // in meters
+            StaticData.INSTANCE.addDistance(distance);
+            currentLocation = location;
+        }
 
         //new thread because we don't want the main thread to hang, this method gets called a lot
         Thread t = new Thread(() -> {

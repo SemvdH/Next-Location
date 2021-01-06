@@ -132,6 +132,10 @@ public class DirectionsResult {
 
     }
 
+    /**
+     * parses the given json string into this object. This method is used for when you want to
+     * @param json
+     */
     public void parseRoute(String json) {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
