@@ -7,7 +7,7 @@ import com.a1.nextlocation.data.Route;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum RouteListManager{
+public enum RouteListManager {
     INSTANCE;
 
     private List<Route> routeList;

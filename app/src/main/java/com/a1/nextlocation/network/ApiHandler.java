@@ -6,13 +6,11 @@ import com.a1.nextlocation.data.Location;
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -27,32 +25,34 @@ public enum ApiHandler {
     INSTANCE;
 
 
-    private static String TAG = ApiHandler.class.getCanonicalName();
+    private static final String TAG = ApiHandler.class.getCanonicalName();
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final String BASE_URL = "https://api.openrouteservice.org/v2/directions/";
     private final String API_KEY = "5b3ce3597851110001cf6248d4eee2099f724255918adc71cc502b2a";
     private final String DIRECTIONS_MODE = "foot-walking";
 
-    private List<DirectionsListener> listeners = new ArrayList<>();
+    private final List<DirectionsListener> listeners = new ArrayList<>();
 
-    private OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client = new OkHttpClient();
 
     /**
      * gets directions from the start location to the end location
+     *
      * @param startLocation the start location
-     * @param endLocation the end location
+     * @param endLocation   the end location
      */
     public void getDirections(Location startLocation, Location endLocation) {
-        getDirections(startLocation.getCoordinates(),endLocation.getCoordinates());
+        getDirections(startLocation.getCoordinates(), endLocation.getCoordinates());
     }
 
     /**
      * gets directions from the start location latitude and longitude and the end location latitude and longitude
-     * @param startLat the start latitude
+     *
+     * @param startLat  the start latitude
      * @param startLong the start longitude
-     * @param endLat the end latitude
-     * @param endLong the end longitude
+     * @param endLat    the end latitude
+     * @param endLong   the end longitude
      */
     public void getDirections(double startLat, double startLong, double endLat, double endLong) {
         getDirections(startLong + "," + startLat, endLong + "," + endLat);
@@ -60,13 +60,14 @@ public enum ApiHandler {
 
     /**
      * Gets the directions from the start location to the end location. An example location would be "3.543543,5.7675765"
+     *
      * @param startLocation the start location represented as <i>startlat,startlong</i>
-     * @param endLocation the end location represented as <i>endlat,endlong</i>
+     * @param endLocation   the end location represented as <i>endlat,endlong</i>
      */
     public void getDirections(String startLocation, String endLocation) {
 
         // build the url
-        String requestUrl = BASE_URL + DIRECTIONS_MODE + "?api_key=" + API_KEY + "&start=" +startLocation + "&end=" + endLocation;
+        String requestUrl = BASE_URL + DIRECTIONS_MODE + "?api_key=" + API_KEY + "&start=" + startLocation + "&end=" + endLocation;
 
         // start a new thread to do the request, because we don't want to be networking on our main thread
         Thread t = new Thread(() -> {
@@ -108,6 +109,7 @@ public enum ApiHandler {
 
     /**
      * adds a listener for when a result of an api call is available
+     *
      * @param listener the new listener
      */
     public void addListener(DirectionsListener listener) {
@@ -116,6 +118,7 @@ public enum ApiHandler {
 
     /**
      * gets directions for the given {@link Route}
+     *
      * @param route the route to get directions for
      */
     public void getDirections(Route route) {
@@ -135,7 +138,7 @@ public enum ApiHandler {
         Thread t = new Thread(() -> {
 
             // add the body to the request
-            RequestBody requestBody = RequestBody.create(body,JSON);
+            RequestBody requestBody = RequestBody.create(body, JSON);
             Request request = new Request.Builder()
                     .url(requestUrl)
                     .post(requestBody)
@@ -180,8 +183,6 @@ public enum ApiHandler {
 
 
     }
-
-
 
 
 }

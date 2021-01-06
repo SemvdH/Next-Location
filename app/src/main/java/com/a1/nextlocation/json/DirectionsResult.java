@@ -10,10 +10,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
-import org.json.JSONArray;
 import org.osmdroid.util.GeoPoint;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +22,7 @@ public class DirectionsResult {
     private double distance;
     private double duration;
     private double[][] wayPointCoordinates;
-    private GeoPoint[] startAndEndPoint = new GeoPoint[2];
+    private final GeoPoint[] startAndEndPoint = new GeoPoint[2];
 
     public List<DirectionsStep> getSteps() {
         return steps;
@@ -60,6 +58,7 @@ public class DirectionsResult {
 
     /**
      * converts all the geopoints in all the steps into an arraylist to display it on the map
+     *
      * @return the list of geopoints
      */
     public ArrayList<GeoPoint> getGeoPoints() {
@@ -101,15 +100,16 @@ public class DirectionsResult {
 
         JsonArray segments = properties.getAsJsonArray("segments");
 
-        parseSegments(segments,gson);
+        parseSegments(segments, gson);
 
         startAndEndPoint[0] = this.getSteps().get(0).getWaypoints()[0];
-        startAndEndPoint[1] = this.getSteps().get(this.getSteps().size()-1).getWaypoints()[1];
+        startAndEndPoint[1] = this.getSteps().get(this.getSteps().size() - 1).getWaypoints()[1];
 
     }
 
     /**
      * parses the given json string into this object. This method is used for when you have requested directions from the API for a {@link com.a1.nextlocation.data.Route route object}
+     *
      * @param json the json string
      */
     public void parseRoute(String json) {
@@ -138,7 +138,7 @@ public class DirectionsResult {
 
             JsonArray segments = route.getAsJsonArray("segments");
 
-            parseSegments(segments,gson);
+            parseSegments(segments, gson);
 
 
         }
@@ -147,8 +147,9 @@ public class DirectionsResult {
 
     /**
      * parses different segments, and the steps in it using {@link DirectionsResult#parseSteps(JsonArray, Gson) the method for parsing steps}
+     *
      * @param segments the segments to parse
-     * @param gson the gson object to use
+     * @param gson     the gson object to use
      */
     private void parseSegments(JsonArray segments, Gson gson) {
         //unfold the individual segments
@@ -160,14 +161,15 @@ public class DirectionsResult {
 
             JsonArray steps = segment.getAsJsonArray("steps");
 
-            parseSteps(steps,gson);
+            parseSteps(steps, gson);
         }
     }
 
     /**
      * parses the given steps into this object, transforms them into a {@link DirectionsStep} object.
+     *
      * @param steps the steps to parse
-     * @param gson the gson object to use
+     * @param gson  the gson object to use
      */
     private void parseSteps(JsonArray steps, Gson gson) {
         for (JsonElement j : steps) {

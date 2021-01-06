@@ -1,9 +1,9 @@
 package com.a1.nextlocation.recyclerview;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +16,8 @@ import java.util.List;
 
 public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponViewHolder> {
 
-    private Context appContext;
-    private List<Coupon> couponList;
+    private final Context appContext;
+    private final List<Coupon> couponList;
     private OnItemClickListener clickListener;
 
     public interface OnItemClickListener {
@@ -35,9 +35,10 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
 
         /**
          * Sets the text of the coupon
+         *
          * @param text the text that will be set
          */
-        public void setTextViewName(String text){
+        public void setTextViewName(String text) {
             TextView couponReward = itemView.findViewById(R.id.coupon_name);
             couponReward.setText(text);
         }
@@ -48,7 +49,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         }
     }
 
-    public CouponAdapter(Context context, List<Coupon> coupon, OnItemClickListener listener){
+    public CouponAdapter(Context context, List<Coupon> coupon, OnItemClickListener listener) {
         this.appContext = context;
         this.couponList = coupon;
         this.clickListener = listener;

@@ -17,9 +17,9 @@ import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
 
-    private Context appContext;
-    private List<Location> locationList;
-    private OnItemClickListener clickListener;
+    private final Context appContext;
+    private final List<Location> locationList;
+    private final OnItemClickListener clickListener;
 
     public interface OnItemClickListener {
         void onItemClick(int clickedPosition);
@@ -44,18 +44,20 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
         /**
          * Sets the text of the location name
+         *
          * @param text the text that will be set
          */
-        public void setTextViewText(String text){
+        public void setTextViewText(String text) {
             this.locationName = itemView.findViewById(R.id.location_name);
             this.locationName.setText(text);
         }
 
         /**
          * Sets the image of the locatoin
+         *
          * @param text the text of the image filename
          */
-        public void setImageViewImage(String text){
+        public void setImageViewImage(String text) {
             this.locationImage = itemView.findViewById(R.id.location_image);
             Context context = locationImage.getContext();
             int id = context.getResources().getIdentifier(text, "drawable", context.getPackageName());
@@ -63,7 +65,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         }
     }
 
-    public LocationAdapter(Context context, List<Location> location, OnItemClickListener listener){
+    public LocationAdapter(Context context, List<Location> location, OnItemClickListener listener) {
         this.appContext = context;
         this.locationList = location;
         this.clickListener = listener;

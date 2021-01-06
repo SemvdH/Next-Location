@@ -2,16 +2,15 @@ package com.a1.nextlocation.fragments;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Coupon;
@@ -64,6 +63,7 @@ public class CouponFragment extends Fragment {
 
     /**
      * shows the popup of a coupon
+     *
      * @param coupon the coupon that will be displayed
      */
     private void showPopup(Coupon coupon) {

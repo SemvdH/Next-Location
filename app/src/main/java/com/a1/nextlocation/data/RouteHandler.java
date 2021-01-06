@@ -45,13 +45,13 @@ public enum RouteHandler {
         isFollowingRoute = false;
         currentRoute = null;
         currentRouteLine = null;
-        Data.INSTANCE.addTimeWalked(System.currentTimeMillis()-startedTime);
+        Data.INSTANCE.addTimeWalked(System.currentTimeMillis() - startedTime);
         startedTime = 0;
     }
 
     public void followRoute(Route route) {
         if (isFollowingRoute) {
-            Data.INSTANCE.addTimeWalked(System.currentTimeMillis()-startedTime);
+            Data.INSTANCE.addTimeWalked(System.currentTimeMillis() - startedTime);
         }
         this.currentRoute = route;
         setFollowingRoute(true);
@@ -61,6 +61,7 @@ public enum RouteHandler {
     public boolean isFollowingRoute(Route route) {
         return isFollowingRoute && route.equals(currentRoute);
     }
+
     public void setFollowingRoute(boolean followingRoute) {
         isFollowingRoute = followingRoute;
     }

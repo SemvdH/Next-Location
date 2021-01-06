@@ -20,6 +20,7 @@ public class CouponLoader implements Loader<List<Coupon>> {
 
     /**
      * Loads the Arraylist of coupons out of the JSON
+     *
      * @return Arraylist of coupons
      */
     @Override
@@ -32,7 +33,8 @@ public class CouponLoader implements Loader<List<Coupon>> {
         if (!selectedLanguage.equals("en")) {
             fileName += "-" + selectedLanguage;
         }
-        ArrayList<Coupon> res = fileIO.readFileData(context, fileName + ".json", new TypeToken<ArrayList<Coupon>>(){}.getType());
+        ArrayList<Coupon> res = fileIO.readFileData(context, fileName + ".json", new TypeToken<ArrayList<Coupon>>() {
+        }.getType());
         Log.d(TAG, "load: " + res);
 
         return res == null ? new ArrayList<>() : res;

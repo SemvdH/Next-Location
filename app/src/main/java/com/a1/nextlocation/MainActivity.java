@@ -1,17 +1,16 @@
 package com.a1.nextlocation;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.a1.nextlocation.fragments.HelpPopup;
 import com.a1.nextlocation.fragments.HomeFragment;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
 
     /**
      * onCreate method that creates the main activity
+     *
      * @param savedInstanceState the saved instance state of the app
      */
     @Override
@@ -67,18 +67,20 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
 
     /**
      * loads the saved language from SharedPreferences
+     *
      * @return the language as string
      */
-    private String loadLocale(){
+    private String loadLocale() {
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         return sharedPreferences.getString("Language", "nl");
     }
 
     /**
      * sets the language of the application to the desired one
+     *
      * @param language the desired language
      */
-    private void setLocale(String language){
+    private void setLocale(String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
     }
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
         Fragment selectedFragment = null;
 
         switch (item.getItemId()) {
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
         bottomNav.setSelectedItemId(id);
     }
 
-    private View.OnClickListener onInfoClickListener = new View.OnClickListener() {
+    private final View.OnClickListener onInfoClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 

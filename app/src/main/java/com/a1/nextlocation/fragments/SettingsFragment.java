@@ -5,12 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.a1.nextlocation.R;
 
@@ -90,6 +89,7 @@ public class SettingsFragment extends Fragment {
         }
 
         //Changes the font settings depending on the state of the toggle
+
         fontSwitch.setOnClickListener(view1 -> {
             if(fontSwitch.isChecked())
             {
@@ -126,6 +126,7 @@ public class SettingsFragment extends Fragment {
                     refresh();
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
