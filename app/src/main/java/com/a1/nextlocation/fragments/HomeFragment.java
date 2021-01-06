@@ -52,13 +52,14 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements LocationListener {
     private final String userAgent = "com.ai.nextlocation.fragments";
-    public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
+
     private ImageButton imageButton;
     private ImageButton stopButton;
     private MapView mapView;
+
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private final String TAG = HomeFragment.class.getCanonicalName();
-    //    private RoadManager roadManager;
+
     private Polyline roadOverlay;
     private int color;
     private Location currentLocation;
@@ -95,11 +96,14 @@ public class HomeFragment extends Fragment implements LocationListener {
             stopRoute();
         });
 
+        // show or hide the stop route button based on if we are following a route
         if (RouteHandler.INSTANCE.isFollowingRoute()) {
             stopButton.setVisibility(View.VISIBLE);
         } else {
             stopButton.setVisibility(View.GONE);
         }
+
+        //register as a listener for a result of the API
         ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
         return view;
     }
@@ -108,7 +112,7 @@ public class HomeFragment extends Fragment implements LocationListener {
      * stops the current route
      */
     private void stopRoute() {
-        Log.e(TAG, "stopRoute: STOPPING ROUTE" );
+        Log.d(TAG, "stopRoute: STOPPING ROUTE" );
         RouteHandler.INSTANCE.finishRoute();
         stopButton.setVisibility(View.GONE);
         Toast.makeText(requireContext(), getResources().getString(R.string.route_stop_toast), Toast.LENGTH_SHORT).show();
@@ -131,7 +135,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         roadOverlay.setPoints(geoPoints);
         roadOverlay.setColor(color);
 
-
+        // pass the line to the route handler
         RouteHandler.INSTANCE.setCurrentRouteLine(roadOverlay);
         Log.d(TAG, "onDirectionsAvailable: successfully added road!");
 
