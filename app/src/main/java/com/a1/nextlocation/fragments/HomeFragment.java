@@ -28,6 +28,7 @@ import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.StaticData;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
+import com.a1.nextlocation.network.DirectionsListener;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 
 import org.osmdroid.api.IMapController;
@@ -46,7 +47,7 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements LocationListener{
+public class HomeFragment extends Fragment implements LocationListener, DirectionsListener {
     private final String userAgent = "com.ai.nextlocation.fragments";
     public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
     private ImageButton imageButton;
@@ -84,11 +85,12 @@ public class HomeFragment extends Fragment implements LocationListener{
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
-        ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
+        ApiHandler.INSTANCE.addListener(this);
         return view;
     }
 
-    private void onDirectionsAvailable(DirectionsResult directionsResult) {
+    @Override
+    public void onDirectionsAvailable(DirectionsResult directionsResult) {
         Log.d(TAG, "onDirectionsAvailable: got result! " + directionsResult);
         ArrayList<GeoPoint> geoPoints = directionsResult.getGeoPoints();
         roadOverlay = new Polyline();

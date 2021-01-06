@@ -52,7 +52,7 @@ public enum ApiHandler {
                 if (response.body() != null) {
                     String responseString = Objects.requireNonNull(response.body()).string();
                     Log.d(TAG, "getDirections: got response: " + responseString);
-
+                    System.out.println(responseString);
                     DirectionsResult result = new DirectionsResult();
                     result.parse(responseString);
                     Log.d(TAG, "getDirections: " + result.getSteps().size());

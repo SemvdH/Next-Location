@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="294dp"
         android:gravity="center"
-        android:text="@string/locaties"
+        android:text=""
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

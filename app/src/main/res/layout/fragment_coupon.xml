@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="9dp"
         android:layout_marginTop="20dp"
-        android:text="@string/statistieken"
+        android:text="@string/statistics"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/coupon_back_button"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,6 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/ic_back_button_24"
         android:backgroundTint="@color/buttonColour"
-        android:text="@string/terug"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
