@@ -18,6 +18,7 @@ public class RouteDetailFragment extends Fragment {
 
     private Route route;
     private TextView routeDetailText;
+    private TextView routeName;
     private ImageButton imageButton;
 
     @Override
@@ -33,8 +34,11 @@ public class RouteDetailFragment extends Fragment {
             this.route = getArguments().getParcelable("route");
         }
 
+        this.routeName = view.findViewById(R.id.route_title);
+        this.routeName.setText(this.route.getName());
+
         this.routeDetailText = view.findViewById(R.id.reoute_detail_tekst);
-        this.routeDetailText.setText(this.route.getName());
+        this.routeDetailText.setText(this.route.getDescription());
 
         this.imageButton = view.findViewById(R.id.route_detail_back_button);
         this.imageButton.setOnClickListener(v -> {
