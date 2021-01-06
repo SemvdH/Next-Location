@@ -41,7 +41,7 @@ public class MainActivityTest {
     public void clickRouteNavBar() throws Exception{
         //Here we click the back button and then we check if the statisticsFragment is shown
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().commit();
-        onView(withId(R.id.routes)).perform(NavigationViewActions.navigateTo(R.id.routes));
+        onView(withId(R.id.routes)).perform((click()));
         onView(withId(R.id.routeFragment)).check(matches(isDisplayed()));
     }
 
