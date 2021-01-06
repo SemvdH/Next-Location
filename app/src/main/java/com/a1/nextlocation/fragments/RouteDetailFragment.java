@@ -54,8 +54,7 @@ public class RouteDetailFragment extends Fragment {
 
         //Sets the image of the RouteDetail
         ImageView imageView = view.findViewById(R.id.route_detail_image);
-        Context context = imageView.getContext();
-        int id = context.getResources().getIdentifier(this.route.getImageURL(), "drawable", context.getPackageName());
+        int id = requireContext().getResources().getIdentifier(this.route.getImageURL(), "drawable", requireContext().getPackageName());
         imageView.setImageResource(id);
 
         TextView routeName = view.findViewById(R.id.route_title);
