@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,10 +28,12 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView locationName;
+        private ImageView locationImage;
 
         public LocationViewHolder(@NonNull View itemView) {
             super(itemView);
             this.locationName = itemView.findViewById(R.id.location_name);
+            this.locationImage = itemView.findViewById(R.id.location_image);
             itemView.setOnClickListener(this);
         }
 
@@ -42,6 +45,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         public void setTextViewText(String text){
             this.locationName = itemView.findViewById(R.id.location_name);
             locationName.setText(text);
+        }
+
+        public void setImageViewImage(String text){
+            this.locationImage = itemView.findViewById(R.id.location_image);
+            Context context = locationImage.getContext();
+            int id = context.getResources().getIdentifier(text, "drawable", context.getPackageName());
+            locationImage.setImageResource(id);
         }
     }
 
@@ -62,6 +72,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     public void onBindViewHolder(@NonNull LocationAdapter.LocationViewHolder holder, int position) {
         Location location = locationList.get(position);
         holder.setTextViewText(location.getName());
+        holder.setImageViewImage(location.getImageUrl());
     }
 
     @Override
