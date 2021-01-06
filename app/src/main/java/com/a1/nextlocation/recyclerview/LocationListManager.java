@@ -33,4 +33,13 @@ public enum LocationListManager {
         this.locationList = locationLoader.load();
     }
 
+    public Location findByName(String name) {
+        Location res = null;
+        for (Location location : this.locationList) {
+            if (location.getName().equals(name)) res = location;
+            break;
+        }
+        return res;
+    }
+
 }
