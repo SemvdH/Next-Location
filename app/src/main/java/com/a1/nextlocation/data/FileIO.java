@@ -34,8 +34,13 @@ public class FileIO<T> {
         AssetManager am = context.getAssets();
         T res = null;
         StringBuilder sb = new StringBuilder();
+        InputStream is = null;
         try {
-            InputStream is = am.open(fileName);
+            if (new File(fileName).exists()) {
+                is = am.open(fileName);
+            } else {
+                is = am.open(fileName.substring(0, fileName.length() - 8) + ".json");
+            }
             InputStreamReader inputStreamReader = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line;

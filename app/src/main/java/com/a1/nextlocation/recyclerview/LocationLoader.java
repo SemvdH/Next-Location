@@ -23,7 +23,7 @@ public class LocationLoader implements Loader<List<Location>> {
 
         String selectedLanguage = context.getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Language", "nl");
         String fileName = "locations";
-        // choose the locations.json based of the selectedLanguage
+        // choose the locations.json based of the selected language
         if (!selectedLanguage.equals("en")) {
             fileName += "-" + selectedLanguage;
         }
