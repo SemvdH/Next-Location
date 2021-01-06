@@ -1,5 +1,6 @@
 package com.a1.nextlocation.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -27,7 +28,6 @@ import java.util.Locale;
 public class SettingsFragment extends Fragment {
 
     private SharedPreferences.Editor editor;
-    private ImageView imageButton;
     SwitchCompat fontChanger;
     private Refreshable refreshable;
 
@@ -37,6 +37,7 @@ public class SettingsFragment extends Fragment {
         refreshable = (Refreshable) context;
     }
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +52,14 @@ public class SettingsFragment extends Fragment {
 
         initializeLanguageDropdown(view);
 
-        this.imageButton = view.findViewById(R.id.settings_back_button);
-        this.imageButton.setOnClickListener(v -> {
+        //Initialises back button
+        ImageView backButton = view.findViewById(R.id.settings_back_button);
+        backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
-
-        fontChanger = view.findViewById(R.id.BigFont);
+        this.fontChanger = view.findViewById(R.id.BigFont);
 
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("com.a1.nextlocation",0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
