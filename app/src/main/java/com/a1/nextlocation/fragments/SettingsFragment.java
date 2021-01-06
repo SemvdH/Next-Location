@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -30,6 +31,8 @@ public class SettingsFragment extends Fragment {
     
     private ImageView imageButton;
 
+    SwitchCompat fontChanger;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,35 @@ public class SettingsFragment extends Fragment {
         this.imageButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+        });
+
+
+        fontChanger = view.findViewById(R.id.BigFont);
+
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("com.a1.nextlocation",0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        fontChanger.setChecked(sharedPreferences.getBoolean("switch", false));
+
+        if (fontChanger.isChecked()){
+            requireActivity().setTheme(R.style.Theme_NextLocationBig);
+        }else if (!fontChanger.isChecked()){
+            requireActivity().setTheme(R.style.Theme_NextLocation);
+        }
+
+        fontChanger.setOnClickListener(view1 -> {
+            if(fontChanger.isChecked())
+            {
+                requireActivity().setTheme(R.style.Theme_NextLocationBig);
+                editor.putBoolean("switch",true);
+                editor.apply();
+            }
+            if(!fontChanger.isChecked())
+            {
+                requireActivity().setTheme(R.style.Theme_NextLocation);
+                editor.putBoolean("switch",false);
+                editor.apply();
+            }
+            editor.commit();
         });
 
         return view;

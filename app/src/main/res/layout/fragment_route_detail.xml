@@ -22,9 +22,10 @@
         android:id="@+id/route_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/route_detail_image"
         android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/routeDetailImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,16 +34,16 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_margin="40dp"
-        android:id="@+id/routeDetailImage"
+        android:id="@+id/route_detail_image"
         app:layout_constraintTop_toBottomOf="@id/route_detail_back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/routeDetailText"
+        app:layout_constraintBottom_toTopOf="@id/reoute_detail_tekst"
 
         />
 
     <TextView
-        android:id="@+id/routeDetailText"
+        android:id="@+id/reoute_detail_tekst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -50,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/routeDetailImage" />
+        app:layout_constraintTop_toBottomOf="@id/route_detail_image" />
 
     <Button
         android:id="@+id/start_route_button"
@@ -63,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeDetailText"
+        app:layout_constraintTop_toBottomOf="@+id/reoute_detail_tekst"
         app:layout_constraintVertical_bias="0.671" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
