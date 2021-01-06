@@ -37,7 +37,7 @@ public class StaticDataTest {
     }
 
     @Test
-    public void test(){
+    public void testVisitedLocation(){
         Location testLocation = new Location("test", "test", "test", "test");
         staticData.visitLocation(testLocation);
         int expected = 1;
