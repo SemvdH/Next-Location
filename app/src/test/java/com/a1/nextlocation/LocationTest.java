@@ -68,8 +68,8 @@ public class LocationTest {
     @Test
     public void coordinateDoublesTest(){
         double[] testDoubles = new double[2];
-        testDoubles[0] = 15.4;
-        testDoubles[1] = 27.5;
+        testDoubles[0] = 27.5;
+        testDoubles[1] = 15.4;
 
         double [] expectedCoordAsDouble = testDoubles;
         String expectedStringFromDouble = "15.4,27.5";

@@ -5,15 +5,12 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Coupon;
@@ -46,7 +43,7 @@ public class StatisticFragment extends Fragment {
         distance.setText(""  + String.format("%.1f",dist) + " km");
         locs.setText("" + StaticData.INSTANCE.getLocationsVisited());
         
-        long seconds = StaticData.INSTANCE.getTimeWalkedRoute() / 1000;
+        long seconds = StaticData.INSTANCE.getTimeWalked() / 1000;
         long p1 = seconds % 60;
         long p2 = seconds / 60;
         long p3 = p2 % 60;
