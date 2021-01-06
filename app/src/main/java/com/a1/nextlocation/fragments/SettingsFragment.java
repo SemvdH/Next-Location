@@ -25,8 +25,7 @@ import java.util.Locale;
 public class SettingsFragment extends Fragment {
 
     private SharedPreferences.Editor editor;
-    private String language;
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +57,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setLocale(dropdownPositionToLanguage(id));
-                if (id != previousID){
+                if (id != previousID) {
                     Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_layout);
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentTransaction.detach(currentFragment);
@@ -75,11 +74,12 @@ public class SettingsFragment extends Fragment {
 
     /**
      * converts the languageDropdown position to the belonging language
+     *
      * @param id desired position to convert
      * @return the language belonging to the position of the languageDropdown
      */
     private String dropdownPositionToLanguage(long id) {
-        switch ((int) id){
+        switch ((int) id) {
             case 0:
                 return "nl";
             case 1:
@@ -91,6 +91,7 @@ public class SettingsFragment extends Fragment {
 
     /**
      * converts language to the languageDropdown position
+     *
      * @param language desired language to convert
      * @return the position of the language in the languageDropdown
      */
@@ -108,7 +109,7 @@ public class SettingsFragment extends Fragment {
     /**
      * reloads the fragment
      */
-    private void refresh(){
+    private void refresh() {
         Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_layout);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.detach(currentFragment);
@@ -118,9 +119,10 @@ public class SettingsFragment extends Fragment {
 
     /**
      * changes the current language to the desired language and saves this setting in SharedPreferences
+     *
      * @param language the desired language to translate to
      */
-    private void setLocale(String language){
+    private void setLocale(String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
