@@ -22,6 +22,7 @@ import com.a1.nextlocation.R;
 public class SettingsFragment extends Fragment {
 
     private ImageView imageButton;
+
     SwitchCompat fontChanger;
 
     @Override
@@ -53,8 +54,14 @@ public class SettingsFragment extends Fragment {
         fontChanger = view.findViewById(R.id.BigFont);
 
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("com.a1.nextlocation",0);
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
-        fontChanger.setChecked(sharedPreferences.getBoolean("switch",false));
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        fontChanger.setChecked(sharedPreferences.getBoolean("switch", false));
+
+        if (fontChanger.isChecked()){
+            requireActivity().setTheme(R.style.Theme_NextLocationBig);
+        }else if (!fontChanger.isChecked()){
+            requireActivity().setTheme(R.style.Theme_NextLocation);
+        }
 
         fontChanger.setOnClickListener(view1 -> {
             if(fontChanger.isChecked())
