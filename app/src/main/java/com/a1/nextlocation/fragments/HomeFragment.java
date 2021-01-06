@@ -28,6 +28,7 @@ import com.a1.nextlocation.data.RouteHandler;
 import com.a1.nextlocation.data.StaticData;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
+import com.a1.nextlocation.network.DirectionsListener;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 
 import org.osmdroid.api.IMapController;

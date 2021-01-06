@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColour"
+    android:id="@+id/statisticsFragment"
     tools:context=".fragments.StatisticFragment">
 
     <TextView
@@ -12,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/statistieken"
+        android:text="@string/statistics"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/totale_afstand"
+            android:text="@string/total_distance"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +58,7 @@
             android:id="@+id/statistics_km"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/km"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +85,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bezochte_locaties"
+            android:text="@string/visited_locations"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +107,7 @@
             android:id="@+id/statistics_locations_visited"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/getal"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +132,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/totale_tijd"
+            android:text="@string/total_time"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -152,7 +153,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minuten"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -179,7 +180,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/coupons_gespaard"
+            android:text="@string/coupons_collected"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -201,7 +202,7 @@
             android:id="@+id/couponAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/getal"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -216,7 +217,6 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/ic_back_button_24"
             android:scaleX="-1"
-            android:text="@string/terug"
             app:layout_constraintBottom_toBottomOf="@+id/couponAmount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/couponAmount" />
@@ -232,7 +232,6 @@
         android:background="@drawable/ic_back_button_24"
         android:backgroundTint="@color/buttonColour"
         android:src="@drawable/ic_back_button_24"
-        android:text="@string/terug"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

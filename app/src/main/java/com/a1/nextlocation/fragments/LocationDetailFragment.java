@@ -49,4 +49,8 @@ public class LocationDetailFragment extends Fragment {
         }
         return view;
     }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
