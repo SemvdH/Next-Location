@@ -18,15 +18,13 @@ public enum RouteListManager{
         this.routeList = new ArrayList<>();
     }
 
-
     public List<Route> getRouteList() {
         return routeList;
     }
 
-    public Route getRoute(int place) {
-        return routeList.get(place);
-    }
-
+    /**
+     * prepares the array list for the adapter
+     */
     public void load() {
         RouteLoader routeLoader = new RouteLoader(this.context);
         this.routeList = routeLoader.load();

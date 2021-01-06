@@ -41,6 +41,10 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
             clickListener.onItemClick(getAdapterPosition());
         }
 
+        /**
+         * sets the text of the route name
+         * @param text the text that will be set
+         */
         public void setTextViewText(String text){
             this.routeName = itemView.findViewById(R.id.route_name);
             this.routeName.setText(text);

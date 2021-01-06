@@ -24,10 +24,9 @@ public enum LocationListManager {
         return locationList;
     }
 
-    public Location getLocation(int place) {
-        return locationList.get(place);
-    }
-
+    /**
+     * prepares the array list for the adapter
+     */
     public void load() {
         LocationLoader locationLoader = new LocationLoader(this.context);
         this.locationList = locationLoader.load();

@@ -17,6 +17,10 @@ public class LocationLoader implements Loader<List<Location>> {
         this.context = context;
     }
 
+    /**
+     * loads the array list from a JSON file
+     * @return array list with locations
+     */
     @Override
     public ArrayList<Location> load() {
         FileIO<ArrayList<Location>> fileIO = new FileIO<>();
