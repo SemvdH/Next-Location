@@ -1,6 +1,7 @@
 package com.a1.nextlocation.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +28,7 @@ import java.util.List;
 public class RouteDetailFragment extends Fragment {
 
     private Route route;
-    private TextView routeDetailText;
-    private TextView routeName;
-    private TextView totalDistance;
-    private ImageButton imageButton;
+    private ImageView imageView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,18 +44,23 @@ public class RouteDetailFragment extends Fragment {
             this.route = getArguments().getParcelable("route");
         }
 
-        this.routeName = view.findViewById(R.id.route_title);
-        this.routeName.setText(this.route.getName());
+        this.imageView = view.findViewById(R.id.route_detail_image);
+        Context context = this.imageView.getContext();
+        int id = context.getResources().getIdentifier(this.route.getImageURL(), "drawable", context.getPackageName());
+        this.imageView.setImageResource(id);
 
-        this.routeDetailText = view.findViewById(R.id.reoute_detail_tekst);
-        this.routeDetailText.setText(this.route.getDescription());
+        TextView routeName = view.findViewById(R.id.route_title);
+        routeName.setText(this.route.getName());
 
-        this.totalDistance = view.findViewById(R.id.total_distance);
+        TextView routeDetailText = view.findViewById(R.id.reoute_detail_tekst);
+        routeDetailText.setText(this.route.getDescription());
+
+        TextView totalDistance = view.findViewById(R.id.total_distance);
         String distance_tekst = getResources().getString(R.string.total_distance_route);
-        this.totalDistance.setText(distance_tekst + " " + calculateRoute(this.route.getLocations()) + "m");
+        totalDistance.setText(distance_tekst + " " + calculateRoute(this.route.getLocations()) + "m");
 
-        this.imageButton = view.findViewById(R.id.route_detail_back_button);
-        this.imageButton.setOnClickListener(v -> {
+        ImageButton imageButton = view.findViewById(R.id.route_detail_back_button);
+        imageButton.setOnClickListener(v -> {
             RouteFragment routeFragment = new RouteFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeFragment).addToBackStack(null).commit();
         });
