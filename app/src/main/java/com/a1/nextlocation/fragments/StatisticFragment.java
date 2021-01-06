@@ -26,6 +26,7 @@ public class StatisticFragment extends Fragment {
 
     private List<Coupon> couponList;
     private ImageView imageButton;
+    private ImageView couponButton;
 
 
     @Override
@@ -49,6 +50,18 @@ public class StatisticFragment extends Fragment {
         TextView couponNumber = view.findViewById(R.id.couponAmount);
         couponNumber.setText(String.valueOf(adapter.getItemCount()));
 
+
+        this.imageButton = view.findViewById(R.id.statistics_back_button);
+        this.imageButton.setOnClickListener(v -> {
+            HomeFragment homeFragment = new HomeFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+        });
+
+        this.couponButton = view.findViewById(R.id.coupon_button);
+        this.couponButton.setOnClickListener(v -> {
+            CouponFragment couponFragment = new CouponFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
+        });
 
         ConstraintLayout constraintLayout = view.findViewById(R.id.Box4);
         constraintLayout.setOnClickListener(v -> {

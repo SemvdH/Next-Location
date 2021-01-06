@@ -1,5 +1,6 @@
 package com.a1.nextlocation.fragments;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -52,8 +53,10 @@ public class LocationFragment extends Fragment {
 
         this.locationAdapter = new LocationAdapter(this.getContext(), this.locationList, clickedPosition -> {
             LocationDetailFragment locationDetailFragment = new LocationDetailFragment();
+            locationDetailFragment.setLocation(this.locationList.get(clickedPosition));
             Bundle locationBundle = new Bundle();
             locationBundle.putParcelable("location", this.locationList.get(clickedPosition));
+            locationDetailFragment.setLocation(this.locationList.get(clickedPosition));
             locationDetailFragment.setArguments(locationBundle);
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationDetailFragment).addToBackStack(null).commit();
         });

@@ -41,17 +41,17 @@ public class CouponFragment extends Fragment {
         this.couponRecyclerView.setHasFixedSize(true);
         this.layoutManager = new LinearLayoutManager(this.getContext());
 
-        this.imageButton = view.findViewById(R.id.coupon_back_button);
-        this.imageButton.setOnClickListener(v -> {
-            StatisticFragment statisticFragment = new StatisticFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, statisticFragment).addToBackStack(null).commit();
-        });
-
         CouponListManager.INSTANCE.setContext(this.getContext());
         CouponListManager.INSTANCE.load();
         this.couponList = CouponListManager.INSTANCE.getCouponList();
 
         this.couponAdapter = new CouponAdapter(this.getContext(), this.couponList, clickedPosition -> showPopup(this.couponList.get(clickedPosition)));
+
+        this.imageButton = view.findViewById(R.id.coupon_back_button);
+        this.imageButton.setOnClickListener(v -> {
+            StatisticFragment statisticFragment = new StatisticFragment();
+            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, statisticFragment).addToBackStack(null).commit();
+        });
 
         this.couponRecyclerView.setLayoutManager(this.layoutManager);
         this.couponRecyclerView.setAdapter(this.couponAdapter);
