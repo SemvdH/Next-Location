@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/ic_back_button_24"
-        android:text="@string/terug"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

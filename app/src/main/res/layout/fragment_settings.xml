@@ -160,7 +160,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/settingsOldButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/BigFont"
