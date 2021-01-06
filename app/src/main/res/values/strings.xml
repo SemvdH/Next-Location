@@ -22,4 +22,6 @@
     <string name="Dutch">Dutch</string>
     <string name="English">English</string>
     <string name="Chinese">Chinese</string>
+    <string name="help">HELP</string>
+    <string name="help_discription">Hasn\'t been translated yet</string>
 </resources>
