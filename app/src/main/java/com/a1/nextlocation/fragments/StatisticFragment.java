@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Coupon;
+import com.a1.nextlocation.data.StaticData;
 import com.a1.nextlocation.recyclerview.CouponAdapter;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 
@@ -36,6 +37,13 @@ public class StatisticFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistic, container, false);
+
+        TextView distance = view.findViewById(R.id.statistics_km);
+        TextView locs = view.findViewById(R.id.statistics_locations_visited);
+        double dist = StaticData.INSTANCE.getDistanceTraveled()/1000;
+        distance.setText(""  + String.format("%.1f",dist) + " km");
+        locs.setText("" + StaticData.INSTANCE.getLocationsVisited());
+
 
         this.couponList = CouponListManager.INSTANCE.getCouponList();
         CouponAdapter adapter = new CouponAdapter(this.getContext(), this.couponList);

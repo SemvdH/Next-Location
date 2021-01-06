@@ -10,4 +10,5 @@
     <color name="primaryColour">#FF115571</color>
     <color name="secondaryColour">#FF31AFB4</color>
     <color name="buttonColour">#FF14212D</color>
+    <color name="red">#FF0000</color>
 </resources>

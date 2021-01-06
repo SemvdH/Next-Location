@@ -1,11 +1,12 @@
 package com.a1.nextlocation.fragments;
 
 
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,27 +24,41 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
-import com.a1.nextlocation.recyclerview.CustomOverlay;
+import com.a1.nextlocation.data.RouteHandler;
+import com.a1.nextlocation.data.StaticData;
+import com.a1.nextlocation.json.DirectionsResult;
+import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.recyclerview.LocationListManager;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements LocationListener {
     private final String userAgent = "com.ai.nextlocation.fragments";
+    public final static String MAPQUEST_API_KEY = "vuyXjqnAADpjeL9QwtgWGleIk95e36My";
     private ImageButton imageButton;
+    private ImageButton stopButton;
     private MapView mapView;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
     private final String TAG = HomeFragment.class.getCanonicalName();
+    //    private RoadManager roadManager;
+    private Polyline roadOverlay;
+    private int color;
+    private Location currentLocation;
+    private Overlay allLocationsOverlay;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +69,7 @@ public class HomeFragment extends Fragment {
                 // WRITE_EXTERNAL_STORAGE is required in order to show the map
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
+        color = requireContext().getColor(R.color.red);
     }
 
     @Override
@@ -61,13 +78,50 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // set up the location list button
         this.imageButton = view.findViewById(R.id.location_list_button);
         this.imageButton.setOnClickListener(v -> {
             LocationFragment locationFragment = new LocationFragment();
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
+        // set up the route stop button
+        stopButton = view.findViewById(R.id.home_stop_route_button);
+        stopButton.setOnClickListener(v -> {
+            RouteHandler.INSTANCE.finishRoute();
+            stopButton.setVisibility(View.GONE);
+            Toast.makeText(requireContext(),getResources().getString(R.string.route_stop_toast),Toast.LENGTH_SHORT).show();
+            mapView.getOverlays().remove(roadOverlay);
+            mapView.getOverlays().remove(allLocationsOverlay);
+            addLocations();
+            mapView.invalidate();
+            roadOverlay = null;
+        });
+
+        if (RouteHandler.INSTANCE.isFollowingRoute()) {
+            stopButton.setVisibility(View.VISIBLE);
+        } else {
+            stopButton.setVisibility(View.GONE);
+        }
+        ApiHandler.INSTANCE.addListener(this::onDirectionsAvailable);
         return view;
+    }
+
+    /**
+     * callback method that gets called when there are new directions available in the form of a {@link DirectionsResult} object.
+     * @param directionsResult the directions received from the api
+     */
+    private void onDirectionsAvailable(DirectionsResult directionsResult) {
+        Log.d(TAG, "onDirectionsAvailable: got result! " + directionsResult);
+        ArrayList<GeoPoint> geoPoints = directionsResult.getGeoPoints();
+        roadOverlay = new Polyline();
+        roadOverlay.setPoints(geoPoints);
+        roadOverlay.setColor(color);
+
+
+        RouteHandler.INSTANCE.setCurrentRouteLine(roadOverlay);
+        Log.d(TAG, "onDirectionsAvailable: successfully added road!");
+
     }
 
     @Override
@@ -77,6 +131,11 @@ public class HomeFragment extends Fragment {
         initMap(view);
     }
 
+    /**
+     * This method initializes the map and all the things it needs
+     *
+     * @param view the view the map is on
+     */
     private void initMap(@NonNull View view) {
         // set the user agent
         Configuration.getInstance().setUserAgentValue(userAgent);
@@ -91,30 +150,17 @@ public class HomeFragment extends Fragment {
         GpsMyLocationProvider gpsMyLocationProvider = new GpsMyLocationProvider(this.requireContext());
 
         // add the compass overlay
-        CompassOverlay compassOverlay = new CompassOverlay(requireContext(),new InternalCompassOrientationProvider(requireContext()),mapView);
+        CompassOverlay compassOverlay = new CompassOverlay(requireContext(), new InternalCompassOrientationProvider(requireContext()), mapView);
         compassOverlay.enableCompass();
         mapView.getOverlays().add(compassOverlay);
+
+        addLocations();
 
         // add the location overlay
         MyLocationNewOverlay mLocationOverlay = new MyLocationNewOverlay(gpsMyLocationProvider, mapView);
         mLocationOverlay.enableFollowLocation();
         mLocationOverlay.enableMyLocation();
         mapView.getOverlays().add(mLocationOverlay);
-
-        CustomOverlay customOverlay = new CustomOverlay(getResources().getDrawable(R.drawable.ic_baseline_location_on_24),mapView);
-
-        for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
-            GeoPoint p = new GeoPoint(l.getLat(), l.getLong());
-            OverlayItem overlayItem = new OverlayItem(l.getName(),l.getDescription(), p);
-
-            customOverlay.addOverlayItem(overlayItem);
-            Log.d(TAG, "initMap: " + "succes");
-        }
-
-
-        mapView.getOverlays().add(customOverlay);
-
-
 
         // add the zoom controller
         IMapController mapController = mapView.getController();
@@ -125,9 +171,19 @@ public class HomeFragment extends Fragment {
 
 
         try {
+
+            // request location updates for the distance checking
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+
+            // get the current location and set it as center
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            GeoPoint startPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
-            mapController.setCenter(startPoint);
+            if (currentLocation == null) currentLocation = location;
+
+            if (location != null) {
+                GeoPoint start = new GeoPoint(location.getLatitude(), location.getLongitude());
+                mapController.setCenter(start);
+            }
 
         } catch (SecurityException e) {
             Log.d(TAG, "onViewCreated: exception while getting location: " + e.getLocalizedMessage());
@@ -140,7 +196,99 @@ public class HomeFragment extends Fragment {
 
         }
 
+
+        displayRoute();
+
     }
+
+    /**
+     * displays the route that is currently being followed as a red line
+     */
+    private void displayRoute() {
+
+        if (RouteHandler.INSTANCE.isFollowingRoute()) {
+            if (roadOverlay == null) {
+                if (RouteHandler.INSTANCE.getCurrentRouteLine() != null) {
+                    roadOverlay = RouteHandler.INSTANCE.getCurrentRouteLine();
+                    mapView.getOverlays().add(roadOverlay);
+                    mapView.invalidate();
+                    Log.d(TAG, "initMap: successfully added road!");
+                }
+            } else {
+                mapView.getOverlays().add(roadOverlay);
+                mapView.invalidate();
+                Log.d(TAG, "initMap: successfully added road!");
+            }
+        }
+    }
+
+    /**
+     * adds the locations of the current route to the map. If there is no current route, show all locations
+     */
+    private void addLocations() {
+        // get the locations of the current route or all locations
+        List<com.a1.nextlocation.data.Location> locations = RouteHandler.INSTANCE.isFollowingRoute() ? RouteHandler.INSTANCE.getCurrentRoute().getLocations() : LocationListManager.INSTANCE.getLocationList();
+        final ArrayList<OverlayItem> items = new ArrayList<>(locations.size());
+        // marker icon
+        Drawable marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
+        marker.setAlpha(255);
+        marker.setTint(getResources().getColor(R.color.primaryColour));
+
+        // add all locations to the overlay itemss
+        for (com.a1.nextlocation.data.Location location : locations) {
+            OverlayItem item = new OverlayItem(location.getName(), location.getDescription(), location.convertToGeoPoint());
+            item.setMarker(marker);
+            items.add(item);
+        }
+
+        // create the overlay that will hold all locations and add listeners
+        allLocationsOverlay = new ItemizedIconOverlay<OverlayItem>(items,
+                new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+                    /**
+                     * on sinlge click, navigate to that location's detail fragment
+                     * @param index the index in the location list
+                     * @param item the item that was clicked
+                     * @return true
+                     */
+                    @Override
+                    public boolean onItemSingleTapUp(int index, OverlayItem item) {
+                        com.a1.nextlocation.data.Location clicked = locations.get(index);
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new LocationDetailFragment(clicked)).commit();
+                        return true;
+                    }
+
+                    /**
+                     * on item long press, show that location's name in a toast message
+                     * @param index the index in the location list
+                     * @param item the item that was clicked
+                     * @return true
+                     */
+                    @Override
+                    public boolean onItemLongPress(int index, OverlayItem item) {
+                        com.a1.nextlocation.data.Location clicked = locations.get(index);
+                        Toast.makeText(requireContext(), clicked.getName(), Toast.LENGTH_SHORT).show();
+
+                        // create a route to the clicked location, didn't work and didn't have enough time to make it work ¯\_(ツ)_/¯
+
+//                        Route route = new Route("Route to " + clicked.getName());
+//                        route.addLocation(new com.a1.nextlocation.data.Location("Current location",currentLocation.getLatitude(),currentLocation.getLongitude(),"your location",null));
+//                        route.addLocation(clicked);
+//                        ApiHandler.INSTANCE.getDirections(route);
+                        return true;
+                    }
+                }, requireContext());
+
+        // add the overlay to the map
+        mapView.getOverlays().add(allLocationsOverlay);
+        Log.d(TAG, "addLocations: successfully added locations");
+
+    }
+
+    /**
+     * @author Ricky
+     * request the permissions needed for location and network, made by Ricky
+     * @param permissions tbe permissions we want to ask
+     */
     private void requestPermissionsIfNecessary(String... permissions) {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
         if (this.getContext() != null)
@@ -157,5 +305,63 @@ public class HomeFragment extends Fragment {
                     permissionsToRequest.toArray(new String[0]),
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
+    }
+
+    /**
+     * location callback that gets called each time the location is updated. It is used for updating the distance walked and checking if there are locations you have visited
+     * @param location the new location
+     */
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        // calculate the distance walked
+        double distance = currentLocation.distanceTo(location); // in meters
+        StaticData.INSTANCE.addDistance(distance);
+        currentLocation = location;
+
+        //new thread because we don't want the main thread to hang, this method gets called a lot
+        Thread t = new Thread(() -> {
+            for (com.a1.nextlocation.data.Location l : LocationListManager.INSTANCE.getLocationList()) {
+                if (com.a1.nextlocation.data.Location.getDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), l.getLat(), l.getLong()) < 10) {
+                    StaticData.INSTANCE.visitLocation(l);
+                }
+            }
+        });
+
+        t.start();
+    }
+
+    // empty override methods for the LocationListener
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+
+    }
+
+    /**
+     * method that gets called when the app gets paused
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    /**
+     * method that gets called when the app gets resumed
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
     }
 }

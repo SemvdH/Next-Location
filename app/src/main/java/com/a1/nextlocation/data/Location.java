@@ -35,6 +35,10 @@ public class Location implements Parcelable {
         this(name,getStringFromCoordinates(latCoord,longCoord),description,imageUrl);
     }
 
+    public Location(String name, android.location.Location loc, String description, String imageUrl) {
+        this(name,getStringFromCoordinates(loc.getLatitude(),loc.getLongitude()),description,imageUrl);
+    }
+
     protected Location(Parcel in) {
         name = in.readString();
         coordinates = in.readString();
@@ -90,8 +94,8 @@ public class Location implements Parcelable {
 
     public double[] getCoordinatesAsDoubles() {
         double[] res = new double[2];
-        res[0] = getLat();
-        res[1] = getLong();
+        res[1] = getLat();
+        res[0] = getLong();
 
         return res;
     }
@@ -105,7 +109,45 @@ public class Location implements Parcelable {
     }
 
     public static String getStringFromCoordinates(double lat1, double long1) {
-        return lat1 + "," + long1;
+        return long1 + "," + lat1;
+    }
+
+    public double getDistance(Location other) {
+        double dlon = other.getLong() - getLong();
+        double dlat = other.getLat() - getLong();
+        double a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(getLat()) * Math.cos(other.getLong())
+                * Math.pow(Math.sin(dlon / 2),2);
+
+        double c = 2 * Math.asin(Math.sqrt(a));
+
+        // Radius of earth in kilometers. Use 3956
+        // for miles
+        double r = 6371;
+
+        // calculate the result
+        double distance = c * r;
+
+        return Math.floor(distance);
+    }
+
+    public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
+        double dlon = lon2 - lon1;
+        double dlat = lat2 - lat1;
+        double a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(lat1) * Math.cos(lat2)
+                * Math.pow(Math.sin(dlon / 2),2);
+
+        double c = 2 * Math.asin(Math.sqrt(a));
+
+        // Radius of earth in kilometers. Use 3956
+        // for miles
+        double r = 6371;
+
+        // calculate the result
+        double distance = c * r;
+
+        return Math.floor(distance);
     }
 
     public GeoPoint convertToGeoPoint() {
