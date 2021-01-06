@@ -29,7 +29,14 @@ public class RouteDetailFragment extends Fragment {
 
     private Route route;
     private ImageView imageView;
+    private Refreshable refreshable;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Refreshable)
+        this.refreshable = (Refreshable) context;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +86,8 @@ public class RouteDetailFragment extends Fragment {
         ApiHandler.INSTANCE.getDirections(route);
         RouteHandler.INSTANCE.followRoute(route);
         Toast.makeText(requireContext(),"Route started!",Toast.LENGTH_SHORT).show();
-        ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).addToBackStack(null).commit();
+        // navigates to the HomeFragment and refreshes the BottomNavigation
+        refreshable.refreshAndNavigateTo(R.id.locations);
     }
 
     /**

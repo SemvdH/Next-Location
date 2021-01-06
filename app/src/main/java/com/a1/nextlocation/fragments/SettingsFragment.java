@@ -158,7 +158,7 @@ public class SettingsFragment extends Fragment {
         fragmentTransaction.attach(currentFragment);
         fragmentTransaction.commit();
 
-        refreshable.refresh();
+        refreshable.refreshAndNavigateTo(R.id.settings);
     }
 
     /**
