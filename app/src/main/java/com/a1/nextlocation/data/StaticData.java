@@ -34,14 +34,6 @@ public enum StaticData {
         return locationsVisited;
     }
 
-    private Polyline currentRoute;
 
-    public void setCurrentRoute(Polyline currentRoute) {
-        this.currentRoute = currentRoute;
-    }
-
-    public Polyline getCurrentRoute() {
-        return currentRoute;
-    }
 
 }
