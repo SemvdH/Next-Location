@@ -1,5 +1,6 @@
 package com.a1.nextlocation.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.a1.nextlocation.R;
@@ -23,6 +25,7 @@ public class LocationDetailFragment extends Fragment {
     private Location location;
     private TextView titelText;
     private TextView detailText;
+    private ImageView locationImage;
 
     public LocationDetailFragment() {
 
@@ -57,6 +60,12 @@ public class LocationDetailFragment extends Fragment {
         if (location != null) {
             Log.d(TAG, "onCreateView: the location has a name of: " + location.getName());
         }
+
+        this.locationImage = view.findViewById(R.id.detail_location_image);
+        Context context = this.locationImage.getContext();
+        int id = context.getResources().getIdentifier(this.location.getImageUrl(), "drawable", context.getPackageName());
+        this.locationImage.setImageResource(id);
+
         return view;
     }
 
