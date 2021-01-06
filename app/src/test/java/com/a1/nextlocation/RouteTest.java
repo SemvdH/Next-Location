@@ -90,4 +90,13 @@ public class RouteTest {
         assertEquals(expectedAfter, route.getTotalTime());
     }
 
+    @Test
+    public void testDescription(){
+        route.setDescription("TEST");
+        String expected = "TEST";
+        assertEquals(expected, route.getDescription());
+        route.setDescription("FALSETEST");
+        assertNotEquals(expected, route.getDescription());
+    }
+
 }
