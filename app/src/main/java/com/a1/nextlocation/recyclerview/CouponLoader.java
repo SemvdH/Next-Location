@@ -27,8 +27,8 @@ public class CouponLoader implements Loader<List<Coupon>> {
         FileIO<ArrayList<Coupon>> fileIO = new FileIO<>();
 
         String selectedLanguage = context.getSharedPreferences("Settings", Context.MODE_PRIVATE).getString("Language", "nl");
-        String fileName = "locations";
-        // choose the coupon.json based of the selected language
+        String fileName = "coupons";
+        // choose the coupons.json based of the selected language
         if (!selectedLanguage.equals("en")) {
             fileName += "-" + selectedLanguage;
         }
