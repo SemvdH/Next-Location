@@ -1,13 +1,19 @@
 package com.a1.nextlocation;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
+import com.a1.nextlocation.fragments.HelpPopup;
 import com.a1.nextlocation.fragments.HomeFragment;
 import com.a1.nextlocation.fragments.Refreshable;
 import com.a1.nextlocation.fragments.RouteFragment;
@@ -23,6 +29,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements Refreshable {
     private static final String TAG = MainActivity.class.getName();
     private BottomNavigationView bottomNav;
+    private ImageButton infoButton;
 
     /**
      * onCreate method that creates the main activity
@@ -38,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
         setContentView(R.layout.activity_main);
         bottomNav = findViewById(R.id.navigation_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+        infoButton = findViewById(R.id.info_button);
+        infoButton.setOnClickListener(onInfoClickListener);
 
         /*System.out.println(Arrays.toString(getFilesDir().listFiles()));
         FileIO<Route> fileIO = new FileIO<>();
@@ -109,4 +118,23 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
         bottomNav.inflateMenu(R.menu.navmenu);
         bottomNav.setSelectedItemId(R.id.settings);
     }
+
+    private View.OnClickListener onInfoClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+//            AlertDialog.Builder infoBuilder = new AlertDialog.Builder(getBaseContext());
+//            infoBuilder.setCancelable(true);
+////            infoBuilder.setPositiveButton(R.string.activate, (dialog, which) -> {
+////                dialog.cancel();
+////            });
+//            infoBuilder.setView(getLayoutInflater().inflate(R.layout.help_popup, null));
+//            AlertDialog infoPopup = infoBuilder.create();
+//            infoPopup.show();
+
+            FragmentManager fragment = getSupportFragmentManager();
+            DialogFragment helpPopupFragment = new HelpPopup();
+            helpPopupFragment.show(fragment, "YEET");
+        }
+    };
 }
