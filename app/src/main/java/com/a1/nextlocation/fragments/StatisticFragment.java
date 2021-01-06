@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,13 @@ public class StatisticFragment extends Fragment {
         double dist = StaticData.INSTANCE.getDistanceTraveled()/1000;
         distance.setText(""  + String.format("%.1f",dist) + " km");
         locs.setText("" + StaticData.INSTANCE.getLocationsVisited());
-        timeText.setText("" + StaticData.INSTANCE.getTimeWalkedRoute());
+        
+        long seconds = StaticData.INSTANCE.getTimeWalkedRoute() / 1000;
+        long p1 = seconds % 60;
+        long p2 = seconds / 60;
+        long p3 = p2 % 60;
+        p2 = p2 / 60;
+        timeText.setText(p2 + ":" + p3 + ":" + p1);
 
 
         this.couponList = CouponListManager.INSTANCE.getCouponList();

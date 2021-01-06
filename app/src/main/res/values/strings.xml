@@ -18,6 +18,7 @@
     <string name="activate">activate</string>
     <string name="done">Done</string>
     <string name="cancel">cancel</string>
+    <string name="total_distance_route">The total distance of the route is:</string>
     <string name="route_stop_toast">Route stopped!</string>
     <string name="Dutch">Dutch</string>
     <string name="English">English</string>

@@ -101,31 +101,7 @@ public class DirectionsResult {
 
         JsonArray segments = properties.getAsJsonArray("segments");
 
-        for (JsonElement element : segments) {
-            JsonObject segment = element.getAsJsonObject();
-
-            setDistance(segment.get("distance").getAsDouble());
-            setDuration(segment.get("duration").getAsDouble());
-
-            JsonArray steps = segment.getAsJsonArray("steps");
-
-            for (JsonElement j : steps) {
-
-                DirectionsStep step = gson.fromJson(j, DirectionsStep.class);
-                double lat;
-                double longl;
-
-                // kinda stinky but it works
-                for (int i = 0; i < 2; i++) {
-                    lat = this.wayPointCoordinates[step.getWay_points().get(i)][0];
-                    longl = this.wayPointCoordinates[step.getWay_points().get(i)][1];
-                    step.getWaypoints()[i] = new GeoPoint(lat, longl);
-                }
-
-                addStep(step);
-                Log.d(TAG, "parse: added step" + step);
-            }
-        }
+        parseSegments(segments,gson);
 
         startAndEndPoint[0] = this.getSteps().get(0).getWaypoints()[0];
         startAndEndPoint[1] = this.getSteps().get(this.getSteps().size()-1).getWaypoints()[1];
@@ -133,8 +109,8 @@ public class DirectionsResult {
     }
 
     /**
-     * parses the given json string into this object. This method is used for when you want to
-     * @param json
+     * parses the given json string into this object. This method is used for when you have requested directions from the API for a {@link com.a1.nextlocation.data.Route route object}
+     * @param json the json string
      */
     public void parseRoute(String json) {
 
@@ -162,33 +138,54 @@ public class DirectionsResult {
 
             JsonArray segments = route.getAsJsonArray("segments");
 
-            for (JsonElement e : segments) {
-                JsonObject segment = e.getAsJsonObject();
+            parseSegments(segments,gson);
 
-                setDistance(segment.get("distance").getAsDouble());
-                setDuration(segment.get("duration").getAsDouble());
-
-                JsonArray steps = segment.getAsJsonArray("steps");
-
-                for (JsonElement j : steps) {
-
-                    DirectionsStep step = gson.fromJson(j, DirectionsStep.class);
-                    double lat;
-                    double longl;
-
-                    // kinda stinky but it works
-                    for (int i = 0; i < 2; i++) {
-                        lat = this.wayPointCoordinates[step.getWay_points().get(i)][0];
-                        longl = this.wayPointCoordinates[step.getWay_points().get(i)][1];
-                        step.getWaypoints()[i] = new GeoPoint(lat, longl);
-                    }
-
-                    addStep(step);
-                    Log.d(TAG, "parse: added step" + step);
-                }
-            }
 
         }
 
+    }
+
+    /**
+     * parses different segments, and the steps in it using {@link DirectionsResult#parseSteps(JsonArray, Gson) the method for parsing steps}
+     * @param segments the segments to parse
+     * @param gson the gson object to use
+     */
+    private void parseSegments(JsonArray segments, Gson gson) {
+        //unfold the individual segments
+        for (JsonElement e : segments) {
+            JsonObject segment = e.getAsJsonObject();
+
+            setDistance(segment.get("distance").getAsDouble());
+            setDuration(segment.get("duration").getAsDouble());
+
+            JsonArray steps = segment.getAsJsonArray("steps");
+
+            parseSteps(steps,gson);
+        }
+    }
+
+    /**
+     * parses the given steps into this object, transforms them into a {@link DirectionsStep} object.
+     * @param steps the steps to parse
+     * @param gson the gson object to use
+     */
+    private void parseSteps(JsonArray steps, Gson gson) {
+        for (JsonElement j : steps) {
+
+            // parse everything into a directionsstep
+            DirectionsStep step = gson.fromJson(j, DirectionsStep.class);
+            double lat;
+            double longl;
+
+            // kinda stinky but it works
+            for (int i = 0; i < 2; i++) {
+                lat = this.wayPointCoordinates[step.getWay_points().get(i)][0];
+                longl = this.wayPointCoordinates[step.getWay_points().get(i)][1];
+                step.getWaypoints()[i] = new GeoPoint(lat, longl);
+            }
+
+            addStep(step);
+            Log.d(TAG, "parse: added step" + step);
+        }
     }
 }
