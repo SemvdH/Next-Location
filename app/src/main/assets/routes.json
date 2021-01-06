@@ -1,43 +1,35 @@
 [
   {
-    "name": "rondje stad",
+    "name": "Evenementen Route",
     "locations": [
       {
         "name":"Escaping Breda: Escape Room Games Boschstraat 114",
-        "coordinates":"51.59096518753322, 4.783727736123234",
-        "description":"4811GK Breda",
-        "imageUrl":"NULL"
+        "coordinates":"51.59096518753322, 4.783727736123234"
       },
       {
         "name":"Prison Escape Kloosterlaan 168",
-        "coordinates":"51.59058740778487, 4.784723144974098",
-        "description":"4811EE Breda",
-        "imageUrl":"NULL"
+        "coordinates":"51.59058740778487, 4.784723144974098"
       },
       {
         "name":"De Koepel - FutureDome Events Nassausingel 26",
-        "coordinates":"51.59025697138579, 4.787354025225596",
-        "description":"4811HP Breda",
-        "imageUrl":"NULL"
+        "coordinates":"51.59025697138579, 4.787354025225596"
       },
       {
         "name":"MEZZ Breda Keizerstraat 101",
-        "coordinates":"51.5837840024532, 4.779037836841554",
-        "description":"4811HL Breda",
-        "imageUrl":"NULL"
+        "coordinates":"51.5837840024532, 4.779037836841554"
       },
       {
         "name":"Het Klooster Breda Schorsmolenstraat 13",
-        "coordinates":"51.58765659148822, 4.764801414019652",
-        "description":"4811VN Breda",
-        "imageUrl":"NULL"
+        "coordinates":"51.58765659148822, 4.764801414019652"
       }
     ],
     "totalDistance": 1073.0,
-    "totalTime": 342342
+    "totalTime": 342342,
+    "description": "Deze route laat u leuke events verspreid door breda zien! Probeer de escaperooms uit, een event bij de koepel, of een leuk feest bij MEZZ! Met deze route loopt u langs ze allemaal.",
+    "imageURL": "escaping_room"
   },
   {
-    "name": "Obesi Route",
+    "name": "Hongerige Route",
     "locations": [
       {
         "name": "McDonald's Breda Karnemelkstraat",
@@ -71,6 +63,8 @@
       }
     ],
     "totalDistance": 955.0,
-    "totalTime": 342342
+    "totalTime": 342342,
+    "description": "Met deze route bezoekt u alle snackbars en restaurants in het centrum van Breda!",
+    "imageURL": "kees_kroket"
   }
 ]

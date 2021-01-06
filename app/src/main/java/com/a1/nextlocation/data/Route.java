@@ -18,6 +18,7 @@ public class Route implements Parcelable {
     private String description;
     private List<Location> locations;
     private float totalDistance;
+    private String imageURL;
     private int totalTime;
 
     public Route(@NotNull String name) {
@@ -67,6 +68,10 @@ public class Route implements Parcelable {
 
     public float getTotalDistance() {
         return totalDistance;
+    }
+
+    public String getImageURL(){
+        return this.imageURL;
     }
 
 
