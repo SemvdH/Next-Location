@@ -24,6 +24,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class FileIO<T> {
     private final String TAG = FileIO.class.getCanonicalName();
@@ -36,8 +37,9 @@ public class FileIO<T> {
         StringBuilder sb = new StringBuilder();
         InputStream is = null;
         try {
-            if (new File(fileName).exists()) {
+            if (Arrays.asList(context.getResources().getAssets().list("")).contains(fileName)) {
                 is = am.open(fileName);
+                Log.d(TAG, "Opening file: " + fileName);
             } else {
                 is = am.open(fileName.substring(0, fileName.length() - 8) + ".json");
             }
