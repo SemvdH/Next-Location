@@ -1,5 +1,7 @@
 package com.a1.nextlocation;
 
+import android.graphics.Point;
+
 import com.a1.nextlocation.data.Location;
 
 import org.junit.Before;
@@ -93,5 +95,14 @@ public class LocationTest {
         Location alternateTestLocation = new Location("testName", 15.4, 27.5, "testDesc", null);
 
         assertNotNull(alternateTestLocation);
+    }
+
+    @Test
+    public void calculatingDistance(){
+
+         double expected2 = 1054.66;
+         assertEquals(expected2, Location.getDistance(51.578810244278344,  4.804990650154528, 51.57696163247576, 4.789331956851824), 100);
+
+
     }
 }

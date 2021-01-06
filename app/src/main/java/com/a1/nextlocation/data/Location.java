@@ -130,6 +130,11 @@ public class Location implements Parcelable {
      * @return the distance between the coordinates in meters
      */
     public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
+        lat1 = Math.toRadians(lat1);
+        lat2 = Math.toRadians(lat2);
+        lon1 = Math.toRadians(lon1);
+        lon2 = Math.toRadians(lon2);
+
         double dlon = lon2 - lon1;
         double dlat = lat2 - lat1;
         double a = Math.pow(Math.sin(dlat / 2), 2)
@@ -145,6 +150,7 @@ public class Location implements Parcelable {
         // calculate the result
         double distance = c * r;
 
+        distance *= 1000;
         return Math.floor(distance);
     }
 
