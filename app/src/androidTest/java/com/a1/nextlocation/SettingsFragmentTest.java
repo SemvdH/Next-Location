@@ -6,18 +6,10 @@ import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 
-import com.a1.nextlocation.fragments.LocationFragment;
 import com.a1.nextlocation.fragments.SettingsFragment;
-import com.a1.nextlocation.fragments.StatisticFragment;
 
-import org.hamcrest.core.AllOf;
-import org.hamcrest.core.Is;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import javax.inject.Inject;
 
 import static androidx.test.espresso.Espresso.*;
 import static androidx.test.espresso.action.ViewActions.*;
@@ -25,7 +17,6 @@ import static androidx.test.espresso.assertion.ViewAssertions.*;
 import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.is;
 
 public class SettingsFragmentTest {
@@ -54,14 +45,14 @@ public class SettingsFragmentTest {
     @Test
     public void buttonTest(){
         mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity, new SettingsFragment()).commit();
-        onView(withId(R.id.settingsImperialButton)).check(matches(isClickable()));
-        onView(withId(R.id.BigFont)).check(matches(isClickable()));
+        onView(withId(R.id.imperial_button)).check(matches(isClickable()));
+        onView(withId(R.id.font_changer)).check(matches(isClickable()));
 
 
-        onView(withId(R.id.settingsImperialButton)).perform(click());
-        onView(withId(R.id.settingsImperialButton)).check(matches(isChecked()));
+        onView(withId(R.id.imperial_button)).perform(click());
+        onView(withId(R.id.imperial_button)).check(matches(isChecked()));
 
-        onView(withId(R.id.BigFont)).perform(click());
-        onView(withId(R.id.BigFont)).check(matches(isChecked()));
+        onView(withId(R.id.font_changer)).perform(click());
+        onView(withId(R.id.font_changer)).check(matches(isChecked()));
     }
 }

@@ -115,7 +115,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/settingsImperialButton"
+            android:id="@+id/imperial_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -162,7 +162,7 @@
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/BigFont"
+            android:id="@+id/font_changer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/Balk3"
