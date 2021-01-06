@@ -15,21 +15,14 @@ public class Route implements Parcelable {
 
     @NonNull
     private String name;
-
-
+    private String description;
     private List<Location> locations;
-
-
     private float totalDistance;
-
-
     private int totalTime;
 
     public Route(@NotNull String name) {
-
         this.name = name;
         this.locations = new ArrayList<>();
-
     }
 
     protected Route(Parcel in) {
@@ -102,5 +95,13 @@ public class Route implements Parcelable {
         parcel.writeTypedList(locations);
         parcel.writeFloat(totalDistance);
         parcel.writeInt(totalTime);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
