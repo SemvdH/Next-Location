@@ -44,6 +44,15 @@
 
     </ScrollView>
 
+    <Button
+        android:id="@+id/help_ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/helpPopTitle" />
+
 
 
 
