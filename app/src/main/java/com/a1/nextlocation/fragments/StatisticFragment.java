@@ -22,6 +22,7 @@ import com.a1.nextlocation.recyclerview.CouponListManager;
 import java.util.List;
 
 public class StatisticFragment extends Fragment {
+    private TextView distance;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,7 @@ public class StatisticFragment extends Fragment {
         initializeDistanceTextView(view);
         TextView locs = view.findViewById(R.id.statistics_locations_visited);
         TextView timeText = view.findViewById(R.id.statistics_time_value);
-      
-        double dist = Data.INSTANCE.getDistanceTraveled() / 1000;
-        distance.setText("" + String.format("%.1f", dist) + " km");
+
         locs.setText("" + Data.INSTANCE.getLocationsVisited());
 
         long seconds = Data.INSTANCE.getTotalTime() / 1000;
@@ -79,7 +78,7 @@ public class StatisticFragment extends Fragment {
     }
 
     private void initializeDistanceTextView(View view){
-        TextView distance = view.findViewById(R.id.statistics_km);
+        distance = view.findViewById(R.id.statistics_km);
         double dist = Data.INSTANCE.getDistanceTraveled()/1000;
         if (getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false))
             distance.setText(""  + String.format("%.1f",dist * 0.621371) + " mi");

@@ -66,7 +66,7 @@ public class RouteDetailFragment extends Fragment {
         TextView totalDistance = view.findViewById(R.id.total_distance);
         String distance_tekst = getResources().getString(R.string.total_distance_route);
         boolean imperialChecked = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false);
-        totalDistance.setText(distance_tekst + " " + String.format("%.1f", calculateRoute(this.route.getLocations())) + (imperialChecked ? "ft" : "m"));
+        totalDistance.setText(distance_tekst + " " + String.format("%.1f", calculateRoute(this.route.getLocations())) + (imperialChecked ? "yd" : "m"));
 
         //Initialises the back button
         ImageButton backButton = view.findViewById(R.id.route_detail_back_button);
@@ -118,7 +118,7 @@ public class RouteDetailFragment extends Fragment {
 
         // if the imperialSwitch is checked, return feet, if not, return meters
         if (getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false))
-            return totalDistance *3.28084;
+            return totalDistance * 1.0936133;
         else
             return totalDistance;
     }
