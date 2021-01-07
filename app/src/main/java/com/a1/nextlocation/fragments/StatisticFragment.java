@@ -36,6 +36,7 @@ public class StatisticFragment extends Fragment {
         initializeDistanceTextView(view);
         TextView locs = view.findViewById(R.id.statistics_locations_visited);
         TextView timeText = view.findViewById(R.id.statistics_time_value);
+        TextView distance = view.findViewById(R.id.statistics_km);
       
         double dist = Data.INSTANCE.getDistanceTraveled() / 1000;
         distance.setText("" + String.format("%.1f", dist) + " km");
