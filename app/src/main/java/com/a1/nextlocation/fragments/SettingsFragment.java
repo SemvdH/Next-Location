@@ -27,7 +27,8 @@ import java.util.Locale;
 public class SettingsFragment extends Fragment {
 
     private SharedPreferences.Editor editor;
-    SwitchCompat fontChanger;
+    private SwitchCompat fontSwitch;
+    private SwitchCompat imperialSwitch;
     private Refreshable refreshable;
 
     @Override
@@ -50,7 +51,12 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         initializeLanguageDropdown(view);
+        initializeButtons(view);
 
+        return view;
+    }
+
+    private void initializeButtons(View view) {
         //Initialises back button
         ImageView backButton = view.findViewById(R.id.settings_back_button);
         backButton.setOnClickListener(v -> {
@@ -58,37 +64,47 @@ public class SettingsFragment extends Fragment {
             ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
-        //Initialises 65+ switchCompat
-        this.fontChanger = view.findViewById(R.id.BigFont);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
 
-        //Initialises sharedpreference to save state of 65+ mode
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("com.a1.nextlocation", 0);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        fontChanger.setChecked(sharedPreferences.getBoolean("switch", false));
+        //Initialises imperial switchCompat
+        this.imperialSwitch = view.findViewById(R.id.imperial_button);
+        this.imperialSwitch.setChecked(sharedPreferences.getBoolean("imperialSwitch", false));
+
+        this.imperialSwitch.setOnClickListener(view1 -> {
+            editor.putBoolean("imperialSwitch", imperialSwitch.isChecked());
+            editor.apply();
+            editor.commit();
+        });
+
+        //Initialises 65+ switchCompat
+        this.fontSwitch = view.findViewById(R.id.font_changer);
+
+        fontSwitch.setChecked(sharedPreferences.getBoolean("fontSwitch", false));
 
         //Initial check to see what setting was last chosen
-        if (fontChanger.isChecked()) {
+        if (fontSwitch.isChecked()){
             requireActivity().setTheme(R.style.Theme_NextLocationBig);
-        } else if (!fontChanger.isChecked()) {
+        }else if (!fontSwitch.isChecked()){
             requireActivity().setTheme(R.style.Theme_NextLocation);
         }
 
         //Changes the font settings depending on the state of the toggle
-        fontChanger.setOnClickListener(view1 -> {
-            if (fontChanger.isChecked()) {
+
+        fontSwitch.setOnClickListener(view1 -> {
+            if(fontSwitch.isChecked())
+            {
                 requireActivity().setTheme(R.style.Theme_NextLocationBig);
-                editor.putBoolean("switch", true);
+                editor.putBoolean("fontSwitch",true);
                 editor.apply();
             }
-            if (!fontChanger.isChecked()) {
+            if(!fontSwitch.isChecked())
+            {
                 requireActivity().setTheme(R.style.Theme_NextLocation);
-                editor.putBoolean("switch", false);
+                editor.putBoolean("fontSwitch",false);
                 editor.apply();
             }
             editor.commit();
         });
-
-        return view;
     }
 
     private void initializeLanguageDropdown(View view) {
