@@ -1,6 +1,7 @@
 package com.a1.nextlocation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.fragments.HelpPopup;
 import com.a1.nextlocation.fragments.HomeFragment;
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
         CouponListManager.INSTANCE.load();
         RouteListManager.INSTANCE.setContext(this);
         RouteListManager.INSTANCE.load();
+        Data.INSTANCE.setContext(this);
+        Data.INSTANCE.load();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).commit();

@@ -16,9 +16,9 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="@string/help"
-        android:textColor="@color/black"
+        android:textColor="@color/secondaryColour"
         android:textAlignment="center"
-        android:background="@color/secondaryColour"
+        android:background="@color/primaryColour"
         android:paddingVertical="10dp"/>
 
     <ScrollView
@@ -35,7 +35,7 @@
             android:layout_width="280dp"
             android:layout_height="430dp"
             android:text="@string/help_discription"
-            android:textColor="@color/white"
+            android:textColor="@color/secondaryColour"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/buttonColour"
         android:text="ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/helpPopTitle" />

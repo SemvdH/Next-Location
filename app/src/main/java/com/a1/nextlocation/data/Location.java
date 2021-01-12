@@ -25,6 +25,8 @@ public class Location implements Parcelable {
     private String imageUrl;
     private String iconUrl;
 
+    private boolean visited;
+
     public Location(@NotNull String name, String coordinates, String description, @Nullable String imageUrl) {
         this.name = name;
         this.coordinates = coordinates;
@@ -170,5 +172,13 @@ public class Location implements Parcelable {
         parcel.writeString(coordinates);
         parcel.writeString(description);
         parcel.writeString(imageUrl);
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
 }

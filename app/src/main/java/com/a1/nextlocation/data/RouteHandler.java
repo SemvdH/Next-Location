@@ -13,12 +13,22 @@ public enum RouteHandler {
     private int stepCount = 0;
     private RouteFinishedListener routeFinishedListener;
     private long startedTime;
+    private double currentRouteDuration;
+
+    public void setCurrentRouteDuration(double currentRouteDuration) {
+        this.currentRouteDuration = currentRouteDuration;
+    }
+
+    public double getCurrentRouteDuration() {
+        return currentRouteDuration;
+    }
 
     private Polyline currentRouteLine;
 
     public void setCurrentRouteLine(Polyline currentRouteLine) {
         this.currentRouteLine = currentRouteLine;
     }
+
 
     public Polyline getCurrentRouteLine() {
         return currentRouteLine;
