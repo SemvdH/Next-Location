@@ -261,13 +261,17 @@ public class HomeFragment extends Fragment implements LocationListener {
         initializer.removeGeoFences();
         final ArrayList<OverlayItem> items = new ArrayList<>(locations.size());
         // marker icon
-        Drawable marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
-        marker.setAlpha(255);
-        marker.setTint(getResources().getColor(R.color.secondaryColour));
 
         // add all locations to the overlay itemss
         for (com.a1.nextlocation.data.Location location : locations) {
             OverlayItem item = new OverlayItem(location.getName(), location.getDescription(), location.convertToGeoPoint());
+            Drawable marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
+            marker.setAlpha(255);
+            if (location.isVisited() && Data.INSTANCE.isVisited(location)) {
+                marker.setTint(getResources().getColor(R.color.red));
+            } else {
+                marker.setTint(getResources().getColor(R.color.secondaryColour));
+            }
             item.setMarker(marker);
             items.add(item);
         }
@@ -313,6 +317,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         mapView.getOverlays().add(allLocationsOverlay);
         Log.d(TAG, "addLocations: successfully added locations");
 
+        mapView.invalidate();
         addGeofences(locations);
 
     }
@@ -397,7 +402,6 @@ public class HomeFragment extends Fragment implements LocationListener {
     public void onLocationVisited(com.a1.nextlocation.data.Location location) {
         Data.INSTANCE.visitLocation(location);
         showNotification(location);
-
     }
 
     private void showNotification(com.a1.nextlocation.data.Location location) {

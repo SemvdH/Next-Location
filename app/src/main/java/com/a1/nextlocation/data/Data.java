@@ -113,6 +113,10 @@ public enum Data {
         this.totalTime = prefs.getLong("timeWalked", 0);
     }
 
+    public boolean isVisited(Location location) {
+        return this.visitedNames.contains(location.getName());
+    }
+
     public android.location.Location getLocation() {
         return location;
     }
