@@ -20,6 +20,7 @@ public enum Data {
     private double zoom = 0;
     private SharedPreferences.Editor editor;
     private Context context;
+    private LocationProximityListener locationProximityListener;
 
     public void setContext(Context context) {
         this.context = context;
@@ -27,6 +28,15 @@ public enum Data {
 
     public void setEditor(SharedPreferences.Editor editor) {
         this.editor = editor;
+    }
+
+
+    public LocationProximityListener getLocationProximityListener() {
+        return locationProximityListener;
+    }
+
+    public void setLocationProximityListener(LocationProximityListener locationProximityListener) {
+        this.locationProximityListener = locationProximityListener;
     }
 
     public double getZoom() {
@@ -70,6 +80,11 @@ public enum Data {
 
     public int getLocationsVisited() {
         return locationsVisited;
+    }
+
+    @FunctionalInterface
+    public interface LocationProximityListener {
+        void onLocationVisited(Location location);
     }
 
     public void saveVisitedNamesList(){

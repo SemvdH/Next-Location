@@ -2,6 +2,8 @@ package com.a1.nextlocation.fragments;
 
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -27,6 +30,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.data.RouteHandler;
+import com.a1.nextlocation.geofencing.GeofenceInitalizer;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.recyclerview.LocationListManager;
@@ -61,6 +65,8 @@ public class HomeFragment extends Fragment implements LocationListener {
     private int color;
     private Location currentLocation;
     private Overlay allLocationsOverlay;
+    private GeofenceInitalizer initializer;
+    private final static String CHANNEL_ID = "next_location01";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +78,7 @@ public class HomeFragment extends Fragment implements LocationListener {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         color = requireContext().getColor(R.color.red);
+        Data.INSTANCE.setLocationProximityListener(this::onLocationVisited);
     }
 
     @Override
@@ -133,6 +140,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         roadOverlay.setColor(color);
 
         // pass the line to the route handler
+        RouteHandler.INSTANCE.setCurrentRouteDuration(directionsResult.getDuration());
         RouteHandler.INSTANCE.setCurrentRouteLine(roadOverlay);
         Log.d(TAG, "onDirectionsAvailable: successfully added road!");
 
@@ -142,6 +150,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initializer = new GeofenceInitalizer(requireContext(),requireActivity());
         initMap(view);
     }
 
@@ -218,6 +227,8 @@ public class HomeFragment extends Fragment implements LocationListener {
 
     }
 
+
+
     /**
      * displays the route that is currently being followed as a red line
      */
@@ -246,6 +257,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     private void addLocations() {
         // get the locations of the current route or all locations
         List<com.a1.nextlocation.data.Location> locations = RouteHandler.INSTANCE.isFollowingRoute() ? RouteHandler.INSTANCE.getCurrentRoute().getLocations() : LocationListManager.INSTANCE.getLocationList();
+        initializer.removeGeoFences();
         final ArrayList<OverlayItem> items = new ArrayList<>(locations.size());
         // marker icon
         Drawable marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
@@ -300,6 +312,19 @@ public class HomeFragment extends Fragment implements LocationListener {
         mapView.getOverlays().add(allLocationsOverlay);
         Log.d(TAG, "addLocations: successfully added locations");
 
+        addGeofences(locations);
+
+    }
+
+    /**
+     * adds the geofences for the currently active locations
+     * @param locations the locations to add geofences for
+     */
+    private void addGeofences(List<com.a1.nextlocation.data.Location> locations) {
+
+        Log.d(TAG, "addGeofences: adding geofences!");
+
+        initializer.init(locations);
     }
 
     /**
@@ -365,6 +390,33 @@ public class HomeFragment extends Fragment implements LocationListener {
 
         t.start();
 
+    }
+
+    public void onLocationVisited(com.a1.nextlocation.data.Location location) {
+        Data.INSTANCE.visitLocation(location);
+        showNotification(location);
+
+    }
+
+    private void showNotification(com.a1.nextlocation.data.Location location) {
+
+        NotificationManager mNotificationManager = (NotificationManager) requireActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "next_location", importance);
+            notificationChannel.enableLights(true);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            mNotificationManager.createNotificationChannel(notificationChannel);
+        }
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(requireContext(),CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle(getString(R.string.notification_title))
+                .setContentText(getString(R.string.notification_text,location.getName()))
+                .setAutoCancel(true);
+
+        mNotificationManager.notify(0,mBuilder.build());
     }
 
     // empty override methods for the LocationListener
