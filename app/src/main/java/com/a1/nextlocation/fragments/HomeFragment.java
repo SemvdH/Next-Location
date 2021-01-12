@@ -139,6 +139,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         roadOverlay.setColor(color);
 
         // pass the line to the route handler
+        RouteHandler.INSTANCE.setCurrentRouteDuration(directionsResult.getDuration());
         RouteHandler.INSTANCE.setCurrentRouteLine(roadOverlay);
         Log.d(TAG, "onDirectionsAvailable: successfully added road!");
 

@@ -14,6 +14,9 @@ import com.google.android.gms.location.GeofencingEvent;
 
 import java.util.List;
 
+/**
+ * broadcast receiver for geofence events
+ */
 public class GeoFenceBroadcastReceiver extends BroadcastReceiver {
     private final String TAG = GeoFenceBroadcastReceiver.class.getCanonicalName();
 
