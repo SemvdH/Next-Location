@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -29,6 +30,7 @@ public class SettingsFragment extends Fragment {
     private SharedPreferences.Editor editor;
     private SwitchCompat fontSwitch;
     private SwitchCompat imperialSwitch;
+    private SwitchCompat colourblindSwitch;
     private Refreshable refreshable;
 
     @Override
@@ -94,17 +96,38 @@ public class SettingsFragment extends Fragment {
             if(fontSwitch.isChecked())
             {
                 requireActivity().setTheme(R.style.Theme_NextLocationBig);
-                editor.putBoolean("fontSwitch",true);
-                editor.apply();
             }
             if(!fontSwitch.isChecked())
             {
-                requireActivity().setTheme(R.style.Theme_NextLocation);
-                editor.putBoolean("fontSwitch",false);
-                editor.apply();
+                requireActivity().setTheme(R.style.Theme_NextLocation);;
             }
+            editor.putBoolean("fontSwitch",fontSwitch.isChecked());
+            editor.apply();
             editor.commit();
         });
+
+        //Initialises colourblind mode switchCompat
+        this.colourblindSwitch = view.findViewById(R.id.colourblindSwitch);
+        fontSwitch.setChecked(sharedPreferences.getBoolean("colourblindSwitch", false));
+
+        //Initial check to see what setting was last chosen
+        if (colourblindSwitch.isChecked()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else if (!colourblindSwitch.isChecked()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        colourblindSwitch.setOnClickListener(view1 -> {
+            if (colourblindSwitch.isChecked()){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }else if (!colourblindSwitch.isChecked()){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            editor.putBoolean("colourblindSwitch", colourblindSwitch.isChecked());
+            editor.apply();
+            editor.commit();
+        });
+
     }
 
     private void initializeLanguageDropdown(View view) {
