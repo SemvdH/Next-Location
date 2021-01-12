@@ -338,6 +338,7 @@ public class HomeFragment extends Fragment implements LocationListener {
             // can't walk 100 meters in a few seconds
             if (distance < 100)
                 Data.INSTANCE.addDistance(distance);
+                Data.INSTANCE.setLocation(location);
         }
         currentLocation = location;
 

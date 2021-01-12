@@ -11,6 +11,7 @@ public enum Data {
     private int locationsVisited = 0;
     private long totalTime = 0;
     private double zoom = 0;
+    private android.location.Location location;
 
     public double getZoom() {
         return zoom;
@@ -51,4 +52,11 @@ public enum Data {
     }
 
 
+    public android.location.Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(android.location.Location location) {
+        this.location = location;
+    }
 }
