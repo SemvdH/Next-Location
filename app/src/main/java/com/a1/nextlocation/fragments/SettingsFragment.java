@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.a1.nextlocation.MainActivity;
 import com.a1.nextlocation.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +32,7 @@ public class SettingsFragment extends Fragment {
     private SharedPreferences.Editor editor;
     private SwitchCompat fontSwitch;
     private SwitchCompat imperialSwitch;
-    private SwitchCompat colourblindSwitch;
+    private SwitchCompat colorBlindMode;
     private Refreshable refreshable;
 
     @Override
@@ -106,28 +108,23 @@ public class SettingsFragment extends Fragment {
             editor.commit();
         });
 
-        //Initialises colourblind mode switchCompat
-        this.colourblindSwitch = view.findViewById(R.id.colourblindSwitch);
-        fontSwitch.setChecked(sharedPreferences.getBoolean("colourblindSwitch", false));
-
-        //Initial check to see what setting was last chosen
-        if (colourblindSwitch.isChecked()){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else if (!colourblindSwitch.isChecked()){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
-        colourblindSwitch.setOnClickListener(view1 -> {
-            if (colourblindSwitch.isChecked()){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            }else if (!colourblindSwitch.isChecked()){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }
-            editor.putBoolean("colourblindSwitch", colourblindSwitch.isChecked());
+        this.colorBlindMode = view.findViewById(R.id.settingsEyesButton);
+        this.colorBlindMode.setOnClickListener(view1 -> {
+            editor.putBoolean("colorBlindModeSwitch", imperialSwitch.isChecked());
             editor.apply();
             editor.commit();
-        });
 
+            if (colorBlindMode.isChecked()){
+                requireActivity().setTheme(R.style.Theme_NextLocation);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                System.out.println("AAN");
+            }else if (!colorBlindMode.isChecked()){
+                requireActivity().setTheme(R.style.Theme_NextLocationNight);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                System.out.println("UIT");
+            }
+
+        });
     }
 
     private void initializeLanguageDropdown(View view) {
