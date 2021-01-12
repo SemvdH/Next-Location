@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/ic_back_button_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,13 +30,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_margin="40dp"
         android:id="@+id/route_detail_image"
-        app:layout_constraintTop_toBottomOf="@id/route_detail_back_button"
+        android:layout_width="228dp"
+        android:layout_height="208dp"
+        android:layout_margin="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/route_detail_back_button" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -58,7 +57,6 @@
     </ScrollView>
 
 
-
     <Button
         android:id="@+id/start_route_button"
         android:layout_width="wrap_content"
@@ -66,9 +64,9 @@
         android:backgroundTint="@color/secondaryColour"
         android:text="@string/start_route"
         android:textColor="@color/primaryColour"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/total_distance" />
 
@@ -76,7 +74,6 @@
         android:id="@+id/total_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:background="@color/primaryColour"
         android:text="@string/total_distance"
         android:textColor="@color/secondaryColour"
