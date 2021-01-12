@@ -99,10 +99,12 @@ public class SettingsFragment extends Fragment {
             if(fontSwitch.isChecked())
             {
                 requireActivity().setTheme(R.style.Theme_NextLocationBig);
+                getActivity().recreate();
             }
             if(!fontSwitch.isChecked())
             {
-                requireActivity().setTheme(R.style.Theme_NextLocation);;
+                requireActivity().setTheme(R.style.Theme_NextLocation);
+                getActivity().recreate();
             }
             editor.putBoolean("fontSwitch",fontSwitch.isChecked());
             editor.apply();

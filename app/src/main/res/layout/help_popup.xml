@@ -24,10 +24,13 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="300dp"
-        android:layout_height="450dp"
+        android:layout_height="400dp"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/helpPopTitle">
+        app:layout_constraintTop_toBottomOf="@id/helpPopTitle"
+        app:layout_constraintBottom_toTopOf="@id/help_ok_button"
+        >
 
         <TextView
             android:layout_width="280dp"
@@ -54,7 +57,7 @@
         android:text="ok"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
+        app:layout_constraintTop_toBottomOf="@id/scrollView2"
         app:layout_constraintStart_toStartOf="parent" />
 
 
