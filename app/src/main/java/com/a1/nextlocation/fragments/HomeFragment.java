@@ -208,7 +208,7 @@ public class HomeFragment extends Fragment implements LocationListener {
             if (currentLocation == null) currentLocation = location;
 
             if (location != null) {
-                GeoPoint start = new GeoPoint(location.getLatitude(), location.getLongitude());
+                GeoPoint start = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
                 mapController.setCenter(start);
             }
 

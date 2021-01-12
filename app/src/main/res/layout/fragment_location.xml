@@ -15,8 +15,9 @@
         android:layout_margin="9dp"
         android:layout_marginTop="20dp"
         android:text="@string/locations"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@id/location_back_button"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
