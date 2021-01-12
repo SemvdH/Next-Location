@@ -12,8 +12,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.fragments.HelpPopup;
 import com.a1.nextlocation.fragments.HomeFragment;
+import com.a1.nextlocation.fragments.LocationFragment;
 import com.a1.nextlocation.fragments.Refreshable;
 import com.a1.nextlocation.fragments.RouteFragment;
 import com.a1.nextlocation.fragments.SettingsFragment;
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
     private static final String TAG = MainActivity.class.getName();
     private BottomNavigationView bottomNav;
     private ImageButton infoButton;
+    private HomeFragment homeFragment = new HomeFragment();
+    private RouteFragment routeFragment = new RouteFragment();
+    private StatisticFragment statisticFragment = new StatisticFragment();
+    private SettingsFragment settingsFragment = new SettingsFragment();
+
 
     /**
      * onCreate method that creates the main activity
@@ -61,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
         RouteListManager.INSTANCE.load();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).commit();
         }
     }
 
@@ -91,24 +98,26 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
         Fragment selectedFragment = null;
-
         switch (item.getItemId()) {
             case R.id.locations:
-                selectedFragment = new HomeFragment();
+                selectedFragment = homeFragment;
                 break;
             case R.id.routes:
-                selectedFragment = new RouteFragment();
+                selectedFragment = routeFragment;
                 break;
             case R.id.statistics:
-                selectedFragment = new StatisticFragment();
+                selectedFragment = statisticFragment;
                 break;
             case R.id.settings:
-                selectedFragment = new SettingsFragment();
+                selectedFragment = settingsFragment;
                 break;
         }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, selectedFragment).commit();
-        return true;
+        if (!selectedFragment.isVisible() && selectedFragment != null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, selectedFragment).commit();
+            return true;
+        }
+        return false;
     };
 
     /**
