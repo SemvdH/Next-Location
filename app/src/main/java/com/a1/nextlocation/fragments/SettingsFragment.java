@@ -108,7 +108,7 @@ public class SettingsFragment extends Fragment {
             editor.commit();
         });
 
-        this.colorBlindMode = view.findViewById(R.id.settingsEyesButton);
+        this.colorBlindMode = view.findViewById(R.id.colourblindSwitch);
         this.colorBlindMode.setOnClickListener(view1 -> {
             editor.putBoolean("colorBlindModeSwitch", imperialSwitch.isChecked());
             editor.apply();
@@ -117,10 +117,12 @@ public class SettingsFragment extends Fragment {
             if (colorBlindMode.isChecked()){
                 requireActivity().setTheme(R.style.Theme_NextLocation);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                getActivity().recreate();
                 System.out.println("AAN");
             }else if (!colorBlindMode.isChecked()){
-                requireActivity().setTheme(R.style.Theme_NextLocationNight);
+                requireActivity().setTheme(R.style.Theme_NextLocation);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                getActivity().recreate();
                 System.out.println("UIT");
             }
 

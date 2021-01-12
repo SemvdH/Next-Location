@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
 
         // initialize saved language from sharedPreferences
