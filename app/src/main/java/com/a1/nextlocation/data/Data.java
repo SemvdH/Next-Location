@@ -1,5 +1,12 @@
 package com.a1.nextlocation.data;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -11,6 +18,16 @@ public enum Data {
     private int locationsVisited = 0;
     private long totalTime = 0;
     private double zoom = 0;
+    private SharedPreferences.Editor editor;
+    private Context context;
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public void setEditor(SharedPreferences.Editor editor) {
+        this.editor = editor;
+    }
 
     public double getZoom() {
         return zoom;
@@ -20,10 +37,13 @@ public enum Data {
         this.zoom = zoom;
     }
 
-    private final ArrayList<String> visitedNames = new ArrayList<>();
+    private ArrayList<String> visitedNames = new ArrayList<>();
 
     public void addDistance(double d) {
         distanceTraveled += d;
+
+        editor.putString("distanceTraveled", String.valueOf(distanceTraveled));
+        editor.apply();
     }
 
     public long getTotalTime() {
@@ -34,7 +54,6 @@ public enum Data {
         totalTime += time;
     }
 
-
     public double getDistanceTraveled() {
         return distanceTraveled;
     }
@@ -43,6 +62,9 @@ public enum Data {
         if (!visitedNames.contains(location.getName())) {
             locationsVisited++;
             visitedNames.add(location.getName());
+            saveVisitedNamesList();
+            editor.putInt("locationsVisited", locationsVisited);
+            editor.apply();
         }
     }
 
@@ -50,5 +72,25 @@ public enum Data {
         return locationsVisited;
     }
 
+    public void saveVisitedNamesList(){
+        Gson gson = new Gson();
+        String json = gson.toJson(visitedNames);
+        editor.putString("visitedNames", json);
+        editor.apply();
+    }
+
+    public ArrayList<String> loadAndGetVisitedNamesList(){
+        String json = context.getSharedPreferences("Data", Context.MODE_PRIVATE).getString("visitedNames", "[]");
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        visitedNames = new Gson().fromJson(json, type);
+        return visitedNames;
+    }
+
+    public void load(){
+        SharedPreferences prefs = context.getSharedPreferences("Data", Context.MODE_PRIVATE);
+        this.editor = prefs.edit();
+        Data.INSTANCE.addDistance(Double.parseDouble(prefs.getString("distanceTraveled", "0")));
+        this.locationsVisited = loadAndGetVisitedNamesList().size();
+    }
 
 }

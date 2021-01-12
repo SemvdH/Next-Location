@@ -3,6 +3,7 @@ package com.a1.nextlocation.fragments;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -336,8 +337,9 @@ public class HomeFragment extends Fragment implements LocationListener {
         if (currentLocation != null) {
             double distance = currentLocation.distanceTo(location); // in meters
             // can't walk 100 meters in a few seconds
-            if (distance < 100)
+            if (distance < 100) {
                 Data.INSTANCE.addDistance(distance);
+            }
         }
         currentLocation = location;
 

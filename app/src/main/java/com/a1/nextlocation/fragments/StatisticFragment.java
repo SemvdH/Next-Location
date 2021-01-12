@@ -79,7 +79,7 @@ public class StatisticFragment extends Fragment {
 
     private void initializeDistanceTextView(View view){
         distance = view.findViewById(R.id.statistics_km);
-        double dist = Data.INSTANCE.getDistanceTraveled()/1000;
+        double dist = Double.parseDouble(getContext().getSharedPreferences("Data", Context.MODE_PRIVATE).getString("distanceTraveled", "0")) /1000;
         if (getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false))
             distance.setText(""  + String.format("%.1f",dist * 0.621371) + " mi");
         else
