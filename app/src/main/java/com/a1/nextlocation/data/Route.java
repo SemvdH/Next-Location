@@ -81,7 +81,6 @@ public class Route implements Parcelable {
 
 
     public int getTotalTime() {
-
         return totalTime;
     }
 

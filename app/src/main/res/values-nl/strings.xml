@@ -32,4 +32,6 @@
     <string name="following_locations">"Deze route bevat de volgende locaties: "</string>
     <string name="notification_title">Je bent dicht bij een locatie!</string>
     <string name="notification_text">Je bent bijna bij %1$s</string>
+    <string name="hour">uur</string>
+    <string name="minutes">minuten</string>
 </resources>

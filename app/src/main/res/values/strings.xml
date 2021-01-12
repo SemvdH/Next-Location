@@ -30,4 +30,6 @@
     <string name="following_locations">This route contains the following locations: </string>
     <string name="end_location">End location</string>
     <string name="start_location">Start location</string>
+    <string name="hour">hour</string>
+    <string name="minutes">minutes</string>
 </resources>

@@ -31,6 +31,7 @@ public class RouteDetailFragment extends Fragment {
 
     private Route route;
     private Refreshable refreshable;
+    private String time;
 
     @Override
     public void onAttach(@NotNull Context context) {
@@ -69,11 +70,11 @@ public class RouteDetailFragment extends Fragment {
         String detailText = this.route.getDescription() + "<br><br><b>" + getResources().getString(R.string.following_locations) + "</b>" + locations +  "<br><br><b>" + getResources().getString(R.string.start_location) + ": </b>" + route.getLocations().get(0).getName() + "<br>" + "<b>" + getResources().getString(R.string.end_location) + ": </b>" + route.getLocations().get(route.getLocations().size()-1).getName();
         routeDetailText.setText(Html.fromHtml(detailText));
 
-
+        //sets the text of the totaldistance
         TextView totalDistance = view.findViewById(R.id.total_distance);
-        String distance_tekst = getResources().getString(R.string.total_distance_route);
+        //looks if imperial units or metric
         boolean imperialChecked = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false);
-        totalDistance.setText(distance_tekst + " " + String.format("%.1f", calculateRoute(this.route.getLocations())) + (imperialChecked ? "yd" : "m"));
+        totalDistance.setText(getResources().getString(R.string.total_distance_route) + " " + String.format("%.1f", calculateRoute(this.route.getLocations())) + (imperialChecked ? "yd" : "m") + "\n" + getResources().getString(R.string.total_time) + " " + this.time);
 
         //Initialises the back button
         ImageButton backButton = view.findViewById(R.id.route_detail_back_button);
@@ -123,11 +124,23 @@ public class RouteDetailFragment extends Fragment {
         }
         System.out.println("Total Distance:  " + totalDistance);
 
+        calculateTime(totalDistance);
         // if the imperialSwitch is checked, return feet, if not, return meters
         if (getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false))
             return totalDistance * 1.0936133;
         else
             return totalDistance;
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void calculateTime(double totalDistance){
+        double totalTimeInMinutes = ((totalDistance / 1000) / 5) * 60;
+        if(totalTimeInMinutes > 60) {
+            int hours = (int)(totalTimeInMinutes / 60);
+            int minutes = (int)(totalTimeInMinutes % 60);
+            this.time = hours + " " + getResources().getString(R.string.hour) + " " + minutes + " " +  getResources().getString(R.string.minutes);
+        }
+        else this.time = (int)(((totalDistance / 1000) / 5) * 60) + " " + getResources().getString(R.string.minutes);
     }
 
 }
