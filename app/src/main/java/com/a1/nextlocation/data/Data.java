@@ -63,6 +63,9 @@ public enum Data {
 
     public void addTimeWalked(long time) {
         totalTime += time;
+
+        editor.putLong("timeWalked", totalTime);
+        editor.apply();
     }
 
     public double getDistanceTraveled() {
@@ -105,8 +108,9 @@ public enum Data {
     public void load(){
         SharedPreferences prefs = context.getSharedPreferences("Data", Context.MODE_PRIVATE);
         this.editor = prefs.edit();
-        Data.INSTANCE.addDistance(Double.parseDouble(prefs.getString("distanceTraveled", "0")));
+        this.addDistance(Double.parseDouble(prefs.getString("distanceTraveled", "0")));
         this.locationsVisited = loadAndGetVisitedNamesList().size();
+        this.totalTime = prefs.getLong("timeWalked", 0);
     }
 
     public android.location.Location getLocation() {
