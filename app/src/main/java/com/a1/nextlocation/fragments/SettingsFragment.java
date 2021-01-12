@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,8 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.a1.nextlocation.MainActivity;
 import com.a1.nextlocation.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -66,7 +63,8 @@ public class SettingsFragment extends Fragment {
         ImageView backButton = view.findViewById(R.id.settings_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
@@ -87,24 +85,23 @@ public class SettingsFragment extends Fragment {
         fontSwitch.setChecked(sharedPreferences.getBoolean("fontSwitch", false));
 
         //Initial check to see what setting was last chosen
-        if (fontSwitch.isChecked()){
+        if (fontSwitch.isChecked()) {
             requireActivity().setTheme(R.style.Theme_NextLocationBig);
-        }else if (!fontSwitch.isChecked()){
+        } else if (!fontSwitch.isChecked()) {
             requireActivity().setTheme(R.style.Theme_NextLocation);
         }
 
         //Changes the font settings depending on the state of the toggle
 
         fontSwitch.setOnClickListener(view1 -> {
-            if(fontSwitch.isChecked())
-            {
+            if (fontSwitch.isChecked()) {
                 requireActivity().setTheme(R.style.Theme_NextLocationBig);
             }
-            if(!fontSwitch.isChecked())
-            {
-                requireActivity().setTheme(R.style.Theme_NextLocation);;
+            if (!fontSwitch.isChecked()) {
+                requireActivity().setTheme(R.style.Theme_NextLocation);
+                ;
             }
-            editor.putBoolean("fontSwitch",fontSwitch.isChecked());
+            editor.putBoolean("fontSwitch", fontSwitch.isChecked());
             editor.apply();
             editor.commit();
         });
@@ -117,12 +114,12 @@ public class SettingsFragment extends Fragment {
             editor.apply();
             editor.commit();
 
-            if (colorBlindMode.isChecked()){
+            if (colorBlindMode.isChecked()) {
                 requireActivity().setTheme(R.style.Theme_NextLocation);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 getActivity().recreate();
                 System.out.println("AAN");
-            }else if (!colorBlindMode.isChecked()){
+            } else if (!colorBlindMode.isChecked()) {
                 requireActivity().setTheme(R.style.Theme_NextLocation);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 getActivity().recreate();
