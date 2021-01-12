@@ -3,6 +3,7 @@ package com.a1.nextlocation.fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,7 @@ public class RouteDetailFragment extends Fragment {
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_route_detail, container, false);
@@ -60,8 +61,14 @@ public class RouteDetailFragment extends Fragment {
         TextView routeName = view.findViewById(R.id.route_title);
         routeName.setText(this.route.getName());
 
-        TextView routeDetailText = view.findViewById(R.id.reoute_detail_tekst);
-        routeDetailText.setText(this.route.getDescription());
+        TextView routeDetailText = view.findViewById(R.id.route_detail_tekst);
+        StringBuilder locations = new StringBuilder();
+        for(Location location : this.route.getLocations()){
+            locations.append("<br>•").append(location.getName());
+        }
+        String detailText = this.route.getDescription() + "<br><br><b>" + getResources().getString(R.string.following_locations) + "</b>" + locations +  "<br><br><b>" + getResources().getString(R.string.start_location) + ": </b>" + route.getLocations().get(0).getName() + "<br>" + "<b>" + getResources().getString(R.string.end_location) + ": </b>" + route.getLocations().get(route.getLocations().size()-1).getName();
+        routeDetailText.setText(Html.fromHtml(detailText));
+
 
         TextView totalDistance = view.findViewById(R.id.total_distance);
         String distance_tekst = getResources().getString(R.string.total_distance_route);

@@ -1,6 +1,6 @@
 [
   {
-    "name": "Evenementen Route",
+    "name": "Event Route",
     "locations": [
       {
         "name": "Escaping Breda: Escape Room Games Boschstraat 114",
@@ -39,7 +39,7 @@
     "imageURL": "escaping_room"
   },
   {
-    "name": "Hongerige Route",
+    "name": "Hungry Route",
     "locations": [
       {
         "name":"Subway Karnemelkstraat 10 A, 1",

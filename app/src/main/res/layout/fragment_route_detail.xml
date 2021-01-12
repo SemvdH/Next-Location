@@ -37,19 +37,27 @@
         android:id="@+id/route_detail_image"
         app:layout_constraintTop_toBottomOf="@id/route_detail_back_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/reoute_detail_tekst" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-        android:id="@+id/reoute_detail_tekst"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        android:layout_height="200dp"
+        android:layout_margin="20dp"
+        android:background="@color/secondaryColour"
+        android:id="@+id/route_scroll_view"
+        app:layout_constraintBottom_toTopOf="@id/total_distance"
+        app:layout_constraintTop_toBottomOf="@id/route_detail_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/route_detail_image" />
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <TextView
+            android:id="@+id/route_detail_tekst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp" />
+    </ScrollView>
+
+
 
     <Button
         android:id="@+id/start_route_button"
@@ -77,6 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reoute_detail_tekst" />
+        app:layout_constraintTop_toBottomOf="@+id/route_scroll_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,7 +54,8 @@ public class LocationDetailFragment extends Fragment {
             currentDistanceToLocation = Location.getDistance(Data.INSTANCE.getLocation().getLatitude(), Data.INSTANCE.getLocation().getLongitude(), this.location.getLat(), this.location.getLong());
         }
 
-        String detailText = "";
+        //Adds distance text from the current distance of the user to the opened location
+        String detailText;
         if(getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false)){
             if(currentDistanceToLocation > 1609)
                 detailText = location.getDescription() + String.format("%.3f",currentDistanceToLocation * 0.000621371192) + "mi";
@@ -66,7 +67,6 @@ public class LocationDetailFragment extends Fragment {
             else
                 detailText = location.getDescription() + currentDistanceToLocation + "m";
         }
-           
         this.detailText = view.findViewById(R.id.detail_location_text);
         this.detailText.setText(detailText);
 
