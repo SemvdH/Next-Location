@@ -2,6 +2,7 @@ package com.a1.nextlocation.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -108,7 +109,7 @@ public enum Data {
     public void load(){
         SharedPreferences prefs = context.getSharedPreferences("Data", Context.MODE_PRIVATE);
         this.editor = prefs.edit();
-        this.addDistance(Double.parseDouble(prefs.getString("distanceTraveled", "0")));
+        this.distanceTraveled = (Double.parseDouble(prefs.getString("distanceTraveled", "0")));
         this.locationsVisited = loadAndGetVisitedNamesList().size();
         this.totalTime = prefs.getLong("timeWalked", 0);
     }
