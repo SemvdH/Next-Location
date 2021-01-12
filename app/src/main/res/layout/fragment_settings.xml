@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryColour"
     android:id="@+id/settingFragment"
-    tools:context=".fragments.SettingsFragment">
+    tools:context=".fragments.SettingsFragment"
+    android:theme="@style/Theme.Switches">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/settings_back_button"
