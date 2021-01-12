@@ -91,7 +91,8 @@ public class HomeFragment extends Fragment implements LocationListener {
         this.imageButton = view.findViewById(R.id.location_list_button);
         this.imageButton.setOnClickListener(v -> {
             LocationFragment locationFragment = new LocationFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
         // set up the route stop button

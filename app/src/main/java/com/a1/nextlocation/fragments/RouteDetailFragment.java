@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Location;
@@ -64,10 +63,10 @@ public class RouteDetailFragment extends Fragment {
 
         TextView routeDetailText = view.findViewById(R.id.route_detail_tekst);
         StringBuilder locations = new StringBuilder();
-        for(Location location : this.route.getLocations()){
+        for (Location location : this.route.getLocations()) {
             locations.append("<br>•").append(location.getName());
         }
-        String detailText = this.route.getDescription() + "<br><br><b>" + getResources().getString(R.string.following_locations) + "</b>" + locations +  "<br><br><b>" + getResources().getString(R.string.start_location) + ": </b>" + route.getLocations().get(0).getName() + "<br>" + "<b>" + getResources().getString(R.string.end_location) + ": </b>" + route.getLocations().get(route.getLocations().size()-1).getName();
+        String detailText = this.route.getDescription() + "<br><br><b>" + getResources().getString(R.string.following_locations) + "</b>" + locations + "<br><br><b>" + getResources().getString(R.string.start_location) + ": </b>" + route.getLocations().get(0).getName() + "<br>" + "<b>" + getResources().getString(R.string.end_location) + ": </b>" + route.getLocations().get(route.getLocations().size() - 1).getName();
         routeDetailText.setText(Html.fromHtml(detailText));
 
         //sets the text of the totaldistance
@@ -80,7 +79,8 @@ public class RouteDetailFragment extends Fragment {
         ImageButton backButton = view.findViewById(R.id.route_detail_back_button);
         backButton.setOnClickListener(v -> {
             RouteFragment routeFragment = new RouteFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeFragment).addToBackStack(null).commit();
         });
 
         Button startButton = view.findViewById(R.id.start_route_button);

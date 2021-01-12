@@ -24,7 +24,7 @@
     <string name="English">English</string>
     <string name="Chinese">Chinese</string>
     <string name="help">HELP</string>
-    <string name="help_discription">Hasn\'t been translated yet</string>
+    <string name="help_discription">Various buttons can be seen at the bottom of the screen. These buttons have the following functions: \n\nLocations: displays a list of all locations that can be visited. Each location is briefly described. \n\nRoutes: Displays a list of all routes that can be walked. A description is given of each route. \n\nStats: Displays personal statistics. \n\nSettings: This is where app settings can be adjusted according to your preferences. \n\nHold down on a location to display additional information about the chosen location. \n\n\n</string>
     <string name="notification_title">You\'re close to a location!</string>
     <string name="notification_text">You\'re almost at %1$s</string>
     <string name="following_locations">This route contains the following locations: </string>

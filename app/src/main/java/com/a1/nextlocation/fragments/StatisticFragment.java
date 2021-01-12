@@ -58,21 +58,24 @@ public class StatisticFragment extends Fragment {
         ImageView backButton = view.findViewById(R.id.statistics_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
         //Initialises the coupon button
         ImageView couponButton = view.findViewById(R.id.coupon_button);
         couponButton.setOnClickListener(v -> {
             CouponFragment couponFragment = new CouponFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
         });
 
         //Makes the constraintlayout clickable and opens the same layout as the coupon button
         ConstraintLayout constraintLayout = view.findViewById(R.id.Box4);
         constraintLayout.setOnClickListener(v -> {
             CouponFragment couponFragment = new CouponFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
         });
         return view;
     }

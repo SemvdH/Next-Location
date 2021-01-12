@@ -53,7 +53,8 @@ public class CouponFragment extends Fragment {
         this.backButton = view.findViewById(R.id.coupon_back_button);
         this.backButton.setOnClickListener(v -> {
             StatisticFragment statisticFragment = new StatisticFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, statisticFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, statisticFragment).addToBackStack(null).commit();
         });
 
         this.couponRecyclerView.setLayoutManager(this.layoutManager);

@@ -22,24 +22,28 @@
         android:paddingVertical="10dp"/>
 
     <ScrollView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/helpPopTitle"
+        android:id="@+id/scrollView2"
         android:layout_width="300dp"
-        android:layout_height="450dp">
+        android:layout_height="400dp"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/helpPopTitle"
+        app:layout_constraintBottom_toTopOf="@id/help_ok_button"
+        >
 
         <TextView
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/helpPopTitle"
             android:layout_width="280dp"
             android:layout_height="430dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/help_discription"
             android:textColor="@color/secondaryColour"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/helpPopTitle" />
 
 
     </ScrollView>
@@ -48,11 +52,13 @@
         android:id="@+id/help_ok_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/buttonColour"
+        android:textColor="@color/primaryColour"
         android:text="ok"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/helpPopTitle" />
+        app:layout_constraintTop_toBottomOf="@id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 

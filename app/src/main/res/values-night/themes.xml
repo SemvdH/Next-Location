@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.NextLocation" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColour</item>
+        <item name="colorPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColour</item>
         <!-- Customize your theme here. -->
@@ -12,8 +12,8 @@
     </style>
 
     <style name="Theme.Switches" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorControlActivated">@color/buttonColour</item>
-        <item name="colorSwitchThumbNormal">@color/primaryColour</item>
+        <item name="colorControlActivated">@color/secondaryColour</item>
+        <item name="colorSwitchThumbNormal">@color/buttonColourCB</item>
     </style>
 
     <style name="Theme.NextLocationBig" parent="Theme.MaterialComponents.DayNight.NoActionBar">
