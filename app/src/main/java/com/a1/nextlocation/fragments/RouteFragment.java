@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,13 +48,15 @@ public class RouteFragment extends Fragment {
             Bundle routeBundle = new Bundle();
             routeBundle.putParcelable("route", this.routeList.get(clickedPosition));
             routeDetailFragment.setArguments(routeBundle);
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeDetailFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeDetailFragment).addToBackStack(null).commit();
         });
 
         ImageButton backButton = view.findViewById(R.id.route_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
         routeRecyclerView.setLayoutManager(layoutManager);
