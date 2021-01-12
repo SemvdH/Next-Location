@@ -249,7 +249,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         // marker icon
         Drawable marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
         marker.setAlpha(255);
-        marker.setTint(getResources().getColor(R.color.primaryColour));
+        marker.setTint(getResources().getColor(R.color.secondaryColour));
 
         // add all locations to the overlay itemss
         for (com.a1.nextlocation.data.Location location : locations) {
