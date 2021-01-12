@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.NextLocation" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColour</item>
+        <item name="colorPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColour</item>
         <!-- Customize your theme here. -->

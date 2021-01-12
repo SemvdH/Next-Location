@@ -267,8 +267,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/ic_back_button_24"
-        android:backgroundTint="@color/buttonColour"
-        android:src="@drawable/ic_back_button_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
