@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.data.RouteHandler;
+import com.a1.nextlocation.geofencing.GeofenceInitalizer;
 import com.a1.nextlocation.json.DirectionsResult;
 import com.a1.nextlocation.network.ApiHandler;
 import com.a1.nextlocation.recyclerview.LocationListManager;
@@ -71,6 +72,7 @@ public class HomeFragment extends Fragment implements LocationListener {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         color = requireContext().getColor(R.color.red);
+        Data.INSTANCE.setLocationProximityListener(this::onLocationVisited);
     }
 
     @Override
@@ -217,6 +219,8 @@ public class HomeFragment extends Fragment implements LocationListener {
 
     }
 
+
+
     /**
      * displays the route that is currently being followed as a red line
      */
@@ -299,6 +303,17 @@ public class HomeFragment extends Fragment implements LocationListener {
         mapView.getOverlays().add(allLocationsOverlay);
         Log.d(TAG, "addLocations: successfully added locations");
 
+        addGeofences(locations);
+
+    }
+
+    /**
+     * adds the geofences for the currently active locations
+     * @param locations the locations to add geofences for
+     */
+    private void addGeofences(List<com.a1.nextlocation.data.Location> locations) {
+        GeofenceInitalizer initializer = new GeofenceInitalizer(requireContext());
+        initializer.init(locations);
     }
 
     /**
@@ -362,6 +377,11 @@ public class HomeFragment extends Fragment implements LocationListener {
         });
 
         t.start();
+
+    }
+
+    public void onLocationVisited(com.a1.nextlocation.data.Location location) {
+        Data.INSTANCE.visitLocation(location);
 
     }
 

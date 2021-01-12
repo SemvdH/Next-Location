@@ -11,6 +11,15 @@ public enum Data {
     private int locationsVisited = 0;
     private long totalTime = 0;
     private double zoom = 0;
+    private LocationProximityListener locationProximityListener;
+
+    public LocationProximityListener getLocationProximityListener() {
+        return locationProximityListener;
+    }
+
+    public void setLocationProximityListener(LocationProximityListener locationProximityListener) {
+        this.locationProximityListener = locationProximityListener;
+    }
 
     public double getZoom() {
         return zoom;
@@ -48,6 +57,11 @@ public enum Data {
 
     public int getLocationsVisited() {
         return locationsVisited;
+    }
+
+    @FunctionalInterface
+    public interface LocationProximityListener {
+        void onLocationVisited(Location location);
     }
 
 
