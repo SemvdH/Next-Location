@@ -46,6 +46,7 @@ public class SettingsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         editor = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).edit();
+
     }
 
     @Override
@@ -109,8 +110,10 @@ public class SettingsFragment extends Fragment {
         });
 
         this.colorBlindMode = view.findViewById(R.id.colourblindSwitch);
+        this.colorBlindMode.setChecked(sharedPreferences.getBoolean("colorBlindModeSwitch", false));
+
         this.colorBlindMode.setOnClickListener(view1 -> {
-            editor.putBoolean("colorBlindModeSwitch", imperialSwitch.isChecked());
+            editor.putBoolean("colorBlindModeSwitch", colorBlindMode.isChecked());
             editor.apply();
             editor.commit();
 
