@@ -34,4 +34,5 @@
     <string name="notification_text">Je bent bijna bij %1$s</string>
     <string name="hour">uur</string>
     <string name="minutes">minuten</string>
+    <string name="route_started_toast">Route is gestart!</string>
 </resources>
