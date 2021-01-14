@@ -91,7 +91,7 @@ public class GeofenceInitalizer {
     private void addGeofence(GeoPoint p, String name) {
         if (!checkFineLocationPermission()) return;
 
-        Geofence geofence = geoFencingHelper.getGeofence(name, p, 45);
+        Geofence geofence = geoFencingHelper.getGeofence(name, p, 60);
         GeofencingRequest geofencingRequest = geoFencingHelper.getGeoFencingRequest(geofence);
         PendingIntent pendingIntent = geoFencingHelper.getPendingIntent();
 
