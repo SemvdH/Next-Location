@@ -112,4 +112,13 @@ public class Route implements Parcelable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setLocationVisited(Location location) {
+        for (Location l : this.locations) {
+            if (l.getName().equals(location.getName())) {
+                l.setVisited(true);
+                break;
+            }
+        }
+    }
 }

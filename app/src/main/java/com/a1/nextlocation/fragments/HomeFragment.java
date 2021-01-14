@@ -263,7 +263,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         for (com.a1.nextlocation.data.Location location : locations) {
             OverlayItem item = new OverlayItem(location.getName(), location.getDescription(), location.convertToGeoPoint());
             Drawable marker = null;
-            if (location.isVisited() && Data.INSTANCE.isVisited(location)) {
+            if (location.isVisited()) {
                 Log.d(TAG, "addLocations: location " + location.getName() + " is visited");
                 marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
                 marker.setAlpha(255);

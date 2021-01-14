@@ -64,6 +64,14 @@ public enum RouteHandler {
             Data.INSTANCE.addTimeWalked(System.currentTimeMillis() - startedTime);
         }
         this.currentRoute = route;
+
+        // sync the visited locations with the route
+        for (Location l : this.currentRoute.getLocations()) {
+            if (Data.INSTANCE.isVisited(l)) {
+                this.currentRoute.setLocationVisited(l);
+            }
+        }
+
         setFollowingRoute(true);
         startedTime = System.currentTimeMillis();
     }
