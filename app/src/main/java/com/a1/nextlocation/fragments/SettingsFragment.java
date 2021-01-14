@@ -65,9 +65,10 @@ public class SettingsFragment extends Fragment {
         ImageView backButton = view.findViewById(R.id.settings_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            if (getActivity() != null)
+            if (getActivity() != null) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
-        });
+                refreshable.refreshAndNavigateTo(R.id.map_view);
+            }});
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
 

@@ -1,5 +1,6 @@
 package com.a1.nextlocation.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +18,21 @@ import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.recyclerview.RouteAdapter;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class RouteFragment extends Fragment {
     private static final String TAG = RouteFragment.class.getCanonicalName();
 
     private List<Route> routeList;
+    private Refreshable refreshable;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        refreshable = (Refreshable) context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,8 +65,10 @@ public class RouteFragment extends Fragment {
         ImageButton backButton = view.findViewById(R.id.route_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            if (getActivity() != null)
+            if (getActivity() != null) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+                refreshable.refreshAndNavigateTo(R.id.map_view);
+            }
         });
 
         routeRecyclerView.setLayoutManager(layoutManager);
