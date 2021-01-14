@@ -130,9 +130,10 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
      */
     @Override
     public void refreshAndNavigateTo(int id) {
-        bottomNav.getMenu().clear();
-        bottomNav.inflateMenu(R.menu.navmenu);
-        bottomNav.setSelectedItemId(id);
+        this.setContentView(R.layout.activity_main);
+        BottomNavigationView navigationView = (BottomNavigationView)  this.findViewById(R.id.navigation_bar);
+        navigationView.setSelectedItemId(id);
+        navigationView.setOnNavigationItemSelectedListener(navListener);
     }
 
     private final View.OnClickListener onInfoClickListener = new View.OnClickListener() {
