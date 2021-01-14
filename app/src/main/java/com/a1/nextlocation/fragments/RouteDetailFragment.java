@@ -97,7 +97,7 @@ public class RouteDetailFragment extends Fragment {
     public void startRoute(View view) {
         ApiHandler.INSTANCE.getDirections(route);
         RouteHandler.INSTANCE.followRoute(route);
-        Toast.makeText(requireContext(), "Route started!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), R.string.route_started_toast, Toast.LENGTH_SHORT).show();
         // navigates to the HomeFragment and refreshes the BottomNavigation
         refreshable.refreshAndNavigateTo(R.id.locations);
     }
