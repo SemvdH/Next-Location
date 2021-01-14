@@ -5,7 +5,6 @@ import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -25,7 +24,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Data;
@@ -92,7 +90,7 @@ public class HomeFragment extends Fragment implements LocationListener {
         this.imageButton.setOnClickListener(v -> {
             LocationFragment locationFragment = new LocationFragment();
             if (getActivity() != null)
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationFragment).addToBackStack(null).commit();
         });
 
         // set up the route stop button
@@ -151,7 +149,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initializer = new GeofenceInitalizer(requireContext(),requireActivity());
+        initializer = new GeofenceInitalizer(requireContext(), requireActivity());
         initMap(view);
     }
 
@@ -229,7 +227,6 @@ public class HomeFragment extends Fragment implements LocationListener {
     }
 
 
-
     /**
      * displays the route that is currently being followed as a red line
      */
@@ -265,11 +262,16 @@ public class HomeFragment extends Fragment implements LocationListener {
         // add all locations to the overlay itemss
         for (com.a1.nextlocation.data.Location location : locations) {
             OverlayItem item = new OverlayItem(location.getName(), location.getDescription(), location.convertToGeoPoint());
-            Drawable marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
-            marker.setAlpha(255);
+            Drawable marker = null;
             if (location.isVisited() && Data.INSTANCE.isVisited(location)) {
+                Log.d(TAG, "addLocations: location " + location.getName() + " is visited");
+                marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24);
+                marker.setAlpha(255);
                 marker.setTint(getResources().getColor(R.color.red));
             } else {
+                Log.d(TAG, "addLocations: location " + location.getName() + " is not visited");
+                marker = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24_2);
+                marker.setAlpha(255);
                 marker.setTint(getResources().getColor(R.color.secondaryColour));
             }
             item.setMarker(marker);
@@ -324,6 +326,7 @@ public class HomeFragment extends Fragment implements LocationListener {
 
     /**
      * adds the geofences for the currently active locations
+     *
      * @param locations the locations to add geofences for
      */
     private void addGeofences(List<com.a1.nextlocation.data.Location> locations) {
@@ -400,6 +403,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     }
 
     public void onLocationVisited(com.a1.nextlocation.data.Location location) {
+        location.setVisited(true);
         Data.INSTANCE.visitLocation(location);
         showNotification(location);
     }
@@ -416,13 +420,13 @@ public class HomeFragment extends Fragment implements LocationListener {
             mNotificationManager.createNotificationChannel(notificationChannel);
         }
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(requireContext(),CHANNEL_ID)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(requireContext(), CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(getString(R.string.notification_title))
-                .setContentText(getString(R.string.notification_text,location.getName()))
+                .setContentText(getString(R.string.notification_text, location.getName()))
                 .setAutoCancel(true);
 
-        mNotificationManager.notify(0,mBuilder.build());
+        mNotificationManager.notify(0, mBuilder.build());
     }
 
     // empty override methods for the LocationListener
