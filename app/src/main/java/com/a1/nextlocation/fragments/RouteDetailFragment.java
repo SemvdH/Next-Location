@@ -100,6 +100,7 @@ public class RouteDetailFragment extends Fragment {
         Toast.makeText(requireContext(), R.string.route_started_toast, Toast.LENGTH_SHORT).show();
         // navigates to the HomeFragment and refreshes the BottomNavigation
         refreshable.refreshAndNavigateTo(R.id.locations);
+        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
     }
 
     /**
