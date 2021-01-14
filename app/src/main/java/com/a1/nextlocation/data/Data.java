@@ -4,17 +4,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.a1.nextlocation.recyclerview.LocationListManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * singleton to keep track of different global data
  */
 public enum Data {
     INSTANCE;
+
+    private final String TAG = Data.class.getCanonicalName();
     private double distanceTraveled = 0;
     private int locationsVisited = 0;
     private long totalTime = 0;
@@ -103,15 +107,39 @@ public enum Data {
         String json = context.getSharedPreferences("Data", Context.MODE_PRIVATE).getString("visitedNames", "[]");
         Type type = new TypeToken<ArrayList<String>>() {}.getType();
         visitedNames = new Gson().fromJson(json, type);
+        Log.i(TAG, "loadAndGetVisitedNamesList: visited names: " + Arrays.toString(visitedNames.toArray()));
         return visitedNames;
     }
+
 
     public void load(){
         SharedPreferences prefs = context.getSharedPreferences("Data", Context.MODE_PRIVATE);
         this.editor = prefs.edit();
         this.distanceTraveled = (Double.parseDouble(prefs.getString("distanceTraveled", "0")));
+
         this.locationsVisited = loadAndGetVisitedNamesList().size();
+        syncLocationObjectsWithList();
         this.totalTime = prefs.getLong("timeWalked", 0);
+    }
+
+    /**
+     * sync the visited boolean for location objects with the received list
+     */
+    private void syncLocationObjectsWithList() {
+        for (Location l : LocationListManager.INSTANCE.getLocationList()) {
+            if (visitedNames.contains(l.getName())) l.setVisited(true);
+        }
+    }
+
+    /**
+     * clears the visited locations
+     */
+    public void clearVisitedLocations() {
+        visitedNames.clear();
+        locationsVisited = 0;
+        for (Location l : LocationListManager.INSTANCE.getLocationList()) {
+            l.setVisited(false);
+        }
     }
 
     public boolean isVisited(Location location) {
