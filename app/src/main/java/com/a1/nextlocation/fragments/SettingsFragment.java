@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.a1.nextlocation.R;
+import com.a1.nextlocation.data.Data;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,6 +31,7 @@ public class SettingsFragment extends Fragment {
     private SharedPreferences.Editor editor;
     private SwitchCompat fontSwitch;
     private SwitchCompat imperialSwitch;
+    private SwitchCompat colorBlindMode;
     private Refreshable refreshable;
 
     @Override
@@ -42,6 +45,7 @@ public class SettingsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         editor = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).edit();
+
     }
 
     @Override
@@ -61,8 +65,10 @@ public class SettingsFragment extends Fragment {
         ImageView backButton = view.findViewById(R.id.settings_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
-        });
+            if (getActivity() != null) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+                refreshable.refreshAndNavigateTo(R.id.map_view);
+            }});
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
 
@@ -82,28 +88,49 @@ public class SettingsFragment extends Fragment {
         fontSwitch.setChecked(sharedPreferences.getBoolean("fontSwitch", false));
 
         //Initial check to see what setting was last chosen
-        if (fontSwitch.isChecked()){
+        if (fontSwitch.isChecked()) {
             requireActivity().setTheme(R.style.Theme_NextLocationBig);
-        }else if (!fontSwitch.isChecked()){
+        } else if (!fontSwitch.isChecked()) {
             requireActivity().setTheme(R.style.Theme_NextLocation);
         }
 
         //Changes the font settings depending on the state of the toggle
 
         fontSwitch.setOnClickListener(view1 -> {
-            if(fontSwitch.isChecked())
-            {
+            if (fontSwitch.isChecked()) {
                 requireActivity().setTheme(R.style.Theme_NextLocationBig);
-                editor.putBoolean("fontSwitch",true);
-                editor.apply();
+                getActivity().recreate();
             }
             if(!fontSwitch.isChecked())
             {
                 requireActivity().setTheme(R.style.Theme_NextLocation);
-                editor.putBoolean("fontSwitch",false);
-                editor.apply();
+                getActivity().recreate();
             }
+            editor.putBoolean("fontSwitch", fontSwitch.isChecked());
+            editor.apply();
             editor.commit();
+        });
+
+        this.colorBlindMode = view.findViewById(R.id.colourblindSwitch);
+        this.colorBlindMode.setChecked(sharedPreferences.getBoolean("colorBlindModeSwitch", false));
+
+        this.colorBlindMode.setOnClickListener(view1 -> {
+            editor.putBoolean("colorBlindModeSwitch", colorBlindMode.isChecked());
+            editor.apply();
+            editor.commit();
+
+            if (colorBlindMode.isChecked()) {
+                requireActivity().setTheme(R.style.Theme_NextLocation);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                getActivity().recreate();
+                System.out.println("AAN");
+            } else if (!colorBlindMode.isChecked()) {
+                requireActivity().setTheme(R.style.Theme_NextLocation);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                getActivity().recreate();
+                System.out.println("UIT");
+            }
+
         });
     }
 

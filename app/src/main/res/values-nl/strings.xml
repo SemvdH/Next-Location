@@ -12,7 +12,7 @@
     <string name="colorblind">Kleurenblind</string>
     <string name="total_distance">Totale afstand:</string>
     <string name="visited_locations">Bezochte locaties:</string>
-    <string name="total_time">Totale tijd:</string>
+    <string name="total_time">Totale route tijd:</string>
     <string name="coupons_collected">Coupons gespaard:</string>
     <string name="coupons">Coupons</string>
     <string name="start_route">Start Route</string>
@@ -20,10 +20,19 @@
     <string name="activate">activeren</string>
     <string name="done">Klaar</string>
     <string name="total_distance_route">De totale afstand van de route is: </string>
+    <string name="route_stop_toast">Route is gestopt!</string>
     <string name="cancel">annuleren</string>
     <string name="English">Engels</string>
     <string name="Dutch">Nederlands</string>
     <string name="Chinese">Chinees</string>
     <string name="help">HELP</string>
-    <string name="help_discription">Onderaan het scherm zijn verschillende knoppen te zien. Deze knoppen hebben de volgende functies: \n\nLocaties: toont een lijst met alle locaties die bezocht kunnen worden. Elke locatie wordt kort beschreven. \n\nRoutes: Toont een lijst met alle routes die gelopen kunnen worden. Van elke route wordt een omschrijving gegeven. \n\nStatistieken: Toont persoonlijke statistieken.  \n\nInstellingen: Hier kunnen app-instellingen worden aangepast naar eigen voorkeur. \n\nEen locatie ingedrukt houden laat extra informatie zien over de gekozen locatie</string>
+    <string name="help_discription">Onderaan het scherm zijn verschillende knoppen te zien. Deze knoppen hebben de volgende functies: \n\nLocaties: toont een lijst met alle locaties die bezocht kunnen worden. Elke locatie wordt kort beschreven. \n\nRoutes: Toont een lijst met alle routes die gelopen kunnen worden. Van elke route wordt een omschrijving gegeven. \n\nStatistieken: Toont persoonlijke statistieken.  \n\nInstellingen: Hier kunnen app-instellingen worden aangepast naar eigen voorkeur. \n\nEen locatie ingedrukt houden laat extra informatie zien over de gekozen locatie. \n\n\n</string>
+    <string name="end_location">Eind locatie</string>
+    <string name="start_location">Start locatie</string>
+    <string name="following_locations">"Deze route bevat de volgende locaties: "</string>
+    <string name="notification_title">Je bent dicht bij een locatie!</string>
+    <string name="notification_text">Je bent bijna bij %1$s</string>
+    <string name="hour">uur</string>
+    <string name="minutes">minuten</string>
+    <string name="route_started_toast">Route is gestart!</string>
 </resources>

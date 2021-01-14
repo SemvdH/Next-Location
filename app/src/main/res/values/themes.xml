@@ -2,13 +2,19 @@
     <!-- Base application theme. -->
     <style name="Theme.NextLocation" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColour</item>
+        <item name="colorPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColour</item>
         <!-- Customize your theme here. -->
         <item name="colorButtonNormal">@color/buttonColour</item>
         <item name="colorPrimaryDark">@color/secondaryColour</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.Switches" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorControlActivated">@color/buttonColour</item>
+        <item name="colorSwitchThumbNormal">@color/primaryColour</item>
     </style>
 
     <style name="Theme.NextLocationBig" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -21,4 +27,7 @@
         <item name="colorPrimaryDark">@color/secondaryColour</item>
         <item name="android:textSize">24sp</item>
     </style>
+
+
+
 </resources>

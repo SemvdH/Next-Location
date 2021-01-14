@@ -1,5 +1,7 @@
 package com.a1.nextlocation;
 
+import android.util.Log;
+
 import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.data.RouteHandler;
 
@@ -50,7 +52,11 @@ public class RouteHandlerTest {
         assertEquals(expected, routeHandler.isFollowingRoute());
         assertEquals(testRoute, routeHandler.getCurrentRoute());
 
-        routeHandler.finishRoute();
+        try {
+            routeHandler.finishRoute();
+        } catch (NullPointerException e) {
+            System.out.println("shared preferences not mocked");
+        }
         assertNull(routeHandler.getCurrentRoute());
 
         routeHandler.followRoute(new Route("FALSEROUTENAME"));

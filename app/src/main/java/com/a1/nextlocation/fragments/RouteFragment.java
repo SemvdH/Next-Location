@@ -1,5 +1,6 @@
 package com.a1.nextlocation.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,12 +18,21 @@ import com.a1.nextlocation.data.Route;
 import com.a1.nextlocation.recyclerview.RouteAdapter;
 import com.a1.nextlocation.recyclerview.RouteListManager;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class RouteFragment extends Fragment {
     private static final String TAG = RouteFragment.class.getCanonicalName();
 
     private List<Route> routeList;
+    private Refreshable refreshable;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        refreshable = (Refreshable) context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,13 +58,17 @@ public class RouteFragment extends Fragment {
             Bundle routeBundle = new Bundle();
             routeBundle.putParcelable("route", this.routeList.get(clickedPosition));
             routeDetailFragment.setArguments(routeBundle);
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeDetailFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeDetailFragment).addToBackStack(null).commit();
         });
 
         ImageButton backButton = view.findViewById(R.id.route_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            if (getActivity() != null) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+                refreshable.refreshAndNavigateTo(R.id.map_view);
+            }
         });
 
         routeRecyclerView.setLayoutManager(layoutManager);

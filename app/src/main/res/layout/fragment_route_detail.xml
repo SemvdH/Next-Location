@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/ic_back_button_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +21,7 @@
         android:id="@+id/route_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/secondaryColour"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/route_detail_image"
         android:text=""
@@ -31,37 +30,43 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_margin="40dp"
         android:id="@+id/route_detail_image"
-        app:layout_constraintTop_toBottomOf="@id/route_detail_back_button"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="228dp"
+        android:layout_height="208dp"
+        android:layout_margin="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/reoute_detail_tekst" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/route_detail_back_button" />
 
-    <TextView
-        android:id="@+id/reoute_detail_tekst"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        android:layout_height="200dp"
+        android:layout_margin="20dp"
+        android:background="@color/primaryColour"
+        android:id="@+id/route_scroll_view"
+        app:layout_constraintTop_toBottomOf="@id/route_detail_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/route_detail_image" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/total_distance">
+
+        <TextView
+            android:id="@+id/route_detail_tekst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp" />
+    </ScrollView>
+
 
     <Button
         android:id="@+id/start_route_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
         android:backgroundTint="@color/secondaryColour"
         android:text="@string/start_route"
-        android:textColor="@color/buttonColour"
+        android:textColor="@color/primaryColour"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/total_distance" />
 
@@ -69,14 +74,13 @@
         android:id="@+id/total_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/secondaryColour"
+        android:background="@color/primaryColour"
         android:text="@string/total_distance"
-        android:textColor="@color/buttonColour"
+        android:textColor="@color/secondaryColour"
         app:layout_constraintBottom_toTopOf="@+id/start_route_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reoute_detail_tekst" />
+        app:layout_constraintTop_toBottomOf="@+id/route_scroll_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

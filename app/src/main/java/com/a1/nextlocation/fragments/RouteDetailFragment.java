@@ -3,6 +3,7 @@ package com.a1.nextlocation.fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.a1.nextlocation.R;
 import com.a1.nextlocation.data.Location;
@@ -30,6 +30,7 @@ public class RouteDetailFragment extends Fragment {
 
     private Route route;
     private Refreshable refreshable;
+    private String time;
 
     @Override
     public void onAttach(@NotNull Context context) {
@@ -44,7 +45,7 @@ public class RouteDetailFragment extends Fragment {
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_route_detail, container, false);
@@ -60,19 +61,26 @@ public class RouteDetailFragment extends Fragment {
         TextView routeName = view.findViewById(R.id.route_title);
         routeName.setText(this.route.getName());
 
-        TextView routeDetailText = view.findViewById(R.id.reoute_detail_tekst);
-        routeDetailText.setText(this.route.getDescription());
+        TextView routeDetailText = view.findViewById(R.id.route_detail_tekst);
+        StringBuilder locations = new StringBuilder();
+        for (Location location : this.route.getLocations()) {
+            locations.append("<br>•").append(location.getName());
+        }
+        String detailText = this.route.getDescription() + "<br><br><b>" + getResources().getString(R.string.following_locations) + "</b>" + locations + "<br><br><b>" + getResources().getString(R.string.start_location) + ": </b>" + route.getLocations().get(0).getName() + "<br>" + "<b>" + getResources().getString(R.string.end_location) + ": </b>" + route.getLocations().get(route.getLocations().size() - 1).getName();
+        routeDetailText.setText(Html.fromHtml(detailText));
 
+        //sets the text of the totaldistance
         TextView totalDistance = view.findViewById(R.id.total_distance);
-        String distance_tekst = getResources().getString(R.string.total_distance_route);
+        //looks if imperial units or metric
         boolean imperialChecked = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false);
-        totalDistance.setText(distance_tekst + " " + String.format("%.1f", calculateRoute(this.route.getLocations())) + (imperialChecked ? "yd" : "m"));
+        totalDistance.setText(getResources().getString(R.string.total_distance_route) + " " + String.format("%.1f", calculateRoute(this.route.getLocations())) + (imperialChecked ? "yd" : "m") + "\n" + getResources().getString(R.string.total_time) + " " + this.time);
 
         //Initialises the back button
         ImageButton backButton = view.findViewById(R.id.route_detail_back_button);
         backButton.setOnClickListener(v -> {
             RouteFragment routeFragment = new RouteFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, routeFragment).addToBackStack(null).commit();
         });
 
         Button startButton = view.findViewById(R.id.start_route_button);
@@ -89,9 +97,10 @@ public class RouteDetailFragment extends Fragment {
     public void startRoute(View view) {
         ApiHandler.INSTANCE.getDirections(route);
         RouteHandler.INSTANCE.followRoute(route);
-        Toast.makeText(requireContext(), "Route started!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), R.string.route_started_toast, Toast.LENGTH_SHORT).show();
         // navigates to the HomeFragment and refreshes the BottomNavigation
         refreshable.refreshAndNavigateTo(R.id.locations);
+        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, new HomeFragment()).commit();
     }
 
     /**
@@ -116,11 +125,23 @@ public class RouteDetailFragment extends Fragment {
         }
         System.out.println("Total Distance:  " + totalDistance);
 
+        calculateTime(totalDistance);
         // if the imperialSwitch is checked, return feet, if not, return meters
         if (getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false))
             return totalDistance * 1.0936133;
         else
             return totalDistance;
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void calculateTime(double totalDistance){
+        double totalTimeInMinutes = ((totalDistance / 1000) / 5) * 60;
+        if(totalTimeInMinutes > 60) {
+            int hours = (int)(totalTimeInMinutes / 60);
+            int minutes = (int)(totalTimeInMinutes % 60);
+            this.time = hours + " " + getResources().getString(R.string.hour) + " " + minutes + " " +  getResources().getString(R.string.minutes);
+        }
+        else this.time = (int)(((totalDistance / 1000) / 5) * 60) + " " + getResources().getString(R.string.minutes);
     }
 
 }

@@ -88,5 +88,40 @@
     "totalTime": 342342,
     "description": "Met deze route bezoekt u alle snackbars en restaurants in het centrum van Breda!",
     "imageURL": "kees_kroket"
+  },
+  {
+    "name": "Historische Route",
+    "locations": [
+      {
+        "name":"Koningin Wilhelmina Paviljoen Kraanstraat 4b",
+        "coordinates":"51.59040026960037, 4.775767751364238",
+        "description":"Koningin Wilhelmina Paviljoen is een bouwwerk in Breda Centrum in Breda. Het behoort tot de Koninklijke Militaire Academie (KMA) en bezit de status van rijksmonument. Het staat aan het Kasteelplein 15, vlak voor het Kasteel van Breda. Het ligt met de voorgevel aan de westkant van de oprijlaan van het kasteel, met de lange rechterzijgevel aan de kasteelgracht en de lange linkerzijgevel aan de Cingelstraat.\n\nAdres:\tKraanstraat 4b\nOpeningstijden:\tdi 11:00-16:00\nTelefoon:\t-\nAfstand tot: ",
+        "imageUrl":"koningin_wilhelimna_paviljoen",
+        "iconUrl": "building_icon"
+      },
+      {
+        "name":"Hercules en de Nemeïsche leeuw",
+        "coordinates":"51.59120082440261, 4.777904512729459",
+        "description":"Het beeld toont Hercules met de huid van de Nemeïsche leeuw. Herakles of Hercules is een figuur uit de Griekse mythologie. Hij was een Griekse heros en werd beroemd om de 12 moeilijke werken die hij uitvoerde in opdracht van koning Eurystheus. Het beeld maakt onderdeel uit van 17 anderen zandstenen beelden die Willem III tussen 1670 en 1686 kocht. De beelden stonden verdeeld over grasperken in het Valkenberg park.\nHercules is het enige originele beeld dat overgebleven is.\n\nAdres:\t4811 XJ Breda\nOpeningstijden:\t-\nTelefoon:\t14 076\nAfstand tot: ",
+        "imageUrl":"hercules_park_valkenburg",
+        "iconUrl": "statue_icon"
+      },
+      {
+        "name":"Nassau-Baroniemonument - 1905 - Pierre Cuypers Delpratsingel 1",
+        "coordinates":"51.59249639550226, 4.779742259785807",
+        "description":"Het Baroniemonument of Nassau-Baroniemonument is een beeld van de Nederlandse architect Pierre Cuypers. Het staat in het Park Valkenberg in Breda. Het monument werd geplaatst ter herinnering aan de 500-jarige band (1904) tussen Breda en het huis Oranje-Nassau. In 1404 werd Engelbrecht I van Nassau-Siegen gehuldigd als heer van Breda.\n\nAdres:\tDelpratsingel 1\nOpeningstijden:\t-\nTelefoon:\t14 076\nAfstand tot: ",
+        "imageUrl":"nassau_baroniemonument",
+        "iconUrl": "statue_icon"
+      },
+      {
+        "name":"De Belcrum Watertoren (1935) Speelhuislaan 158",
+        "coordinates":"51.60052702557225, 4.7689948674496145",
+        "description":"De watertoren in de Belcrum in Breda is een industrieel monument uit het interbellum. De toren is de thuisbasis voor SOAB adviseurs voor woning en leefomgeving en onderstreept de missie van ons bureau. De toren hoort bij de Belcrum. Als landmark en als onderdak voor activiteiten. Zo vierden de Belcrummers hun 400 jaar bestaan in de toren en worden lunches met rondleiding op hoog niveau georganiseerd. Kijken en proeven.\n\nAdres:\tSpeelhuislaan 158\nOpeningstijden:\t08:30-18:00\nTelefoon:\t076 521 3080\nAfstand tot: ",
+        "imageUrl":"belcrum_watertoren",
+        "iconUrl": "building_icon"
+      }
+    ],
+    "description": "Met deze route kan je de historische punten ontdekken in het centrum van Breda",
+    "imageURL": "hercules_park_valkenburg"
   }
 ]

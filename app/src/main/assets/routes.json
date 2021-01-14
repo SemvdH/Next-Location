@@ -1,6 +1,6 @@
 [
   {
-    "name": "Evenementen Route",
+    "name": "Event Route",
     "locations": [
       {
         "name": "Escaping Breda: Escape Room Games Boschstraat 114",
@@ -33,13 +33,11 @@
         "imageUrl": "het_klooster_breda"
       }
     ],
-    "totalDistance": 1073.0,
-    "totalTime": 342342,
     "description": "This route will show you different and fun events scattered all around Breda! Try the escape rooms, an event at the dome or a fun party at MEZZ! With this route you walk past them all!",
     "imageURL": "escaping_room"
   },
   {
-    "name": "Hongerige Route",
+    "name": "Hungry Route",
     "locations": [
       {
         "name":"Subway Karnemelkstraat 10 A, 1",
@@ -84,9 +82,41 @@
         "imageUrl": "de_boter_hal"
       }
     ],
-    "totalDistance": 955.0,
-    "totalTime": 342342,
     "description": "With this route you can visit all snackbars and restaurants in the centre of Breda!",
     "imageURL": "kees_kroket"
+  },
+  {
+    "name": "Historical Route",
+    "locations": [
+      {
+        "name":"Koningin Wilhelmina Paviljoen Kraanstraat 4b",
+        "coordinates":"51.59040026960037, 4.775767751364238",
+        "description":"Queen Wilhelmina Pavilion is a building in Breda Center in Breda. It belongs to the Royal Military Academy (KMA) and has the status of a national monument. It is located at Kasteelplein 15, just in front of Breda Castle. the west side of the driveway of the castle, with the long right side wall on the castle moat and the long left side wall on the Cingelstraat.\n\nAdress:\tKraanstraat 4b\nOpening hours:\tdi 11:00-16:00\nPhone:\t-\nDistance to: ",
+        "imageUrl":"koningin_wilhelimna_paviljoen",
+        "iconUrl": "building_icon"
+      },
+      {
+        "name":"Hercules en de Nemeïsche leeuw",
+        "coordinates":"51.59120082440261, 4.777904512729459",
+        "description":"The statue shows Hercules with the skin of the Nemean lion. Heracles or Hercules is a figure from Greek mythology. He was a Greek hero and became famous for the 12 difficult works he performed at the behest of King Eurystheus. The statue is part of the 17 other sandstone statues that Willem III bought between 1670 and 1686. The statues were spread over lawns in the Valkenberg park.\nHercules is the only original statue that remains.\n\nAdress:\t4811 XJ Breda\nOpening hours:\t-\nPhone:\t14 076\nDistance to: ",
+        "imageUrl":"hercules_park_valkenburg",
+        "iconUrl": "statue_icon"
+      },{
+        "name":"Nassau-Baroniemonument - 1905 - Pierre Cuypers Delpratsingel 1",
+        "coordinates":"51.59249639550226, 4.779742259785807",
+        "description":"The Baroniemonument or Nassau-Baroniemonument is a statue of the Dutch architect Pierre Cuypers. It is located in Park Valkenberg in Breda. The monument was placed in memorial of the 500-year bond (1904) between Breda and the Oranje-Nassau house. In 1404 Engelbrecht I of Nassau-Siegen was honored as lord of Breda.\n\nAdress:\tDelpratsingel 1\nOpening hours:\t-\nPhone:\t14 076\nDistance to: ",
+        "imageUrl":"nassau_baroniemonument",
+        "iconUrl": "statue_icon"
+      },
+      {
+        "name":"De Belcrum Watertoren (1935) Speelhuislaan 158",
+        "coordinates":"51.60052702557225, 4.7689948674496145",
+        "description":"The water tower in the Belcrum in Breda is an industrial monument from the interwar period. The tower is the home base for SOAB advisers for housing and living environments and underlines the mission of our office. The tower is part of the Belcrum. As a landmark and as a shelter for activities. For example, the Belcrummers celebrated their 400th anniversary in the tower, and lunches with a guided tour are organized at a high level. Watch and taste.\n\nAdress:\tSpeelhuislaan 158\nOpening hours:\t08:30-18:00\nPhone:\t076 521 3080\nDistance to: ",
+        "imageUrl":"belcrum_watertoren",
+        "iconUrl": "building_icon"
+      }
+    ],
+    "description": "With this route you can visit some historic points in the centre of Breda!",
+    "imageURL": "hercules_park_valkenburg"
   }
 ]

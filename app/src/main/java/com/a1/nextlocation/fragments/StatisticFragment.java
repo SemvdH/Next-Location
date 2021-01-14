@@ -19,10 +19,19 @@ import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.recyclerview.CouponAdapter;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class StatisticFragment extends Fragment {
     private TextView distance;
+    private Refreshable refreshable;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        refreshable = (Refreshable) context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,28 +67,32 @@ public class StatisticFragment extends Fragment {
         ImageView backButton = view.findViewById(R.id.statistics_back_button);
         backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            refreshable.refreshAndNavigateTo(R.id.map_view);
         });
 
         //Initialises the coupon button
         ImageView couponButton = view.findViewById(R.id.coupon_button);
         couponButton.setOnClickListener(v -> {
             CouponFragment couponFragment = new CouponFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
         });
 
         //Makes the constraintlayout clickable and opens the same layout as the coupon button
         ConstraintLayout constraintLayout = view.findViewById(R.id.Box4);
         constraintLayout.setOnClickListener(v -> {
             CouponFragment couponFragment = new CouponFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, couponFragment).addToBackStack(null).commit();
         });
         return view;
     }
 
     private void initializeDistanceTextView(View view){
         distance = view.findViewById(R.id.statistics_km);
-        double dist = Data.INSTANCE.getDistanceTraveled()/1000;
+        double dist = Data.INSTANCE.getDistanceTraveled() / 1000;
         if (getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).getBoolean("imperialSwitch", false))
             distance.setText(""  + String.format("%.1f",dist * 0.621371) + " mi");
         else

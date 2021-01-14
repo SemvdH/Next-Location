@@ -13,12 +13,22 @@ public enum RouteHandler {
     private int stepCount = 0;
     private RouteFinishedListener routeFinishedListener;
     private long startedTime;
+    private double currentRouteDuration;
+
+    public void setCurrentRouteDuration(double currentRouteDuration) {
+        this.currentRouteDuration = currentRouteDuration;
+    }
+
+    public double getCurrentRouteDuration() {
+        return currentRouteDuration;
+    }
 
     private Polyline currentRouteLine;
 
     public void setCurrentRouteLine(Polyline currentRouteLine) {
         this.currentRouteLine = currentRouteLine;
     }
+
 
     public Polyline getCurrentRouteLine() {
         return currentRouteLine;
@@ -54,6 +64,14 @@ public enum RouteHandler {
             Data.INSTANCE.addTimeWalked(System.currentTimeMillis() - startedTime);
         }
         this.currentRoute = route;
+
+        // sync the visited locations with the route
+        for (Location l : this.currentRoute.getLocations()) {
+            if (Data.INSTANCE.isVisited(l)) {
+                this.currentRoute.setLocationVisited(l);
+            }
+        }
+
         setFollowingRoute(true);
         startedTime = System.currentTimeMillis();
     }

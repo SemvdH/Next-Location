@@ -43,7 +43,8 @@ public class LocationFragment extends Fragment {
         this.backButton = view.findViewById(R.id.location_back_button);
         this.backButton.setOnClickListener(v -> {
             HomeFragment homeFragment = new HomeFragment();
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
         });
 
         //Loads the location list
@@ -58,7 +59,8 @@ public class LocationFragment extends Fragment {
             //Gives the clicked location to the adapter
             locationBundle.putParcelable("location", this.locationList.get(clickedPosition));
             locationDetailFragment.setArguments(locationBundle);
-            ((FragmentActivity) view.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationDetailFragment).addToBackStack(null).commit();
+            if (getActivity() != null)
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, locationDetailFragment).addToBackStack(null).commit();
         });
 
         this.locationRecyclerView.setLayoutManager(this.layoutManager);
