@@ -10,7 +10,7 @@
     <string name="colorblind">Colorblind</string>
     <string name="total_distance">Total distance:</string>
     <string name="visited_locations">Visited locations:</string>
-    <string name="total_time">Total time:</string>
+    <string name="total_time">Total route time:</string>
     <string name="coupons_collected">Coupons collected:</string>
     <string name="coupons">Coupons</string>
     <string name="start_route">Start Route</string>
