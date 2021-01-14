@@ -19,10 +19,19 @@ import com.a1.nextlocation.data.Data;
 import com.a1.nextlocation.recyclerview.CouponAdapter;
 import com.a1.nextlocation.recyclerview.CouponListManager;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class StatisticFragment extends Fragment {
     private TextView distance;
+    private Refreshable refreshable;
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        refreshable = (Refreshable) context;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,7 @@ public class StatisticFragment extends Fragment {
             HomeFragment homeFragment = new HomeFragment();
             if (getActivity() != null)
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout, homeFragment).addToBackStack(null).commit();
+            refreshable.refreshAndNavigateTo(R.id.map_view);
         });
 
         //Initialises the coupon button
